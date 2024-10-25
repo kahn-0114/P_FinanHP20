@@ -35,34 +35,38 @@ Partial Class F_Si_SiwGet00
         Me.Cmd11 = New System.Windows.Forms.Button()
         Me.Cmd12 = New System.Windows.Forms.Button()
         Me.GroupBox00 = New System.Windows.Forms.GroupBox()
+        Me.GcMultiRow1 = New GrapeCity.Win.MultiRow.GcMultiRow()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.MenuItem00 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuItem01 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuItem02 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.txt決算期 = New System.Windows.Forms.TextBox()
+        Me.txt処理No = New System.Windows.Forms.TextBox()
         Me.txt対象年月2 = New System.Windows.Forms.TextBox()
         Me.txt対象年月3 = New System.Windows.Forms.TextBox()
-        Me.btn02月 = New System.Windows.Forms.Button()
-        Me.btn03月 = New System.Windows.Forms.Button()
-        Me.btn01月 = New System.Windows.Forms.Button()
-        Me.btn12月 = New System.Windows.Forms.Button()
-        Me.btn11月 = New System.Windows.Forms.Button()
-        Me.btn10月 = New System.Windows.Forms.Button()
-        Me.btn09月 = New System.Windows.Forms.Button()
-        Me.btn08月 = New System.Windows.Forms.Button()
-        Me.btn07月 = New System.Windows.Forms.Button()
-        Me.btn06月 = New System.Windows.Forms.Button()
-        Me.btn05月 = New System.Windows.Forms.Button()
+        Me.btn11 = New System.Windows.Forms.Button()
+        Me.btn12 = New System.Windows.Forms.Button()
+        Me.btn10 = New System.Windows.Forms.Button()
+        Me.btn9 = New System.Windows.Forms.Button()
+        Me.btn8 = New System.Windows.Forms.Button()
+        Me.btn7 = New System.Windows.Forms.Button()
+        Me.btn6 = New System.Windows.Forms.Button()
+        Me.btn5 = New System.Windows.Forms.Button()
+        Me.btn4 = New System.Windows.Forms.Button()
+        Me.btn3 = New System.Windows.Forms.Button()
+        Me.btn2 = New System.Windows.Forms.Button()
         Me.La対象年月 = New System.Windows.Forms.Label()
         Me.cmba = New System.Windows.Forms.ComboBox()
         Me.La年度 = New System.Windows.Forms.Label()
         Me.txt対象年月1 = New System.Windows.Forms.TextBox()
-        Me.btn04月 = New System.Windows.Forms.Button()
+        Me.btn1 = New System.Windows.Forms.Button()
         Me.La科目CD = New System.Windows.Forms.Label()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.cmbb = New System.Windows.Forms.ComboBox()
         Me.txtTo1 = New System.Windows.Forms.TextBox()
-        Me.btn集計実行00 = New System.Windows.Forms.Button()
+        Me.btnUp00 = New System.Windows.Forms.Button()
         Me.txtFrom2 = New System.Windows.Forms.TextBox()
         Me.txtTo2 = New System.Windows.Forms.TextBox()
         Me.txt取引先CDTo = New System.Windows.Forms.TextBox()
@@ -91,6 +95,8 @@ Partial Class F_Si_SiwGet00
         Me.La処理対象仕訳 = New System.Windows.Forms.Label()
         Me.La抽出範囲指定 = New System.Windows.Forms.Label()
         Cmd01 = New System.Windows.Forms.Button()
+        Me.GroupBox00.SuspendLayout()
+        CType(Me.GcMultiRow1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
@@ -106,7 +112,6 @@ Partial Class F_Si_SiwGet00
         Cmd01.TabIndex = 1
         Cmd01.TabStop = False
         Cmd01.UseVisualStyleBackColor = True
-        AddHandler Cmd01.Click, AddressOf Me.Cmd01_Click
         '
         'Cmd02
         '
@@ -137,9 +142,8 @@ Partial Class F_Si_SiwGet00
         Me.Cmd10.Location = New System.Drawing.Point(758, 28)
         Me.Cmd10.Name = "Cmd10"
         Me.Cmd10.Size = New System.Drawing.Size(84, 44)
-        Me.Cmd10.TabIndex = 1
+        Me.Cmd10.TabIndex = 0
         Me.Cmd10.Text = "F10　終了"
-        Me.Cmd10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Cmd10.UseVisualStyleBackColor = True
         '
         'Cmd09
@@ -217,6 +221,7 @@ Partial Class F_Si_SiwGet00
         Me.Cmd11.Name = "Cmd11"
         Me.Cmd11.Size = New System.Drawing.Size(84, 44)
         Me.Cmd11.TabIndex = 5
+        Me.Cmd11.TabStop = False
         Me.Cmd11.UseVisualStyleBackColor = True
         '
         'Cmd12
@@ -226,18 +231,26 @@ Partial Class F_Si_SiwGet00
         Me.Cmd12.Location = New System.Drawing.Point(924, 28)
         Me.Cmd12.Name = "Cmd12"
         Me.Cmd12.Size = New System.Drawing.Size(84, 44)
-        Me.Cmd12.TabIndex = 2
+        Me.Cmd12.TabIndex = 1
         Me.Cmd12.Text = "F12　検索"
-        Me.Cmd12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Cmd12.UseVisualStyleBackColor = True
         '
         'GroupBox00
         '
+        Me.GroupBox00.Controls.Add(Me.GcMultiRow1)
         Me.GroupBox00.Location = New System.Drawing.Point(4, 75)
         Me.GroupBox00.Name = "GroupBox00"
         Me.GroupBox00.Size = New System.Drawing.Size(1004, 87)
-        Me.GroupBox00.TabIndex = 44
+        Me.GroupBox00.TabIndex = 2
         Me.GroupBox00.TabStop = False
+        '
+        'GcMultiRow1
+        '
+        Me.GcMultiRow1.Location = New System.Drawing.Point(10, 4)
+        Me.GcMultiRow1.Name = "GcMultiRow1"
+        Me.GcMultiRow1.Size = New System.Drawing.Size(240, 75)
+        Me.GcMultiRow1.TabIndex = 0
+        Me.GcMultiRow1.Text = "GcMultiRow1"
         '
         'MenuStrip1
         '
@@ -276,36 +289,68 @@ Partial Class F_Si_SiwGet00
         'GroupBox10
         '
         Me.GroupBox10.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox10.Controls.Add(Me.txt決算期)
+        Me.GroupBox10.Controls.Add(Me.txt処理No)
         Me.GroupBox10.Controls.Add(Me.txt対象年月2)
         Me.GroupBox10.Controls.Add(Me.txt対象年月3)
-        Me.GroupBox10.Controls.Add(Me.btn02月)
-        Me.GroupBox10.Controls.Add(Me.btn03月)
-        Me.GroupBox10.Controls.Add(Me.btn01月)
-        Me.GroupBox10.Controls.Add(Me.btn12月)
-        Me.GroupBox10.Controls.Add(Me.btn11月)
-        Me.GroupBox10.Controls.Add(Me.btn10月)
-        Me.GroupBox10.Controls.Add(Me.btn09月)
-        Me.GroupBox10.Controls.Add(Me.btn08月)
-        Me.GroupBox10.Controls.Add(Me.btn07月)
-        Me.GroupBox10.Controls.Add(Me.btn06月)
-        Me.GroupBox10.Controls.Add(Me.btn05月)
+        Me.GroupBox10.Controls.Add(Me.btn11)
+        Me.GroupBox10.Controls.Add(Me.btn12)
+        Me.GroupBox10.Controls.Add(Me.btn10)
+        Me.GroupBox10.Controls.Add(Me.btn9)
+        Me.GroupBox10.Controls.Add(Me.btn8)
+        Me.GroupBox10.Controls.Add(Me.btn7)
+        Me.GroupBox10.Controls.Add(Me.btn6)
+        Me.GroupBox10.Controls.Add(Me.btn5)
+        Me.GroupBox10.Controls.Add(Me.btn4)
+        Me.GroupBox10.Controls.Add(Me.btn3)
+        Me.GroupBox10.Controls.Add(Me.btn2)
         Me.GroupBox10.Controls.Add(Me.La対象年月)
         Me.GroupBox10.Controls.Add(Me.cmba)
         Me.GroupBox10.Controls.Add(Me.La年度)
         Me.GroupBox10.Controls.Add(Me.txt対象年月1)
-        Me.GroupBox10.Controls.Add(Me.btn04月)
+        Me.GroupBox10.Controls.Add(Me.btn1)
         Me.GroupBox10.Location = New System.Drawing.Point(4, 160)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(1004, 67)
         Me.GroupBox10.TabIndex = 241
         Me.GroupBox10.TabStop = False
         '
+        'txt決算期
+        '
+        Me.txt決算期.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt決算期.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt決算期.Location = New System.Drawing.Point(591, 37)
+        Me.txt決算期.MaxLength = 2
+        Me.txt決算期.Multiline = True
+        Me.txt決算期.Name = "txt決算期"
+        Me.txt決算期.ReadOnly = True
+        Me.txt決算期.Size = New System.Drawing.Size(19, 32)
+        Me.txt決算期.TabIndex = 10008
+        Me.txt決算期.TabStop = False
+        Me.txt決算期.Text = "決" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "算" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "期"
+        Me.txt決算期.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txt処理No
+        '
+        Me.txt処理No.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt処理No.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt処理No.Location = New System.Drawing.Point(571, 37)
+        Me.txt処理No.MaxLength = 2
+        Me.txt処理No.Multiline = True
+        Me.txt処理No.Name = "txt処理No"
+        Me.txt処理No.ReadOnly = True
+        Me.txt処理No.Size = New System.Drawing.Size(19, 32)
+        Me.txt処理No.TabIndex = 10007
+        Me.txt処理No.TabStop = False
+        Me.txt処理No.Text = "処理No"
+        Me.txt処理No.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'txt対象年月2
         '
         Me.txt対象年月2.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt対象年月2.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt対象年月2.Location = New System.Drawing.Point(327, 37)
-        Me.txt対象年月2.MaxLength = 8
+        Me.txt対象年月2.MaxLength = 10
         Me.txt対象年月2.Multiline = True
         Me.txt対象年月2.Name = "txt対象年月2"
         Me.txt対象年月2.ReadOnly = True
@@ -320,7 +365,7 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月3.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt対象年月3.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt対象年月3.Location = New System.Drawing.Point(441, 37)
-        Me.txt対象年月3.MaxLength = 8
+        Me.txt対象年月3.MaxLength = 10
         Me.txt対象年月3.Multiline = True
         Me.txt対象年月3.Name = "txt対象年月3"
         Me.txt対象年月3.ReadOnly = True
@@ -330,126 +375,126 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月3.Text = "2022/12/31"
         Me.txt対象年月3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'btn02月
+        'btn11
         '
-        Me.btn02月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn02月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn02月.Location = New System.Drawing.Point(794, 11)
-        Me.btn02月.Name = "btn02月"
-        Me.btn02月.Size = New System.Drawing.Size(68, 23)
-        Me.btn02月.TabIndex = 12
-        Me.btn02月.Text = "02月"
-        Me.btn02月.UseVisualStyleBackColor = True
+        Me.btn11.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn11.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn11.Location = New System.Drawing.Point(794, 11)
+        Me.btn11.Name = "btn11"
+        Me.btn11.Size = New System.Drawing.Size(68, 23)
+        Me.btn11.TabIndex = 11
+        Me.btn11.Text = "02月"
+        Me.btn11.UseVisualStyleBackColor = True
         '
-        'btn03月
+        'btn12
         '
-        Me.btn03月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn03月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn03月.Location = New System.Drawing.Point(859, 11)
-        Me.btn03月.Name = "btn03月"
-        Me.btn03月.Size = New System.Drawing.Size(68, 23)
-        Me.btn03月.TabIndex = 14
-        Me.btn03月.Text = "03月"
-        Me.btn03月.UseVisualStyleBackColor = True
+        Me.btn12.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn12.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn12.Location = New System.Drawing.Point(859, 11)
+        Me.btn12.Name = "btn12"
+        Me.btn12.Size = New System.Drawing.Size(68, 23)
+        Me.btn12.TabIndex = 12
+        Me.btn12.Text = "03月"
+        Me.btn12.UseVisualStyleBackColor = True
         '
-        'btn01月
+        'btn10
         '
-        Me.btn01月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn01月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn01月.Location = New System.Drawing.Point(729, 11)
-        Me.btn01月.Name = "btn01月"
-        Me.btn01月.Size = New System.Drawing.Size(68, 23)
-        Me.btn01月.TabIndex = 11
-        Me.btn01月.Text = "01月"
-        Me.btn01月.UseVisualStyleBackColor = True
+        Me.btn10.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn10.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn10.Location = New System.Drawing.Point(729, 11)
+        Me.btn10.Name = "btn10"
+        Me.btn10.Size = New System.Drawing.Size(68, 23)
+        Me.btn10.TabIndex = 10
+        Me.btn10.Text = "01月"
+        Me.btn10.UseVisualStyleBackColor = True
         '
-        'btn12月
+        'btn9
         '
-        Me.btn12月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn12月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn12月.Location = New System.Drawing.Point(664, 11)
-        Me.btn12月.Name = "btn12月"
-        Me.btn12月.Size = New System.Drawing.Size(68, 23)
-        Me.btn12月.TabIndex = 10
-        Me.btn12月.Text = "12月"
-        Me.btn12月.UseVisualStyleBackColor = True
+        Me.btn9.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn9.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn9.Location = New System.Drawing.Point(664, 11)
+        Me.btn9.Name = "btn9"
+        Me.btn9.Size = New System.Drawing.Size(68, 23)
+        Me.btn9.TabIndex = 9
+        Me.btn9.Text = "12月"
+        Me.btn9.UseVisualStyleBackColor = True
         '
-        'btn11月
+        'btn8
         '
-        Me.btn11月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn11月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn11月.Location = New System.Drawing.Point(599, 11)
-        Me.btn11月.Name = "btn11月"
-        Me.btn11月.Size = New System.Drawing.Size(68, 23)
-        Me.btn11月.TabIndex = 9
-        Me.btn11月.Text = "11月"
-        Me.btn11月.UseVisualStyleBackColor = True
+        Me.btn8.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn8.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn8.Location = New System.Drawing.Point(599, 11)
+        Me.btn8.Name = "btn8"
+        Me.btn8.Size = New System.Drawing.Size(68, 23)
+        Me.btn8.TabIndex = 8
+        Me.btn8.Text = "11月"
+        Me.btn8.UseVisualStyleBackColor = True
         '
-        'btn10月
+        'btn7
         '
-        Me.btn10月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn10月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn10月.Location = New System.Drawing.Point(534, 11)
-        Me.btn10月.Name = "btn10月"
-        Me.btn10月.Size = New System.Drawing.Size(68, 23)
-        Me.btn10月.TabIndex = 8
-        Me.btn10月.Text = "10月"
-        Me.btn10月.UseVisualStyleBackColor = True
+        Me.btn7.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn7.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn7.Location = New System.Drawing.Point(534, 11)
+        Me.btn7.Name = "btn7"
+        Me.btn7.Size = New System.Drawing.Size(68, 23)
+        Me.btn7.TabIndex = 7
+        Me.btn7.Text = "10月"
+        Me.btn7.UseVisualStyleBackColor = True
         '
-        'btn09月
+        'btn6
         '
-        Me.btn09月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn09月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn09月.Location = New System.Drawing.Point(469, 11)
-        Me.btn09月.Name = "btn09月"
-        Me.btn09月.Size = New System.Drawing.Size(68, 23)
-        Me.btn09月.TabIndex = 7
-        Me.btn09月.Text = "09月"
-        Me.btn09月.UseVisualStyleBackColor = True
+        Me.btn6.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn6.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn6.Location = New System.Drawing.Point(469, 11)
+        Me.btn6.Name = "btn6"
+        Me.btn6.Size = New System.Drawing.Size(68, 23)
+        Me.btn6.TabIndex = 6
+        Me.btn6.Text = "09月"
+        Me.btn6.UseVisualStyleBackColor = True
         '
-        'btn08月
+        'btn5
         '
-        Me.btn08月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn08月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn08月.Location = New System.Drawing.Point(404, 11)
-        Me.btn08月.Name = "btn08月"
-        Me.btn08月.Size = New System.Drawing.Size(68, 23)
-        Me.btn08月.TabIndex = 6
-        Me.btn08月.Text = "08月"
-        Me.btn08月.UseVisualStyleBackColor = True
+        Me.btn5.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn5.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn5.Location = New System.Drawing.Point(404, 11)
+        Me.btn5.Name = "btn5"
+        Me.btn5.Size = New System.Drawing.Size(68, 23)
+        Me.btn5.TabIndex = 5
+        Me.btn5.Text = "08月"
+        Me.btn5.UseVisualStyleBackColor = True
         '
-        'btn07月
+        'btn4
         '
-        Me.btn07月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn07月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn07月.Location = New System.Drawing.Point(339, 11)
-        Me.btn07月.Name = "btn07月"
-        Me.btn07月.Size = New System.Drawing.Size(68, 23)
-        Me.btn07月.TabIndex = 5
-        Me.btn07月.Text = "07月"
-        Me.btn07月.UseVisualStyleBackColor = True
+        Me.btn4.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn4.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn4.Location = New System.Drawing.Point(339, 11)
+        Me.btn4.Name = "btn4"
+        Me.btn4.Size = New System.Drawing.Size(68, 23)
+        Me.btn4.TabIndex = 4
+        Me.btn4.Text = "07月"
+        Me.btn4.UseVisualStyleBackColor = True
         '
-        'btn06月
+        'btn3
         '
-        Me.btn06月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn06月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn06月.Location = New System.Drawing.Point(274, 11)
-        Me.btn06月.Name = "btn06月"
-        Me.btn06月.Size = New System.Drawing.Size(68, 23)
-        Me.btn06月.TabIndex = 4
-        Me.btn06月.Text = "06月"
-        Me.btn06月.UseVisualStyleBackColor = True
+        Me.btn3.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn3.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn3.Location = New System.Drawing.Point(274, 11)
+        Me.btn3.Name = "btn3"
+        Me.btn3.Size = New System.Drawing.Size(68, 23)
+        Me.btn3.TabIndex = 3
+        Me.btn3.Text = "06月"
+        Me.btn3.UseVisualStyleBackColor = True
         '
-        'btn05月
+        'btn2
         '
-        Me.btn05月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn05月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn05月.Location = New System.Drawing.Point(209, 11)
-        Me.btn05月.Name = "btn05月"
-        Me.btn05月.Size = New System.Drawing.Size(68, 23)
-        Me.btn05月.TabIndex = 3
-        Me.btn05月.Text = "05月"
-        Me.btn05月.UseVisualStyleBackColor = True
+        Me.btn2.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn2.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn2.Location = New System.Drawing.Point(209, 11)
+        Me.btn2.Name = "btn2"
+        Me.btn2.Size = New System.Drawing.Size(68, 23)
+        Me.btn2.TabIndex = 2
+        Me.btn2.Text = "05月"
+        Me.btn2.UseVisualStyleBackColor = True
         '
         'La対象年月
         '
@@ -471,7 +516,7 @@ Partial Class F_Si_SiwGet00
         Me.cmba.Location = New System.Drawing.Point(71, 14)
         Me.cmba.Name = "cmba"
         Me.cmba.Size = New System.Drawing.Size(67, 20)
-        Me.cmba.TabIndex = 1
+        Me.cmba.TabIndex = 0
         Me.cmba.Text = "2022"
         '
         'La年度
@@ -503,16 +548,16 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月1.Text = "2022年12月"
         Me.txt対象年月1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'btn04月
+        'btn1
         '
-        Me.btn04月.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn04月.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn04月.Location = New System.Drawing.Point(144, 11)
-        Me.btn04月.Name = "btn04月"
-        Me.btn04月.Size = New System.Drawing.Size(68, 23)
-        Me.btn04月.TabIndex = 2
-        Me.btn04月.Text = "04月"
-        Me.btn04月.UseVisualStyleBackColor = True
+        Me.btn1.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn1.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btn1.Location = New System.Drawing.Point(144, 11)
+        Me.btn1.Name = "btn1"
+        Me.btn1.Size = New System.Drawing.Size(68, 23)
+        Me.btn1.TabIndex = 1
+        Me.btn1.Text = "04月"
+        Me.btn1.UseVisualStyleBackColor = True
         '
         'La科目CD
         '
@@ -524,15 +569,16 @@ Partial Class F_Si_SiwGet00
         Me.La科目CD.Location = New System.Drawing.Point(439, 14)
         Me.La科目CD.Name = "La科目CD"
         Me.La科目CD.Size = New System.Drawing.Size(93, 27)
-        Me.La科目CD.TabIndex = 7
+        Me.La科目CD.TabIndex = 6
         Me.La科目CD.Text = "科目CD"
         Me.La科目CD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.txtMsg)
         Me.GroupBox20.Controls.Add(Me.cmbb)
         Me.GroupBox20.Controls.Add(Me.txtTo1)
-        Me.GroupBox20.Controls.Add(Me.btn集計実行00)
+        Me.GroupBox20.Controls.Add(Me.btnUp00)
         Me.GroupBox20.Controls.Add(Me.txtFrom2)
         Me.GroupBox20.Controls.Add(Me.txtTo2)
         Me.GroupBox20.Controls.Add(Me.txt取引先CDTo)
@@ -564,9 +610,19 @@ Partial Class F_Si_SiwGet00
         Me.GroupBox20.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox20.Location = New System.Drawing.Point(6, 225)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(1002, 217)
+        Me.GroupBox20.Size = New System.Drawing.Size(1002, 232)
         Me.GroupBox20.TabIndex = 9999
         Me.GroupBox20.TabStop = False
+        '
+        'txtMsg
+        '
+        Me.txtMsg.BackColor = System.Drawing.SystemColors.Control
+        Me.txtMsg.ForeColor = System.Drawing.Color.Red
+        Me.txtMsg.Location = New System.Drawing.Point(1, 159)
+        Me.txtMsg.Name = "txtMsg"
+        Me.txtMsg.Size = New System.Drawing.Size(262, 27)
+        Me.txtMsg.TabIndex = 10000
+        Me.txtMsg.Text = "エラーメッセージ"
         '
         'cmbb
         '
@@ -574,7 +630,7 @@ Partial Class F_Si_SiwGet00
         Me.cmbb.Location = New System.Drawing.Point(117, 129)
         Me.cmbb.Name = "cmbb"
         Me.cmbb.Size = New System.Drawing.Size(121, 28)
-        Me.cmbb.TabIndex = 10011
+        Me.cmbb.TabIndex = 13
         Me.cmbb.Text = "全件インポート"
         '
         'txtTo1
@@ -590,16 +646,16 @@ Partial Class F_Si_SiwGet00
         Me.txtTo1.TabIndex = 10010
         Me.txtTo1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'btn集計実行00
+        'btnUp00
         '
-        Me.btn集計実行00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn集計実行00.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.btn集計実行00.Location = New System.Drawing.Point(1, 174)
-        Me.btn集計実行00.Name = "btn集計実行00"
-        Me.btn集計実行00.Size = New System.Drawing.Size(151, 34)
-        Me.btn集計実行00.TabIndex = 245
-        Me.btn集計実行00.Text = "集計実行"
-        Me.btn集計実行00.UseVisualStyleBackColor = True
+        Me.btnUp00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnUp00.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btnUp00.Location = New System.Drawing.Point(1, 192)
+        Me.btnUp00.Name = "btnUp00"
+        Me.btnUp00.Size = New System.Drawing.Size(151, 34)
+        Me.btnUp00.TabIndex = 14
+        Me.btnUp00.Text = "集計実行"
+        Me.btnUp00.UseVisualStyleBackColor = True
         '
         'txtFrom2
         '
@@ -632,7 +688,7 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDTo.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt取引先CDTo.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt取引先CDTo.Location = New System.Drawing.Point(583, 95)
-        Me.txt取引先CDTo.MaxLength = 3
+        Me.txt取引先CDTo.MaxLength = 8
         Me.txt取引先CDTo.Multiline = True
         Me.txt取引先CDTo.Name = "txt取引先CDTo"
         Me.txt取引先CDTo.Size = New System.Drawing.Size(83, 27)
@@ -644,7 +700,7 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDFrom.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt取引先CDFrom.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt取引先CDFrom.Location = New System.Drawing.Point(583, 68)
-        Me.txt取引先CDFrom.MaxLength = 3
+        Me.txt取引先CDFrom.MaxLength = 8
         Me.txt取引先CDFrom.Multiline = True
         Me.txt取引先CDFrom.Name = "txt取引先CDFrom"
         Me.txt取引先CDFrom.Size = New System.Drawing.Size(83, 27)
@@ -656,11 +712,11 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDTo.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt科目CDTo.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt科目CDTo.Location = New System.Drawing.Point(583, 41)
-        Me.txt科目CDTo.MaxLength = 3
+        Me.txt科目CDTo.MaxLength = 8
         Me.txt科目CDTo.Multiline = True
         Me.txt科目CDTo.Name = "txt科目CDTo"
         Me.txt科目CDTo.Size = New System.Drawing.Size(83, 27)
-        Me.txt科目CDTo.TabIndex = 9
+        Me.txt科目CDTo.TabIndex = 8
         Me.txt科目CDTo.Text = "303"
         Me.txt科目CDTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -716,7 +772,7 @@ Partial Class F_Si_SiwGet00
         Me.La取引先CD.Location = New System.Drawing.Point(439, 68)
         Me.La取引先CD.Name = "La取引先CD"
         Me.La取引先CD.Size = New System.Drawing.Size(93, 27)
-        Me.La取引先CD.TabIndex = 10001
+        Me.La取引先CD.TabIndex = 9
         Me.La取引先CD.Text = "取引先CD"
         Me.La取引先CD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -725,11 +781,11 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票会開始番号.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt伝票会開始番号.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt伝票会開始番号.Location = New System.Drawing.Point(182, 41)
-        Me.txt伝票会開始番号.MaxLength = 10
+        Me.txt伝票会開始番号.MaxLength = 8
         Me.txt伝票会開始番号.Multiline = True
         Me.txt伝票会開始番号.Name = "txt伝票会開始番号"
         Me.txt伝票会開始番号.Size = New System.Drawing.Size(113, 27)
-        Me.txt伝票会開始番号.TabIndex = 3
+        Me.txt伝票会開始番号.TabIndex = 2
         Me.txt伝票会開始番号.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt支払指定開始日
@@ -737,11 +793,11 @@ Partial Class F_Si_SiwGet00
         Me.txt支払指定開始日.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt支払指定開始日.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt支払指定開始日.Location = New System.Drawing.Point(182, 68)
-        Me.txt支払指定開始日.MaxLength = 10
+        Me.txt支払指定開始日.MaxLength = 8
         Me.txt支払指定開始日.Multiline = True
         Me.txt支払指定開始日.Name = "txt支払指定開始日"
         Me.txt支払指定開始日.Size = New System.Drawing.Size(113, 27)
-        Me.txt支払指定開始日.TabIndex = 5
+        Me.txt支払指定開始日.TabIndex = 4
         Me.txt支払指定開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt伝票日付終了日
@@ -753,7 +809,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票日付終了日.Multiline = True
         Me.txt伝票日付終了日.Name = "txt伝票日付終了日"
         Me.txt伝票日付終了日.Size = New System.Drawing.Size(113, 27)
-        Me.txt伝票日付終了日.TabIndex = 2
+        Me.txt伝票日付終了日.TabIndex = 1
         Me.txt伝票日付終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt伝票終了番号
@@ -761,11 +817,11 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票終了番号.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt伝票終了番号.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt伝票終了番号.Location = New System.Drawing.Point(320, 41)
-        Me.txt伝票終了番号.MaxLength = 10
+        Me.txt伝票終了番号.MaxLength = 8
         Me.txt伝票終了番号.Multiline = True
         Me.txt伝票終了番号.Name = "txt伝票終了番号"
         Me.txt伝票終了番号.Size = New System.Drawing.Size(113, 27)
-        Me.txt伝票終了番号.TabIndex = 4
+        Me.txt伝票終了番号.TabIndex = 3
         Me.txt伝票終了番号.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt支払指定終了日
@@ -773,11 +829,11 @@ Partial Class F_Si_SiwGet00
         Me.txt支払指定終了日.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt支払指定終了日.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt支払指定終了日.Location = New System.Drawing.Point(320, 68)
-        Me.txt支払指定終了日.MaxLength = 10
+        Me.txt支払指定終了日.MaxLength = 8
         Me.txt支払指定終了日.Multiline = True
         Me.txt支払指定終了日.Name = "txt支払指定終了日"
         Me.txt支払指定終了日.Size = New System.Drawing.Size(113, 27)
-        Me.txt支払指定終了日.TabIndex = 6
+        Me.txt支払指定終了日.TabIndex = 5
         Me.txt支払指定終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtから2
@@ -875,7 +931,7 @@ Partial Class F_Si_SiwGet00
         Me.txt処理対象仕訳.Multiline = True
         Me.txt処理対象仕訳.Name = "txt処理対象仕訳"
         Me.txt処理対象仕訳.Size = New System.Drawing.Size(22, 27)
-        Me.txt処理対象仕訳.TabIndex = 13
+        Me.txt処理対象仕訳.TabIndex = 12
         Me.txt処理対象仕訳.TabStop = False
         Me.txt処理対象仕訳.Text = "1"
         Me.txt処理対象仕訳.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -889,7 +945,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票日付開始日.Multiline = True
         Me.txt伝票日付開始日.Name = "txt伝票日付開始日"
         Me.txt伝票日付開始日.Size = New System.Drawing.Size(113, 27)
-        Me.txt伝票日付開始日.TabIndex = 1
+        Me.txt伝票日付開始日.TabIndex = 0
         Me.txt伝票日付開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt科目CDFrom
@@ -897,11 +953,11 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDFrom.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt科目CDFrom.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.txt科目CDFrom.Location = New System.Drawing.Point(583, 14)
-        Me.txt科目CDFrom.MaxLength = 3
+        Me.txt科目CDFrom.MaxLength = 8
         Me.txt科目CDFrom.Multiline = True
         Me.txt科目CDFrom.Name = "txt科目CDFrom"
         Me.txt科目CDFrom.Size = New System.Drawing.Size(83, 27)
-        Me.txt科目CDFrom.TabIndex = 8
+        Me.txt科目CDFrom.TabIndex = 7
         Me.txt科目CDFrom.Text = "303"
         Me.txt科目CDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -987,6 +1043,8 @@ Partial Class F_Si_SiwGet00
         Me.Name = "F_Si_SiwGet00"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " 財務データインポート処理"
+        Me.GroupBox00.ResumeLayout(False)
+        CType(Me.GcMultiRow1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
@@ -1014,7 +1072,7 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents MenuItem00 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuItem01 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuItem02 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents btn集計実行00 As Button
+    Friend WithEvents btnUp00 As Button
     Friend WithEvents GroupBox20 As GroupBox
     Friend WithEvents La年度 As Label
     Friend WithEvents La処理対象仕訳 As Label
@@ -1027,19 +1085,19 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents txt処理対象仕訳 As TextBox
     Friend WithEvents txtFrom1 As TextBox
     Friend WithEvents La科目CD As Label
-    Friend WithEvents btn04月 As Button
+    Friend WithEvents btn1 As Button
     Friend WithEvents cmba As ComboBox
-    Friend WithEvents btn02月 As Button
-    Friend WithEvents btn03月 As Button
-    Friend WithEvents btn01月 As Button
-    Friend WithEvents btn12月 As Button
-    Friend WithEvents btn11月 As Button
-    Friend WithEvents btn10月 As Button
-    Friend WithEvents btn09月 As Button
-    Friend WithEvents btn08月 As Button
-    Friend WithEvents btn07月 As Button
-    Friend WithEvents btn06月 As Button
-    Friend WithEvents btn05月 As Button
+    Friend WithEvents btn11 As Button
+    Friend WithEvents btn12 As Button
+    Friend WithEvents btn10 As Button
+    Friend WithEvents btn9 As Button
+    Friend WithEvents btn8 As Button
+    Friend WithEvents btn7 As Button
+    Friend WithEvents btn6 As Button
+    Friend WithEvents btn5 As Button
+    Friend WithEvents btn4 As Button
+    Friend WithEvents btn3 As Button
+    Friend WithEvents btn2 As Button
     Friend WithEvents La対象年月 As Label
     Friend WithEvents txt対象年月2 As TextBox
     Friend WithEvents txt対象年月3 As TextBox
@@ -1064,4 +1122,8 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents txt取引先CDFrom As TextBox
     Friend WithEvents txt科目CDTo As TextBox
     Friend WithEvents cmbb As ComboBox
+    Friend WithEvents txtMsg As TextBox
+    Friend WithEvents txt決算期 As TextBox
+    Friend WithEvents txt処理No As TextBox
+    Friend WithEvents GcMultiRow1 As GcMultiRow
 End Class

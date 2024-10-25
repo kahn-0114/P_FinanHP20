@@ -1,868 +1,1014 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Windows.Forms
+Imports System.ComponentModel
+Imports System.Data.Odbc
+Imports dao
+Imports GrapeCity.ActiveReports.Rdl.Themes
+
 Public Class F_Si_SiwGet00
-
     Dim pFocus(10) As Object
-    Dim SQLCmd As New SqlCommand()
+    Dim MyCom As New Com
+    Dim pubProc As New Proc
     Dim pDateFormat As String = "yyyy/MM/dd"
-    Dim PubCom As New Com
+    Private Mysqlserver As SQLServer = New SQLServer()
 
-    Private Sub F_Ms_Comp00_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        Try
-            SQLCmd.Dispose() : SQLCmd = Nothing
-        Catch ex As Exception
-        End Try
-    End Sub
 
-    Private Sub F_Ms_Comp00_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        Select Case e.KeyCode
-            Case 120
-                Cmd09.PerformClick() : e.Handled = True
-            Case 122
-                Cmd11.PerformClick() : e.Handled = True
-        End Select
-    End Sub
+    '* ！のやつ　　　　　　　　 　 r10.Fields("").Value = dt0.Fields("").Value
+    '*  iのやつ　　　　　　　　　  For i AS Integer 、　Next i　←　i省略可  
+    '*  Formatのやつ               r10("" & i).Value = r0("" & i.ToString("00") & "0").Value
+    '*  Closeのやつ　　　　　　　  r10.Close() : r10 = Nothing  
+    '*  Null → DBNull.Value 　　　IsDBNull →　IsDBNull
+    '*オフにしていい　Workspace　OpenConnection
+    '*
+    '*Dim r0 As dao.Recordset = ComDB.OpenRecordset("〇", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbReadOnly)
+    '*Dim r0 As dao.Recordset = ComDB.OpenRecordset("〇", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+    '*
+    '*Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+    '*Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenDynaset, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+    '
+    'Dim r0 As Recordset = DB.OpenRecordset(Sql, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+    'r0 = DB.OpenRecordset(Sql, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
 
-    Private Sub F_Ms_Comp00_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        SQLCmd = Cn00.CreateCommand()
-        Inp_Clr00()
-        Add_Cmb()
-        Dsp_Init00()
-        Me.ActiveControl = txt決済1
-    End Sub
+    '*
+    '*Screen.MousePointer　→　Cursor.Current = Cursors.Default
+    '*MsgBox(txtMsg)
+    '*RepDB = OpenDatabase(pubRepDB, False)　→　RepDB = DaoEngine.OpenDatabase(pubRepDB)
+    '*Currency →　Decimal
+    '*r0.Fields("").Value →   .Rows(i0)("")
+    '*ｑ0のときだけr0.Fields("").Value →   .Rows(i0)("")
+    'Ceant→Integer.Parse
     '******************************************************
     '* ComboBoxにItemを追加
     '******************************************************
-    Private Sub Add_Cmb()
-        Dim SQL As String
-        Dim ComboItemA As New ArrayList()
-        Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-        SQL = "SELECT * " _
-            & "FROM MM_会社00 " _
-            & "ORDER BY 会社No"
-        SQLCmd.CommandText = SQL
-        da0.SelectCommand = SQLCmd
-        da0.Fill(dt0, "t0")
-        With dt0.Tables("t0")
-            For i As Integer = 0 To .Rows.Count - 1
-                Dim wCD As String = PubCom.ChgNull(.Rows(i)("会社No"), 0)
-                Dim wName As String = PubCom.ChgNull(.Rows(i)("会社名"), 1)
-                ComboItemA.Add(New MyComboBoxItemA(wName, wCD))
-            Next
-        End With
-        dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
 
-        CmbComp.DisplayMember = "ItemName"
-        CmbComp.ValueMember = "ItemCode"
-        CmbComp.DataSource = ComboItemA
-        CmbComp.SelectedIndex = -1
+    '*
+    '******************************************************
+    Private Function Dsp_Set00()
+        Dim SQL As String
+        Dim pSino As Integer, Tmp(10), pNen As Long
+
+        For i As Integer = 1 To 12
+            GroupBox10.Controls("btn" & i).Text = "" : GroupBox10.Controls("btn" & i).Visible = False
+        Next i
+        If IsNumeric(txt処理No.Text) = True Then
+            pSino = Integer.Parse(txt処理No.Text)
+        Else
+            pSino = 1
+        End If
+        If pSino <= 0 Then
+            pSino = 1
+        End If
+
+        SQL = "SELECT * " _
+            & "From MM_決算期 " _
+            & "Where (会社No =" & pubComPany & ") " _
+            & "And (年度 =" & cmba.Text & ") " _
+            & "ORDER BY MM_決算期.締No;"
+        Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        Dim i0 As Integer = 0
+        Do Until r0.EOF
+            i0 += 1
+            GroupBox10.Controls("btn" & i0).Text = (Date.Parse(r0.Fields("締月").Value).ToString("MM月"))
+            If i0 = pSino Then
+                GroupBox10.Controls("btn" & i0).BackColor = Color.LightBlue
+
+                GroupBox10.Controls("btn" & i0).BackColor = SystemColors.Control
+
+            End If
+            GroupBox10.Controls("btn" & i0).Visible = True
+            r0.MoveNext()
+        Loop
+        r0.Close() : r0 = Nothing
+    End Function
+    '******************************************************
+    '* リストにItemを表示する共通関数
+    '******************************************************
+    Private Function Item_ADD()
+        Dim pRet As Integer, i As Integer
+        Dim SQL As String
+        Dim itmX As ListItem
+
+        'lv.ListItems.Clear mrutirowになるよ
+        SQL = "SELECT T_HIS_財務Imp.* " _
+            & "From T_HIS_財務Imp " _
+            & "Where (T_HIS_財務Imp.会社No=" & pubComPany & ") " _
+            & "ORDER BY T_HIS_財務Imp.RecNo DESC;"
+        Dim r0 As dao.Recordset = DB.OpenRecordset(Sql, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        i = 0
+        Do Until r0.EOF
+            i = i + 1
+            If i > 10 Then
+                Exit Do
+            End If
+            'itmX = lv.ListItems.Add(, , Format(i, "00"))
+            itmX.SubItems(1) = IIf(IsDBNull(r0.Fields("処理日時").Value), "", r0.Fields("処理日時").Value)
+            itmX.SubItems(2) = IIf(IsDBNull(r0.Fields("対象年月").Value), "", Format(r0.Fields("対象年月").Value, "0000年00月"))
+            itmX.SubItems(3) = IIf(IsDBNull(r0.Fields("対象処理").Value), "", r0.Fields("対象処理").Value)
+            r0.MoveNext()
+        Loop
+        r0.Close() : r0 = Nothing
+    End Function
+    Public Sub AddLog(ByVal s As String)
+        With txtLog
+            If LenB(.Text) > 32000 Then .Text = ""
+            .SelStart = Len(.Text)
+            .SelText = s
+        End With
+    End Sub
+
+    '******************************************************
+    '*
+    '******************************************************
+    Private Function Dsp_Init00()
+        Dim r1 As Recordset
+        Dim SQL As String, i As Integer, Tmp(10)
+
+        SQL = "SELECT MM_決算期.年度 " _
+            & "From MM_決算期 " _
+            & "Where (MM_決算期.会社No =" & pubComPany & ") " _
+            & "GROUP BY MM_決算期.年度 " _
+            & "ORDER BY MM_決算期.年度 DESC;"
+        Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        cmba.Text : i = -1
+        i = 0 : x = -1
+        Do Until r0.EOF
+            cmba.AddItem(Format(r0.Fields("年度").Value, "0000"))
+            cmba.(cmba.SelectedIndex) = i
+            r0.MoveNext()
+        Loop
+        r0.Close() : r0 = Nothing
+        cmba.SelectedIndex = 0
+
+        txt処理No.Text = 1
+        r0 = DB.OpenRecordset("MM_SYS", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        r0.Index = "Key_0"
+        r0.Seek("=", pubComPany, pubLogInName, 0)
+        If r0.NoMatch Then
+        Else
+            For i = 0 To cmba.ListCount - 1
+                Tmp(0) = -1
+                If IsNumeric(cmba.ItemData(i)) Then
+                    Tmp(0) = CInt(cmba.ItemData(i))
+                End If
+                If Tmp(0) = r0.Fields("年度").Value Then
+                    cmba.ListIndex = i
+                    Exit For
+                End If
+            Next
+            txt処理No.Text = IIf(IsDBNull(r0.Fields("締No").Value), 1, r0.Fields("締No").Value)
+        End If
+        r0.Close() : r0 = Nothing
+
+        r0 = ComDB.OpenRecordset("MM_SiPat", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        r0.Index = "Key_0"
+        r0.Seek("=", pubComPany, 900, 10)
+        If r0.NoMatch Then
+        Else
+            txt科目CDFrom.Text = r0.Fields("借方科目").Value
+            txt科目CDTo.Text = r0.Fields("借方科目").Value
+        End If
+        r0.Close() : r0 = Nothing
+    End Function
+    '****************************************************************
+    '**
+    '****************************************************************
+    Public Function Data_Put00()
+        Dim SQL As String, Tmp(10), i As Integer, pNo As Long
+
+        pNo = 1
+        SQL = "SELECT T_HIS_財務Imp.RecNo " _
+            & "From T_HIS_財務Imp " _
+            & "Where (T_HIS_財務Imp.会社No =" & pubComPany & ") " _
+            & "ORDER BY T_HIS_財務Imp.RecNo DESC;"
+        Dim r0 As dao.Recordset = DB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        If Not r0.EOF Then
+            pNo = IIf(IsDBNull(r0.Fields("RecNo").Value), 0, r0.Fields("RecNo").Value) + 1
+        End If
+        r0.Close() : r0 = Nothing
+
+        r0 = DB.OpenRecordset("T_HIS_財務Imp", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        r0.Index = "Key_0"
+
+        r0.Seek("=", pubComPany, pNo)
+        If r0.NoMatch Then
+            r0.AddNew()
+            r0.Fields("会社No").Value = pubComPany
+            r0.Fields("RecNo").Value = pNo
+        Else
+            r0.Edit()
+        End If
+        r0.Fields("処理日時").Value = Format(Now, "yyyy/mm/dd hh:mm:ss")
+        r0.Fields("対象年月").Value = Format("対象年月１", "yyyymm")
+        Select Case "処理対象仕訳"
+            Case 0
+                r0.Fields("対象処理").Value = "差分インポート"
+            Case 1
+                r0.Fields("対象処理").Value = "全件インポート"
+        End Select
+        r0.Update()
+        r0.Close() : r0 = Nothing
+    End Function
+
+    Private Sub Btn_Click(Index As Integer)
+        txt処理No.Text = Index + 1
+        Call Dsp_Set00()
+        Call Inp_Chk00()
+    End Sub
+
+    Private Sub btnUp_Click(Index As Integer)
+        Dim pRes As Boolean
+        Dim SQL As String
+
+        Select Case Index
+            Case 0
+                pRes = Inp_Chk00()
+                If pRes = False Then
+                    Exit Sub
+                End If
+                pRes = Inp_Chk01(0, txtInp.Count - 1)
+                If pRes = False Then
+                    Exit Sub
+                End If
+
+                Cursor.Current = Cursors.Default = 11 : Me.Enabled = False
+                If "処理対象仕訳" = 1 Then
+                    Call MakeData000()
+                End If
+                'Select Case pubComPany
+                'Case 5
+                '    Call MakeData002
+                'Case Else
+                '    Call MakeData001
+                'End Select
+                Call MakeData001()
+                Call MakeData010()
+                Call Data_Put00()
+                MsgBox("支払集計処理が完了しました")
+                Unload Me
+       Cursor.Current = Cursors.Default = 0 : Me.Enabled = True
+        End Select
+    End Sub
+
+    Private Sub CmbCD_Click(Index As Integer)
+        Select Case Index
+            Case 0
+                txt処理No.Text = 1
+                Call Dsp_00()
+                Call Inp_Chk00()
+            Case 1
+                If CmbCD(Index).ListIndex <> -1 Then
+                    txt処理対象仕訳.Text = CmbCD(Index).ItemData(CmbCD(Index).ListIndex)
+                End If
+        End Select
+    End Sub
+
+
+
+    Private Sub CmbCD_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+        Select Case KeyCode
+            Case 38 '↑ 'フォーカスを戻す
+                Get_TagBak(CmbCD(Index).TabIndex)
+                KeyCode = 0
+        End Select
+    End Sub
+
+    Private Sub CmbCD_KeyPress(Index As Integer, KeyAscii As Integer)
+        Dim i As Integer
+
+        Select Case Index
+            Case Else
+                Select Case KeyAscii
+                    Case 13, 38              '数値とBSだけ
+                    Case Else
+                        KeyAscii = 0
+                End Select
+        End Select
+
+        If KeyAscii = 13 Then
+            KeyAscii = 0
+            Call Get_TagNext(CmbCD(Index).TabIndex)
+        End If
+    End Sub
+
+    Private Sub Cmd_Click(Index As Integer)
+        Dim pRet As Integer, pResp As Boolean, strName As String, i As Integer
+        Dim SQL As String
+        Dim Tmp(10)
+
+        Select Case Index
+            Case 1
+            Case 10
+                Unload Me
+    Case 12
+                i = CInt(pFocus(0).Index) '整数
+                strName = pFocus(0).Name
+                Select Case strName
+                    Case "txtInp"
+                        Call txtInp_KeyDown(i, 123, 0)
+                End Select
+                pFocus(0).SetFocus
+        End Select
+    End Sub
+
+    Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+        Select Case KeyCode
+            Case 121 'F10
+                If Cmd(10).Enabled = True Then
+                    Call Cmd_Click(10) : KeyCode = 0
+                End If
+            Case 123 'F12
+                Call Cmd_Click(12) : KeyCode = 0
+        End Select
+    End Sub
+
+    Private Sub Form_Load()
+        Call SetLVStyle(Me.LV, 1)
+        Call Inp_Clr00()
+        Call Dsp_Init00()
+        Call Item_ADD()
+        Call Inp_Chk00()
+
+        If cmba.ListIndex <> -1 Then
+            Call Dsp_Set00()
+        End If
     End Sub
 
     '******************************************************
     '* フィールドクリア関数
     '******************************************************
-    Private Sub Inp_Clr00()
+    Private Function Inp_Clr00()
 
-        For Each CtrlItem As Control In Me.GroupBox00.Controls
-            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        For i As Integer = 0 To txtInp.Count - 1
+            txtInp(i) = ""
         Next
-        For Each CtrlItem As Control In Me.GroupBox10.Controls
-            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        For i As Integer = 0 To txtOut.Count - 1
+            txtOut(i) = ""
         Next
-        txtMsg.Text = "" : txtMsg.Visible = False
-        CmbComp.SelectedIndex = -1
-        Pic会社Logo.Image = Nothing
-        Pic印鑑.Image = Nothing
-        GroupBox00.Enabled = True
-    End Sub
-    '******************************************************
-    '* MM_会社00取得
-    '******************************************************
-    Public Sub Data_Get00()
-        Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-        Dim SQL As String
+        txt処理対象仕訳.Text = 0
+        Cmbb.ListIndex = 1
+        txtMsg = "" : txtMsg.Visible = False
+    End Function
 
-        SQL = "SELECT * " _
-            & "From MM_会社00 " _
-            & "WHERE (会社No =" & txt決済1.Text & ")"
-        SQLCmd.CommandText = SQL
-        da0.SelectCommand = SQLCmd
-        da0.Fill(dt0, "t0")
-        With dt0.Tables("t0")
-            If .Rows.Count > 0 Then
-                txt内訳印刷F1.Text = PubCom.ChgNull(.Rows(0)("会社名"), 1)
-                txt内訳印刷F2.Text = PubCom.ChgNull(.Rows(0)("会社名Kana"), 1)
 
-                txt郵便番号.Text = PubCom.ChgNull(.Rows(0)("郵便番号1"), 1)
-                txt郵便番号2.Text = PubCom.ChgNull(.Rows(0)("郵便番号2"), 1)
-                txt住所.Text = PubCom.ChgNull(.Rows(0)("住所1"), 1)
-                txt住所2.Text = PubCom.ChgNull(.Rows(0)("住所2"), 1)
-                txt電話番号.Text = PubCom.ChgNull(.Rows(0)("電話番号"), 1)
-                txtFax番号.Text = PubCom.ChgNull(.Rows(0)("FAX番号"), 1)
-                txt代表役職.Text = PubCom.ChgNull(.Rows(0)("代表者役職"), 1)
-                txt代表者名.Text = PubCom.ChgNull(.Rows(0)("代表者名"), 1)
-                txt決算月.Text = PubCom.ChgNull(.Rows(0)("決算月"), 1)
-                txt決算日.Text = PubCom.ChgNull(.Rows(0)("決算日"), 1)
-                txt端数計算区分.Text = PubCom.ChgNull(.Rows(0)("端数計算区分"), 1)
-                txt消費税実施日.Text = PubCom.GetGengo(.Rows(0)("消費税実施日"), "yyyy/MM/dd")
-                txt消費税率.Text = PubCom.ChgNull(.Rows(0)("消費税率"), 1)
-                txt旧消費税率.Text = PubCom.ChgNull(.Rows(0)("旧消費税率"), 1)
-                txt消費税区分.Text = PubCom.ChgNull(.Rows(0)("消費税区分"), 1)
-                txt消費税計算.Text = PubCom.ChgNull(.Rows(0)("消費税計算区分"), 1)
-                txt消費税端数.Text = PubCom.ChgNull(.Rows(0)("消費税端数区分"), 1)
-                txt会社Logo.Text = PubCom.ChgNull(.Rows(0)("会社LogoPass"), 1)
-                If IsDBNull(.Rows(0)("会社Logo")) Then
-                    Pic会社Logo.Image = Nothing
-                Else
-                    Dim imgconv As New ImageConverter()
-                    Dim img As Image = CType(imgconv.ConvertFrom(.Rows(0)("会社Logo")), Image)
-                    Pic会社Logo.Image = img
+    '******************************************************
+    ''* 入力チェック関数
+    '            Dim SQL As String
+    '            SQL = "SELECT * " _
+    '                & "FROM MM_区分H00 " _
+    '                & "WHERE 会社No = @会社No " _
+    '                & "AND 区分 = @区分 "
+    '            Dim parameters As New List(Of SqlParameter) From {
+    '    New SqlParameter("@会社No", pubComPany),
+    '    New SqlParameter("@区分", txt区分CD.Text)
+    '}
+    '            Dim result As DataTable = Mysqlserver.GetData(SQL, parameters.ToArray())
+    '            If result.Rows.Count = 0 Then
+    '                txtMsg.Text = "区分CD不正入力"
+    '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
+    '            Else
+    '                txt区分名.Text = pubCom.ChgNull(result.Rows(0)("区分名"), 1)
+
+    '            End If
+
+    '            Exit Function
+    '        Case "txt明細CD"
+    '            ctxtInp.BackColor = Color.White
+    '            If txt明細CD.Text = "" Then
+    '                txtMsg.Text = "CD未入力"
+    '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+    '            End If
+    '        Case "txt名称"
+    '            ctxtInp.BackColor = Color.White
+    '            Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(ctxtInp.Text)
+    '            If LenB > 20 Then
+    '                txtMsg.Text = "名称超過:20"
+    '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+    '            End If
+    '    End Select
+
+    'End Function
+    '******************************************************
+
+    Private Function Inp_Chk00(ByVal ctxtInp As Control)
+        Inp_Chk00 = True
+        txtMsg.Visible = False : txtMsg.Text = ""
+
+        Select Case ctxtInp.Name
+            Case "txt伝票日付開始日", "txt伝票日付終了日", "txt支払指定開始日", "txt支払指定終了日"
+                ctxtInp.BackColor = Color.White : ctxtInp.Tag = ""
+                If ctxtInp.Text = "" Then
+                    txtMsg.Text = "日付不正入力"
+                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
                 End If
 
-                txt印鑑Image.Text = PubCom.ChgNull(.Rows(0)("印鑑Pass"), 1)
-                If IsDBNull(.Rows(0)("印鑑Image")) Then
-                    Pic印鑑.Image = Nothing
+                If IsDate(ctxtInp.Text) Then
+                    ctxtInp.Text = Date.Parse(ctxtInp.Text).ToString(pDateFormat)
                 Else
-                    Dim imgconv As New ImageConverter()
-                    Dim img As Image = CType(imgconv.ConvertFrom(.Rows(0)("印鑑Image")), Image)
-                    Pic印鑑.Image = img
-                End If
+                    Dim w日付 As String = ""
+                    Dim wResult = MyCom.DateChk00(ctxtInp.Text, w日付)
+                    If wResult = 1 Then
+                        txtMsg.Text = "有効開始日不正"
+                        txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : ctxtInp.Tag = "9"
+                        Return False
+                    Else
+                        ctxtInp.Text = w日付
 
-                For Each CtrlItem As Control In Me.GroupBox10.Controls
-                    If TypeOf CtrlItem Is TextBox Then
-                        Dim pRet As Boolean = Inp_Chk00(CtrlItem)
-                        If pRet = False Then Exit Sub
                     End If
-                Next
-            End If
-        End With
-        dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
 
-    End Sub
-    '******************************************************
-    '* データの取得
-    '******************************************************
-    Public Sub Data_Put00()
-        Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-        Dim SQL As String
 
-        SQL = "SELECT * " _
-            & "FROM MM_会社00 " _
-            & "WHERE (会社No=" & txt決済1.Text & ")"
-        SQLCmd.CommandText = SQL
-        da0.SelectCommand = SQLCmd
-        da0.Fill(dt0, "t0")
-        With dt0.Tables("t0")
-            If .Rows.Count = 0 Then
-                Data_Put00S0()
-            Else
-                Data_Put00S1()
-            End If
-        End With
-        dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-    End Sub
-    '******************************************************
-    '* MM_会社00追加
-    '******************************************************
-    Public Sub Data_Put00S0()
-        Dim SQL As String
-        SQL = "INSERT INTO " & SQLDB & ".[dbo].[MM_会社00] (" _
-            & "会社No,会社名,会社名Kana,郵便番号,郵便番号1,郵便番号2,住所1,住所2,電話番号,FAX番号,代表者名,代表者役職,決算月,決算日,決算基準," _
-            & "端数計算区分,消費税実施日,消費税率,旧消費税率,消費税区分,消費税計算区分,消費税端数区分,会社Logo,会社LogoPass,印鑑Image,印鑑Pass," _
-            & "在庫評価法,在庫端数処理,得意先CD,得意先枝CD,仕入先CD,仕入先枝CD,商品CD,商品枝CD,工事CD,工事枝CD,部門CD,科目CD,科目枝CD,財務部門CD) "
-        SQL = SQL & "VALUES (@会社No,@会社名,@会社名Kana,@郵便番号,@郵便番号1,@郵便番号2,@住所1,@住所2,@電話番号,@FAX番号,@代表者名,@代表者役職,@決算月,@決算日,@決算基準," _
-            & "@端数計算区分,@消費税実施日,@消費税率,@旧消費税率,@消費税区分,@消費税計算区分,@消費税端数区分,@会社Logo,@会社LogoPass,@印鑑Image,@印鑑Pass," _
-            & "@在庫評価法,@在庫端数処理,@得意先CD,@得意先枝CD,@仕入先CD,@仕入先枝CD,@商品CD,@商品枝CD,@工事CD,@工事枝CD,@部門CD,@科目CD,@科目枝CD,@財務部門CD)"
-        Dim command As SqlCommand = New SqlCommand(SQL, Cn00)
-        command.Parameters.Clear()
-        command.Parameters.Add("@会社No", SqlDbType.Int).Value = txt決済1.Text
-        command.Parameters.Add("@会社名", SqlDbType.NVarChar).Value = txt内訳印刷F1.Text
-        command.Parameters.Add("@会社名Kana", SqlDbType.NVarChar).Value = txt内訳印刷F2.Text
-        command.Parameters.Add("@郵便番号", SqlDbType.NVarChar).Value = txt郵便番号.Text & "-" & txt郵便番号2.Text
-        command.Parameters.Add("@郵便番号1", SqlDbType.NVarChar).Value = txt郵便番号.Text
-        command.Parameters.Add("@郵便番号2", SqlDbType.NVarChar).Value = txt郵便番号2.Text
-        command.Parameters.Add("@住所1", SqlDbType.NVarChar).Value = txt住所.Text
-        command.Parameters.Add("@住所2", SqlDbType.NVarChar).Value = txt住所2.Text
-        command.Parameters.Add("@電話番号", SqlDbType.NVarChar).Value = txt電話番号.Text
-        command.Parameters.Add("@FAX番号", SqlDbType.NVarChar).Value = txtFax番号.Text
-        command.Parameters.Add("@代表者名", SqlDbType.NVarChar).Value = txt代表者名.Text
-        command.Parameters.Add("@代表者役職", SqlDbType.NVarChar).Value = txt代表役職.Text
-        command.Parameters.Add("@決算月", SqlDbType.Int).Value = IIf(IsNumeric(txt決算月.Text), txt決算月.Text, DBNull.Value)
-        command.Parameters.Add("@決算日", SqlDbType.Int).Value = IIf(IsNumeric(txt決算日.Text), txt決算日.Text, DBNull.Value)
-        command.Parameters.Add("@決算基準", SqlDbType.TinyInt).Value = 1
+                End If
 
-        command.Parameters.Add("@端数計算区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt端数計算区分.Text), txt端数計算区分.Text, DBNull.Value)
-        command.Parameters.Add("@消費税実施日", SqlDbType.Int).Value = DBNull.Value
-        If IsDate(txt消費税実施日.Text) Then
-            command.Parameters("@消費税実施日").Value = Date.Parse(txt消費税実施日.Text).ToString("yyyyMMdd")
-        End If
-        command.Parameters.Add("@消費税率", SqlDbType.Decimal).Value = IIf(IsNumeric(txt消費税率.Text), txt消費税率.Text, 0)
-        command.Parameters.Add("@旧消費税率", SqlDbType.Decimal).Value = IIf(IsNumeric(txt旧消費税率.Text), txt旧消費税率.Text, 0)
-        command.Parameters.Add("@消費税区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税区分.Text), txt消費税区分.Text, DBNull.Value)
-        command.Parameters.Add("@消費税計算区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税計算.Text), txt消費税計算.Text, DBNull.Value)
-        command.Parameters.Add("@消費税端数区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税端数.Text), txt消費税端数.Text, DBNull.Value)
-        command.Parameters.Add("@会社Logo", SqlDbType.VarBinary).Value = DBNull.Value
-        If Pic会社Logo.Image Is Nothing Then
-        Else
-            Dim ImgByte As Byte()
-            Using ms As New IO.MemoryStream
-                Pic会社Logo.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
-                ImgByte = ms.GetBuffer()
-            End Using
-            command.Parameters("@会社Logo").Value = ImgByte
-        End If
-        command.Parameters.Add("@会社LogoPass", SqlDbType.NVarChar).Value = txt会社Logo.Text
-        command.Parameters.Add("@印鑑Image", SqlDbType.VarBinary).Value = DBNull.Value
-        If Pic印鑑.Image Is Nothing Then
-        Else
-            Dim ImgByte As Byte()
-            Using ms As New IO.MemoryStream
-                Pic印鑑.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
-                ImgByte = ms.GetBuffer()
-            End Using
-            command.Parameters("@印鑑Image").Value = ImgByte
-        End If
-        command.Parameters.Add("@印鑑Pass", SqlDbType.NVarChar).Value = txt印鑑Image.Text
+            Case "cmba"
+                ctxtInp.BackColor = Color.White
+                If cmba.SelectedIndex = -1 Then
+                    Inp_Chk00 = False
+                    txtMsg.Text = "年度未入力"
+                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                End If
 
-        command.Parameters.Add("@在庫評価法", SqlDbType.TinyInt).Value = 0
-        command.Parameters.Add("@在庫端数処理", SqlDbType.TinyInt).Value = 0
-        command.Parameters.Add("@得意先CD", SqlDbType.TinyInt).Value = 5
-        command.Parameters.Add("@得意先枝CD", SqlDbType.TinyInt).Value = 3
-        command.Parameters.Add("@仕入先CD", SqlDbType.TinyInt).Value = 5
-        command.Parameters.Add("@仕入先枝CD", SqlDbType.TinyInt).Value = 3
-        command.Parameters.Add("@商品CD", SqlDbType.TinyInt).Value = 5
-        command.Parameters.Add("@商品枝CD", SqlDbType.TinyInt).Value = 0
-        command.Parameters.Add("@工事CD", SqlDbType.TinyInt).Value = 7
-        command.Parameters.Add("@工事枝CD", SqlDbType.TinyInt).Value = 0
-        command.Parameters.Add("@部門CD", SqlDbType.TinyInt).Value = 4
-        command.Parameters.Add("@科目CD", SqlDbType.TinyInt).Value = 4
-        command.Parameters.Add("@科目枝CD", SqlDbType.TinyInt).Value = 4
-        command.Parameters.Add("@財務部門CD", SqlDbType.TinyInt).Value = 4
-        Dim wRet As Integer = command.ExecuteNonQuery()
-        command.Dispose()
 
-    End Sub
-    '******************************************************
-    '* MM_会社00更新
-    '******************************************************
-    Public Sub Data_Put00S1()
-        Dim SQL As String
-        SQL = "UPDATE MM_会社00 SET "
-        SQL = SQL & "会社名= @会社名"
-        SQL = SQL & ",会社名Kana= @会社名Kana"
-        SQL = SQL & ",郵便番号= @郵便番号"
-        SQL = SQL & ",郵便番号1= @郵便番号1"
-        SQL = SQL & ",郵便番号2= @郵便番号2"
-        SQL = SQL & ",住所1= @住所1"
-        SQL = SQL & ",住所2= @住所2"
-        SQL = SQL & ",電話番号= @電話番号"
-        SQL = SQL & ",FAX番号= @FAX番号"
-        SQL = SQL & ",代表者名= @代表者名"
-        SQL = SQL & ",代表者役職= @代表者役職"
-        SQL = SQL & ",決算月= @決算月"
-        SQL = SQL & ",決算日= @決算日"
-        SQL = SQL & ",端数計算区分= @端数計算区分"
-        SQL = SQL & ",消費税実施日= @消費税実施日"
-        SQL = SQL & ",消費税率= @消費税率"
-        SQL = SQL & ",旧消費税率= @旧消費税率"
-        SQL = SQL & ",消費税区分= @消費税区分"
-        SQL = SQL & ",消費税計算区分= @消費税計算区分"
-        SQL = SQL & ",消費税端数区分= @消費税端数区分"
-        SQL = SQL & ",会社Logo= @会社Logo"
-        SQL = SQL & ",会社LogoPass= @会社LogoPass"
-        SQL = SQL & ",印鑑Image= @印鑑Image"
-        SQL = SQL & ",印鑑Pass= @印鑑Pass"
-        SQL = SQL & " WHERE (会社No=" & txt決済1.Text & ")"
-        Dim command As SqlCommand = New SqlCommand(SQL, Cn00)
-        command.Parameters.Clear()
+                '        Case "txt明細CD"
+                '            ctxtInp.BackColor = Color.White
+                '            If txt明細CD.Text = "" Then
+                '                txtMsg.Text = "CD未入力"
+                '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                '            End If
+                If Inp_Chk00() = True Then
+                    Dim r0 As dao.Recordset = ComDB.OpenRecordset("MM_決算期", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbReadOnly)
+                    r0.Index = "Key_0"
+                    r0.Seek("=", pubComPany, cmba, txt処理No.Text)
+                    If r0.NoMatch Then
+                        Inp_Chk00 = False
+                        txtMsg.Text = "年度不正"
+                    Else
+                        txt対象年月1.Text = IIf(IsDBNull(r0.Fields("締月").Value), "", Format(r0.Fields("締月").Value, "yyyy年月"))
+                        txt対象年月2.Text = IIf(IsDBNull(r0.Fields("開始").Value), "", Format(r0.Fields("開始").Value, "yyyy/MM/dd"))
+                        txt対象年月3.Text = IIf(IsDBNull(r0.Fields("終了").Value), "", Format(r0.Fields("終了").Value, "yyyy/MM/dd"))
+                    End If
+                    r0.Close() : r0 = Nothing
+                End If
 
-        command.Parameters.Add("@会社名", SqlDbType.NVarChar).Value = txt内訳印刷F1.Text
-        command.Parameters.Add("@会社名Kana", SqlDbType.NVarChar).Value = txt内訳印刷F2.Text
-        command.Parameters.Add("@郵便番号", SqlDbType.NVarChar).Value = txt郵便番号.Text & "-" & txt郵便番号2.Text
-        command.Parameters.Add("@郵便番号1", SqlDbType.NVarChar).Value = txt郵便番号.Text
-        command.Parameters.Add("@郵便番号2", SqlDbType.NVarChar).Value = txt郵便番号2.Text
-        command.Parameters.Add("@住所1", SqlDbType.NVarChar).Value = txt住所.Text
-        command.Parameters.Add("@住所2", SqlDbType.NVarChar).Value = txt住所2.Text
-        command.Parameters.Add("@電話番号", SqlDbType.NVarChar).Value = txt電話番号.Text
-        command.Parameters.Add("@FAX番号", SqlDbType.NVarChar).Value = txtFax番号.Text
-        command.Parameters.Add("@代表者名", SqlDbType.NVarChar).Value = DBNull.Value
-        command.Parameters.Add("@代表者役職", SqlDbType.NVarChar).Value = DBNull.Value
-        command.Parameters.Add("@決算月", SqlDbType.Int).Value = IIf(IsNumeric(txt決算月.Text), txt決算月.Text, DBNull.Value)
-        command.Parameters.Add("@決算日", SqlDbType.Int).Value = IIf(IsNumeric(txt決算日.Text), txt決算日.Text, DBNull.Value)
+                If Inp_Chk00() = False Then : txtMsg.Visible = True
+                End If
+        End Select
 
-        command.Parameters.Add("@端数計算区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt端数計算区分.Text), txt端数計算区分.Text, DBNull.Value)
-        command.Parameters.Add("@消費税実施日", SqlDbType.Int).Value = DBNull.Value
-        If IsDate(txt消費税実施日.Text) Then
-            command.Parameters("@消費税実施日").Value = Date.Parse(txt消費税実施日.Text).ToString("yyyyMMdd")
-        End If
-        command.Parameters.Add("@消費税率", SqlDbType.Decimal).Value = IIf(IsNumeric(txt消費税率.Text), txt消費税率.Text, 0)
-        command.Parameters.Add("@旧消費税率", SqlDbType.Decimal).Value = IIf(IsNumeric(txt旧消費税率.Text), txt旧消費税率.Text, 0)
-        command.Parameters.Add("@消費税区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税区分.Text), txt消費税区分.Text, DBNull.Value)
-        command.Parameters.Add("@消費税計算区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税計算.Text), txt消費税計算.Text, DBNull.Value)
-        command.Parameters.Add("@消費税端数区分", SqlDbType.TinyInt).Value = IIf(IsNumeric(txt消費税端数.Text), txt消費税端数.Text, DBNull.Value)
-        command.Parameters.Add("@会社Logo", SqlDbType.VarBinary).Value = DBNull.Value
-        If Pic会社Logo.Image Is Nothing Then
-        Else
-            Dim ImgByte As Byte()
-            Using ms As New IO.MemoryStream
-                Pic会社Logo.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
-                ImgByte = ms.GetBuffer()
-            End Using
-            command.Parameters("@会社Logo").Value = ImgByte
-        End If
-        command.Parameters.Add("@会社LogoPass", SqlDbType.NVarChar).Value = txt会社Logo.Text
-        command.Parameters.Add("@印鑑Image", SqlDbType.VarBinary).Value = DBNull.Value
-        If Pic印鑑.Image Is Nothing Then
-        Else
-            Dim ImgByte As Byte()
-            Using ms As New IO.MemoryStream
-                Pic印鑑.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
-                ImgByte = ms.GetBuffer()
-            End Using
-            command.Parameters("@印鑑Image").Value = ImgByte
-        End If
-        command.Parameters.Add("@印鑑Pass", SqlDbType.NVarChar).Value = txt印鑑Image.Text
-        Dim wRet As Integer = command.ExecuteNonQuery()
-        command.Dispose()
 
-    End Sub
+    End Function
 
-    '******************************************************
-    '* データの取得
-    '******************************************************
-    Public Sub Data_Del00()
-        Dim SQL As String
-        SQL = "DELETE FROM MM_会社00 " _
-            & "WHERE (会社No =" & txt決済1.Text & ")"
-        Dim command As SqlCommand = New SqlCommand(SQL, Cn00)
-        command.ExecuteNonQuery()
-        command.Dispose() : command = Nothing
-    End Sub
 
-    '******************************************************
-    '* 入力項目ﾁｪｯｸ
-    '******************************************************
+  
+
     Private Function Inp_Chk00(ByVal ctxtInp As Control)
         Inp_Chk00 = True
         txtMsg.Visible = False : txtMsg.Text = ""
         Select Case ctxtInp.Name
-            Case "txt会社No"
-                If txt決済1.Text = "" Then
-                    txtMsg.Text = "会社CD未入力"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt会社名"
-                ctxtInp.BackColor = Color.White
-                If txt内訳印刷F1.Text = "" Then
-                    txtMsg.Text = "会社名未入力"
+            Case "txt科目CDFrom"
+                Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_科目", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+                    r0.Index = "Key_0"
+                    r0.Seek("=", pubComPany, txt科目CDFrom.Text)
+                If r0.NoMatch Then
+                    Inp_Chk00 = False
+                    txtMsg.Text = "科目不正入力"
                     Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
                 Else
-                    Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt内訳印刷F1.Text)
-                    If LenB > 50 Then
-                        txtMsg.Text = "会社名超過:50"
-                        Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                    txt科目CDFrom.Text = IIf(IsDBNull(r0.Fields("科目名").Value), "", r0.Fields("科目名").Value)
+                End If
+                r0.Close() : r0 = Nothing
+
+            Case "txt科目CDTo"
+                Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_科目", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+                r0.Index = "Key_0"
+                r0.Seek("=", pubComPany, txt科目CDTo.Text)
+                If r0.NoMatch Then
+                    Inp_Chk00 = False
+                    txtMsg.Text = "科目不正入力"
+                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                Else
+                    txt科目CDTo.Text = IIf(IsDBNull(r0.Fields("科目名").Value), "", r0.Fields("科目名").Value)
+                End If
+                r0.Close() : r0 = Nothing
+
+            Case "txt取引先CDFrom"
+                Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+                r0.Index = "Key_0"
+                r0.Seek("=", pubComPany, txt科目CDFrom.Text)
+                If r0.NoMatch Then
+                    Inp_Chk00 = False
+                    txtMsg.Text = "取引先不正入力"
+                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                Else
+                    txt科目CDFrom.Text = IIf(IsDBNull(r0.Fields("取引先名").Value), "", r0.Fields("取引先名").Value)
+                End If
+                r0.Close() : r0 = Nothing
+
+            Case "txt取引先CDTo"
+                Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+                r0.Index = "Key_0"
+                r0.Seek("=", pubComPany, txt科目CDTo.Text)
+                If r0.NoMatch Then
+                    Inp_Chk00 = False
+                    txtMsg.Text = "取引先不正入力"
+                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+                Else
+                    txt科目CDTo.Text = IIf(IsDBNull(r0.Fields("取引先名").Value), "", r0.Fields("取引先名").Value)
+                End If
+                r0.Close() : r0 = Nothing
+
+
+            'Case 8, 9
+            '    Select Case i
+            '        Case 8
+            '            x = 6
+            '        Case 7
+            '            x = 7
+            '    End Select
+            '    txtOut(X) = ""
+            '        If txtInp(i) = "" Then
+            '        Else
+            '            Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbReadOnly)
+            '            r0.Index = "Key_0"
+            '            r0.Seek("=", pubComPany, txtInp(i))
+            '            If r0.NoMatch Then
+            '                Inp_Chk01 = False
+            '                Msg(0) = "取引先不正入力"
+            '            Else
+            '                txtOut(X) = IIf(IsDBNull(r0.Fields("取引先名").Value), "", r0.Fields("取引先名").Value)
+            '            End If
+            '            r0.Close() : r0 = Nothing
+            '        End If
+
+
+                Case 10
+                    If txtInp(i) = "" Then
+                        CmbCD(1).ListIndex = -1
+                    Else
+                        pFl(0) = False
+                        For X = 0 To CmbCD(1).ListCount - 1
+                            If txtInp(i) = CmbCD(1).ItemData(X) Then
+                                CmbCD(1).ListIndex = X
+                                pFl(0) = True
+                                Exit For
+                            End If
+                        Next X
+                        If pFl(0) = False Then
+                            Inp_Chk01 = False
+                            txtMsg.Text = "処理対象仕訳不正入力"
+                        End If
+                    End If
+
+            End Select
+            If Inp_Chk01() = False Then
+                txtInp(i).BackColor = &H8080FF
+            Else
+                txtInp(i).BackColor = &HFFFFFF
+            End If
+        Next i
+        If Inp_Chk01() = False Then
+            txtMsg.Visible = True
+        End If
+    End Function
+    Private Sub Add_Cmb()
+        Dim SQL As String
+        Dim ComboItemA As New ArrayList()
+        'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
+        SQL = "SELECT MM_会社00.会社No,MM_会社00.会社名 " _
+            & "FROM MM_会社00 " _
+            & "ORDER BY 会社No"
+
+        Dim result As DataTable = Mysqlserver.GetData(SQL)
+
+        For i As Integer = 0 To result.Rows.Count - 1
+            Dim wCD As String = PubCom.ChgNull(result.Rows(i)("会社No"), 0)
+            Dim wName As String = PubCom.ChgNull(result.Rows(i)("会社名"), 1)
+            ComboItemA.Add(New MyComboBoxItemA(wName, wCD))
+        Next
+
+        result.Dispose()
+
+        CmbComp.DisplayMember = "ItemName"
+        CmbComp.ValueMember = "ItemCode"
+        CmbComp.DataSource = ComboItemA
+        CmbComp.SelectedIndex = -1
+
+    End Sub
+    '***************************
+    '* 財務仕訳インポート処理
+    '***************************
+    Public Function MakeData000()
+        Dim SQL As String, Tmp(10), i As Integer
+
+        Tmp(0) = Format("対象年月2", "yyyymmdd")
+        Tmp(1) = Format("対象年月3", "yyyymmdd")
+
+        SQL = "DELETE T_支払仕訳明細.* " _
+            & "From T_支払仕訳明細 " _
+            & "WHERE (T_支払仕訳明細.会社No=" & pubComPany & ") " _
+            & "And (T_支払仕訳明細.伝票日付>=" & Tmp(0) & ") " _
+            & "And (T_支払仕訳明細.伝票日付<=" & Tmp(1) & ") " _
+            & "And (T_支払仕訳明細.支払完了F= 0);"
+        DB.Execute(SQL)
+
+    End Function
+    '***************************
+    '* 財務仕訳インポート処理
+    '***************************
+    Public Function MakeData001()
+        Dim SQL As String
+        Dim odbcconn As New OdbcConnection()
+        Dim odbcCommand As New OdbcCommand()
+        Dim da0 As New OdbcDataAdapter
+        Dim dt0 As New DataSet
+
+        Try
+            odbcconn.ConnectionString = pubDsnODBC
+            odbcconn.Open()
+            odbcCommand = odbcconn.CreateCommand()
+            Tmp(0) = Format("対象年月2", "yyyymmdd")
+            Tmp(1) = Format("対象年月3", "yyyymmdd")
+            Tmp(2) = Format("科目CDFrom", "0000")
+            Tmp(3) = Format("科目CDTo", "0000")
+
+            txt決算期.Text = 1
+            SQL = "Select aexp.a_volum2.ki " _
+            & "From aexp.a_volum2 " _
+            & "WHERE (aexp.a_volum2.symd Between " & Tmp(0) & " And " & Tmp(1) & ");"
+            odbcCommand.CommandText = SQL
+            da0.SelectCommand = odbcCommand
+            da0.Fill(dt0, "t0")
+            If dt0.Tables("t0").Rows.Count > 0 Then
+                txt決算期.Text = dt0.Tables("t0").Rows(0)("ki")
+            End If
+            dt0.Tables("t0").Clear()
+            odbcCommand.Dispose() : odbcCommand = Nothing
+            odbcconn.Close() : odbcconn.Dispose() : odbcconn = Nothing
+
+            SQL = "DELETE T_支払仕訳明細.* " _
+                & "From T_支払仕訳明細;"
+            TmpDB.Execute(SQL)
+
+            Dim r10 As dao.Recordset = TmpDB.OpenRecordset("T_支払仕訳明細", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+            r10.Index = "Key_0"
+            SQL = "Select aexp.a_zdata.ki, aexp.a_zdata.dkei, aexp.a_zdata.dseq, aexp.a_zdata.dymd, aexp.a_zdata.dcno, " _
+                & "aexp.a_zdata.dcpg, aexp.a_zdata.dlin, " _
+                & "aexp.a_zdata.rbmn, aexp.a_zdata.rtor, aexp.a_zdata.rkmk, aexp.a_zdata.reda, aexp.a_zdata.rtky, " _
+                & "aexp.a_zdata.sbmn, aexp.a_zdata.stor, aexp.a_zdata.skmk, aexp.a_zdata.seda, aexp.a_zdata.stky, " _
+                & "aexp.a_zdata.valu, aexp.a_zdata.symd, aexp.a_zdata.skbn, aexp.a_zdata.skiz, aexp.a_zdata.rrit, aexp.a_zdata.srit, " _
+                & "aexp.a_zdata.rkeigen, aexp.a_zdata.skeigen, aexp.a_zdata.rmenzeikeika, aexp.a_zdata.smenzeikeika " _
+                & "FROM aexp.a_zdata " _
+                & "WHERE (aexp.a_zdata.ki=" & txt決算期.Text & ") " _
+                & "And (aexp.a_zdata.dymd>=" & Tmp(0) & ") " _
+                & "And (aexp.a_zdata.dymd<=" & Tmp(1) & ") " _
+                & "And (aexp.a_zdata.skmk='" & Tmp(2) & "') " _
+                & "OR (aexp.a_zdata.ki=" & txt決算期.Text & ") " _
+                & "AND (aexp.a_zdata.dymd>=" & Tmp(0) & ") " _
+                & "AND (aexp.a_zdata.dymd<=" & Tmp(1) & ") " _
+                & "AND (aexp.a_zdata.rkmk='" & Tmp(3) & "');"
+            odbcCommand.CommandText = SQL
+            da0.SelectCommand = odbcCommand
+            da0.Fill(dt0, "t0")
+
+            With dt0.Tables("t0")
+                For i0 As Integer = 0 To .Rows.Count - 1
+                    r10.AddNew()
+                    r10.Fields("会社No").Value = pubComPany
+                    r10.Fields("決算期").Value = .Rows(i0)("KI")
+                    r10.Fields("経過月").Value = .Rows(i0)("DKEI")
+                    r10.Fields("SEQNo").Value = .Rows(i0)("DSEQ")
+                    r10.Fields("伝票日付").Value = IIf(IsNumeric(.Rows(i0)("DYMD")), .Rows(i0)("DYMD"), DBNull.Value)
+                    r10.Fields("伝票No").Value = IIf(IsNumeric(.Rows(i0)("DCNO")), .Rows(i0)("DCNO"), DBNull.Value)
+                    r10.Fields("伝票頁").Value = IIf(IsNumeric(.Rows(i0)("DCPG")), .Rows(i0)("DCPG"), DBNull.Value)
+                    r10.Fields("伝票行").Value = IIf(IsNumeric(.Rows(i0)("DLIN")), .Rows(i0)("DLIN"), DBNull.Value)
+                    r10.Fields("借方部門CD").Value = IIf(IsNumeric(.Rows(i0)("RBMN")), .Rows(i0)("RBMN"), DBNull.Value)
+                    r10.Fields("借方取引先CD").Value = IIf(IsNumeric(.Rows(i0)("RTOR")), .Rows(i0)("RTOR"), DBNull.Value)
+                    r10.Fields("借方科目CD").Value = IIf(IsNumeric(.Rows(i0)("RKMK")), .Rows(i0)("RKMK"), DBNull.Value)
+                    r10.Fields("借方枝番CD").Value = IIf(IsNumeric(.Rows(i0)("REDA")), .Rows(i0)("REDA"), DBNull.Value)
+                    r10.Fields("借方摘要").Value = IIf(IsNumeric(.Rows(i0)("RTKY")), .Rows(i0)("RTKY"), DBNull.Value)
+                    r10.Fields("貸方部門CD").Value = IIf(IsNumeric(.Rows(i0)("SBMN")), .Rows(i0)("SBMN"), DBNull.Value)
+                    r10.Fields("貸方取引先CD").Value = IIf(IsNumeric(.Rows(i0)("STOR")), .Rows(i0)("STOR"), DBNull.Value)
+                    r10.Fields("貸方科目CD").Value = IIf(IsNumeric(.Rows(i0)("SKMK")), .Rows(i0)("SKMK"), DBNull.Value)
+                    r10.Fields("貸方枝番CD").Value = IIf(IsNumeric(.Rows(i0)("SEDA")), .Rows(i0)("SEDA"), DBNull.Value)
+                    r10.Fields("貸方摘要").Value = IIf(IsNumeric(.Rows(i0)("STKY")), .Rows(i0)("STKY"), DBNull.Value)
+                    If .Rows(i0)("SKMK").Value = Tmp(2) Then
+                        r10.Fields("貸方金額").Value = IIf(IsNumeric(.Rows(i0)("VALU")), .Rows(i0)("VALU"), 0)
+                    End If
+                    If .Rows(i0)("RKMK").Value = Tmp(3) Then
+                        r10.Fields("借方金額").Value = IIf(IsNumeric(.Rows(i0)("VALU")), .Rows(i0)("VALU"), 0)
+                    End If
+                    r10.Fields("借方軽減税率区分").Value = IIf(IsNumeric(.Rows(i0)("RKEIGEN")), .Rows(i0)("RKEIGEN"), DBNull.Value)
+                    r10.Fields("借方税率").Value = IIf(IsNumeric(.Rows(i0)("RRIT").Value), .Rows(i0)("RRIT"), DBNull.Value)
+                    r10.Fields("貸方軽減税率区分").Value = IIf(IsNumeric(.Rows(i0)("SKEIGEN")), .Rows(i0)("SKEIGEN"), DBNull.Value)
+                    r10.Fields("貸方税率").Value = IIf(IsNumeric(.Rows(i0)("SRIT")), .Rows(i0)("SRIT"), DBNull.Value)
+                    r10.Fields("借方仕入経過区分").Value = IIf(IsNumeric(.Rows(i0)("RMENZEIKEIKA")), .Rows(i0)("RMENZEIKEIKA"), DBNull.Value)
+                    r10.Fields("貸方仕入経過区分").Value = IIf(IsNumeric(.Rows(i0)("SMENZEIKEIKA")), .Rows(i0)("SMENZEIKEIKA"), DBNull.Value)
+
+                    r10.Fields("支払日").Value = IIf(IsNumeric(.Rows(i0)("SYMD")), .Rows(i0)("SYMD"), DBNull.Value)
+                    r10.Fields("支払区分").Value = IIf(IsNumeric(.Rows(i0)("SKBN")), .Rows(i0)("SKBN"), DBNull.Value)
+                    r10.Fields("支払期日").Value = IIf(IsNumeric(.Rows(i0)("SKIZ")), .Rows(i0)("SKIZ"), DBNull.Value)
+                    r10.Fields("支払年度").Value = DBNull.Value
+                    r10.Fields("支払No").Value = DBNull.Value
+                    'MsgBox (.Rows(i0)("") KI & r0.Fields("").Value DKEI & r0.Fields("").Value DSEQ)
+                    r10.Update()
+
+                Next
+            End With
+
+
+        Catch ex As Exception
+
+        End Try
+
+
+
+        AddLog "財務仕訳インポート処理-1を開始しました..." & vbCrLf
+
+    'On Error Resume Next
+
+        'WrkSp = CreateWorkspace("", "", "", dbUseODBC)
+        'dbsPubs = WrkSp.OpenConnection("", dbDriverNoPrompt, False, pubDsn)
+
+        'dt0 = dbsPubs.CreateQueryDef("")
+        'dt0.Prepare = dbQUnprepare
+
+
+
+
+    End Function
+    '***************************
+    '* 財務仕訳インポート処理
+    '***************************
+    Public Function MakeData002()
+        Dim odbcconn As New OdbcConnection()
+        Dim odbcCommand As New OdbcCommand()
+        Dim da0 As New OdbcDataAdapter
+        Dim dt0 As New DataSet
+        Dim SQL As String, Tmp(10), i As Integer
+
+        AddLog "財務仕訳インポート処理-1を開始しました..." & vbCrLf
+
+    On Error Resume Next
+
+        'WrkSp = CreateWorkspace("", "", "", dbUseODBC)
+        'dbsPubs = WrkSp.OpenConnection("", dbDriverNoPrompt, False, pubDsn)
+
+        'dt0 = dbsPubs.CreateQueryDef("")
+        'dt0.Prepare = dbQUnprepare("")
+
+        Tmp(0) = Format("対象年月2", "yyyymmdd")
+        Tmp(1) = Format("対象年月3", "yyyymmdd")
+
+        SQL = "SELECT aexp.a_volum2.ki " _
+            & "FROM aexp.a_volum2 " _
+            & "WHERE (aexp.a_volum2.symd BETWEEN " & Tmp(0) & " AND " & Tmp(1) & ");"
+        odbcCommand.CommandText = SQL
+        da0.SelectCommand = odbcCommand
+        da0.Fill(dt0, "t0")
+        If dt0.Tables("t0").Rows.Count > 0 Then
+            txt決算期.Text = dt0.Tables("t0").Rows(0)("ki")
+        End If
+        dt0.Tables("t0").Clear()
+        odbcCommand.Dispose() : odbcCommand = Nothing
+        odbcconn.Close() : odbcconn.Dispose() : odbcconn = Nothing
+
+        SQL = "DELETE T_支払仕訳明細.* " _
+        & "From T_支払仕訳明細;"
+        TmpDB.Execute(SQL)
+
+        Dim r10 As dao.Recordset = ComDB.OpenRecordset("T_支払仕訳明細", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        r10.Index = "Key_0"
+        SQL = "SELECT aexp.a_zdata.ki, aexp.a_zdata.dkei, aexp.a_zdata.dseq, aexp.a_zdata.dymd, aexp.a_zdata.dcno, " _
+            & "aexp.a_zdata.dcpg, aexp.a_zdata.dlin, " _
+            & "aexp.a_zdata.rbmn, aexp.a_zdata.rtor, aexp.a_zdata.rkmk, aexp.a_zdata.reda, aexp.a_zdata.rtky, " _
+            & "aexp.a_zdata.sbmn, aexp.a_zdata.stor, aexp.a_zdata.skmk, aexp.a_zdata.seda, aexp.a_zdata.stky, " _
+            & "aexp.a_zdata.valu, aexp.a_zdata.symd, aexp.a_zdata.skbn, aexp.a_zdata.skiz, aexp.a_zdata.rrit, aexp.a_zdata.srit, " _
+            & "aexp.a_zdata.rkeigen, aexp.a_zdata.skeigen, aexp.a_zdata.rmenzeikeika, aexp.a_zdata.smenzeikeika " _
+            & "FROM aexp.a_zdata " _
+            & "WHERE (aexp.a_zdata.ki=" & "決算期" & ") " _
+            & "AND (aexp.a_zdata.dymd>=" & Tmp(0) & ") " _
+            & "AND (aexp.a_zdata.dymd<=" & Tmp(1) & ") " _
+            & "AND (aexp.a_zdata.skmk='0302') " _
+            & "OR (aexp.a_zdata.ki=" & "決算期" & ") " _
+            & "AND (aexp.a_zdata.dymd>=" & Tmp(0) & ") " _
+            & "AND (aexp.a_zdata.dymd<=" & Tmp(1) & ") " _
+            & "AND (aexp.a_zdata.rkmk='0302');"
+        odbcCommand.CommandText = SQL
+        da0.SelectCommand = odbcCommand
+        da0.Fill(dt0, "t0")
+
+        With dt0.Tables("t0")
+            For i0 As Integer = 0 To .Rows.Count - 1
+
+                r10.AddNew()
+                r10.Fields("会社No").Value = pubComPany
+                r10.Fields("決算期").Value = .Rows(i0)("KI")
+                r10.Fields("経過月").Value = .Rows(i0)("DKEI")
+                r10.Fields("SEQNo").Value = .Rows(i0)("DSEQ")
+                r10.Fields("伝票日付").Value = IIf(IsNumeric(.Rows(i0)("DYMD")), .Rows(i0)("DYMD"), DBNull.Value)
+                r10.Fields("伝票No").Value = IIf(IsNumeric(.Rows(i0)("DCNO")), .Rows(i0)("DCNO"), DBNull.Value)
+                r10.Fields("伝票頁").Value = IIf(IsNumeric(.Rows(i0)("DCPG")), .Rows(i0)("DCPG"), DBNull.Value)
+                r10.Fields("伝票行").Value = IIf(IsNumeric(.Rows(i0)("DLIN")), .Rows(i0)("DLIN"), DBNull.Value)
+                r10.Fields("借方部門CD").Value = IIf(IsNumeric(.Rows(i0)("RBMN")), .Rows(i0)("RBMN"), DBNull.Value)
+                r10.Fields("借方取引先CD").Value = IIf(IsNumeric(.Rows(i0)("RTOR")), .Rows(i0)("RTOR"), DBNull.Value)
+                r10.Fields("借方科目CD").Value = IIf(IsNumeric(.Rows(i0)("RKMK")), .Rows(i0)("RKMK"), DBNull.Value)
+                r10.Fields("借方枝番CD").Value = IIf(IsNumeric(.Rows(i0)("REDA")), .Rows(i0)("REDA"), DBNull.Value)
+                r10.Fields("借方摘要").Value = IIf(IsNumeric(.Rows(i0)("RTKY")), .Rows(i0)("RTKY"), DBNull.Value)
+                r10.Fields("貸方部門CD").Value = IIf(IsNumeric(.Rows(i0)("SBMN")), .Rows(i0)("SBMN"), DBNull.Value)
+                r10.Fields("貸方取引先CD").Value = IIf(IsNumeric(.Rows(i0)("STOR")), .Rows(i0)("STOR"), DBNull.Value)
+                r10.Fields("貸方科目CD").Value = IIf(IsNumeric(.Rows(i0)("SKMK")), .Rows(i0)("SKMK"), DBNull.Value)
+                r10.Fields("貸方枝番CD").Value = IIf(IsNumeric(.Rows(i0)("SEDA")), .Rows(i0)("SEDA"), DBNull.Value)
+                r10.Fields("貸方摘要").Value = IIf(IsNumeric(.Rows(i0)("STKY")), .Rows(i0)("STKY"), DBNull.Value)
+                If .Rows(i0)("SKMK").Value = "0302" Then
+                    r10.Fields("貸方金額").Value = IIf(IsNumeric(.Rows(i0)("VALU")), .Rows(i0)("VALU"), 0)
+                End If
+                If .Rows(i0)("RKMK") = "0302" Then
+                    r10.Fields("借方金額").Value = IIf(IsNumeric(.Rows(i0)("VALU")), .Rows(i0)("VALU"), 0)
+                End If
+                r10.Fields("借方軽減税率区分").Value = IIf(IsNumeric(.Rows(i0)("RKEIGEN")), .Rows(i0)("RKEIGEN"), DBNull.Value)
+                r10.Fields("借方税率").Value = IIf(IsNumeric(.Rows(i0)("RRIT")), .Rows(i0)("RRIT"), DBNull.Value)
+                r10.Fields("貸方軽減税率区分").Value = IIf(IsNumeric(.Rows(i0)("SKEIGEN")), .Rows(i0)("SKEIGEN"), DBNull.Value)
+                r10.Fields("貸方税率").Value = IIf(IsNumeric(.Rows(i0)("SRIT")), .Rows(i0)("SRIT"), DBNull.Value)
+                r10.Fields("借方仕入経過区分").Value = IIf(IsNumeric(.Rows(i0)("RMENZEIKEIKA")), .Rows(i0)("RMENZEIKEIKA"), DBNull.Value)
+                r10.Fields("貸方仕入経過区分").Value = IIf(IsNumeric(.Rows(i0)("SMENZEIKEIKA")), .Rows(i0)("SMENZEIKEIKA"), DBNull.Value)
+
+                r10.Fields("支払日").Value = IIf(IsNumeric(.Rows(i0)("SYMD")), .Rows(i0)("SYMD"), DBNull.Value)
+                r10.Fields("支払区分").Value = IIf(IsNumeric(.Rows(i0)("SKBN")), .Rows(i0)("SKBN"), DBNull.Value)
+                r10.Fields("支払期日").Value = IIf(IsNumeric(.Rows(i0)("SKIZ")), .Rows(i0)("SKIZ"), DBNull.Value)
+                r10.Fields("支払年度").Value = DBNull.Value
+                r10.Fields("支払No").Value = DBNull.Value
+                r10.Update()
+            Next
+        End With
+
+
+
+    End Function
+    '***************************
+    '*
+    '***************************
+    Public Function MakeData010()
+        Dim r1 As Recordset
+        Dim r10 As Recordset
+        Dim SQL As String, Tmp(5), pFl(1) As Boolean
+        Dim i As Integer
+
+        AddLog "財務仕訳インポート処理-2を開始しました..." & vbCrLf
+
+     Dim r0 As dao.Recordset = DB.OpenRecordset("T_支払仕訳明細", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        r10.Index = "Key_0"
+
+        SQL = "SELECT T_支払仕訳明細.* " _
+            & "From T_支払仕訳明細 " _
+            & "WHERE (T_支払仕訳明細.会社No=" & pubComPany & ")"
+        If Not "伝票日付開始日" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.伝票日付>=" & Format("伝票日付開始日", "yyyymmdd") & ")"
+        End If
+        If Not "伝票日付終了日" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.伝票日付<=" & Format("伝票日付終了日", "yyyymmdd") & ")"
+        End If
+        If Not "伝票開始番号" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.伝票No>=" & "伝票開始番号" & ")"
+        End If
+        If Not "伝票終了番号" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.伝票No<=" & "伝票終了番号" & ")"
+        End If
+        If Not "支払指定開始日" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.支払日>=" & Format("支払指定開始日", "yyyymmdd") & ")"
+        End If
+        If Not "支払指定終了日" = "" Then
+            SQL = SQL & " AND (T_支払仕訳明細.支払日<=" & Format("支払指定終了日", "yyyymmdd") & ")"
+        End If
+        SQL = SQL & ";"
+        r0 = TmpDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        Do Until r0.EOF
+            pFl(0) = True
+            If Not "取引先CDFrom" = "" Then
+                If "取引先CDFrom" < r0.Fields("貸方取引先CD").Value Then
+                    pFl(0) = False
+                End If
+            End If
+            If pFl(0) = True Then
+                If Not "取引先CDTo" = "" Then
+                    If "取引先CDTo" > r0.Fields("貸方取引先CD").Value Then
+                        pFl(0) = False
                     End If
                 End If
-            Case "txt会社Kana名"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt内訳印刷F2.Text)
-                If LenB > 40 Then
-                    txtMsg.Text = "会社名かな超過:40"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt住所1"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt住所.Text)
-                If LenB > 100 Then
-                    txtMsg.Text = "住所超過1:100"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt住所2"
-                ctxtInp.BackColor = Color.White
-                If txt住所2.Text = "" Then
+            End If
+            If pFl(0) = True Then
+                r10.Seek("=", r0.Fields("会社No").Value, r0.Fields("決算期").Value, r0.Fields("経過月").Value, r0.Fields("SEQNo").Value)
+                If r10.NoMatch Then
+                    r10.AddNew()
+                    r10.Fields("会社No").Value = r0.Fields("会社No").Value
+                    r10.Fields("決算期").Value = r0.Fields("決算期").Value
+                    r10.Fields("経過月").Value = r0.Fields("経過月").Value
+                    r10.Fields("SEQNo").Value = r0.Fields("SEQNo").Value
+                    r10.Fields("支払年度").Value = DBNull.Value
+                    r10.Fields("支払No").Value = DBNull.Value
                 Else
-                    Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt住所2.Text)
-                    If LenB > 100 Then
-                        txtMsg.Text = "住所超過2:100"
-                        Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                    End If
+                    r10.Edit()
                 End If
-            Case "txt電話番号"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt電話番号.Text)
-                If LenB > 15 Then
-                    txtMsg.Text = "電話番号:15"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txtFax番号"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txtFax番号.Text)
-                If LenB > 15 Then
-                    txtMsg.Text = "FAX番号:15"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt代表役職"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt代表役職.Text)
-                If LenB > 30 Then
-                    txtMsg.Text = "代表役職超過:30"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt代表者名"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(txt代表者名.Text)
-                If LenB > 30 Then
-                    txtMsg.Text = "代表者名超過:30"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt決算月"
-                ctxtInp.BackColor = Color.White
-                If txt決算月.Text = "" Then Exit Function
-
-                If Not IsNumeric(txt決算月.Text) Then
-                    txtMsg.Text = "決算月不正"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-
-                Dim wTmp10 As Byte = Byte.Parse(txt決算月.Text)
-                If wTmp10 < 1 Or wTmp10 > 12 Then
-                    txtMsg.Text = "決算月不正"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt決算日"
-                ctxtInp.BackColor = Color.White
-                If txt決算日.Text = "" Then Exit Function
-
-                If Not IsNumeric(txt決算日.Text) Then
-                    txtMsg.Text = "決算日不正"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-
-                Dim wTmp10 As Byte = Byte.Parse(txt決算日.Text)
-                If wTmp10 < 1 Or wTmp10 > 31 Then
-                    txtMsg.Text = "決算日不正"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt端数計算区分"
-                'txt端数計算名.Text = ""
-                'If txt端数計算区分.Text = "" Then Exit Function
-
-                'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-                'Dim wKu As String = "3"
-                'Dim wCode As String = ctxtInp.Text
-                'Dim wRes As Byte = Mst.区分M00(wKu, wCode, SQLCmd, da0, dt0)
-                'If wRes = 9 Then
-                '    txtMsg.Text = "端数計算区分不正入力"
-                '    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                'Else
-                '    txt端数計算名.Text = Com.ChgNull(dt0.Tables("m0").Rows(0)("名称"), 1)
-                'End If
-                'dt0.Tables("m0").Clear()
-                'dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-                'Exit Function
-            Case "txt消費税実施日"
-                ctxtInp.BackColor = Color.White
-                If txt消費税実施日.Text = "" Then Exit Function
-
-                If IsDate(txt消費税実施日.Text) Then
-                    txt消費税実施日.Text = Date.Parse(txt消費税実施日.Text).ToString("yyyy/MM/dd")
-                    Exit Function
-                End If
-
-                Dim w日付 As String = ""
-                Dim wResult = PubCom.DateChk00(txt消費税実施日.Text, w日付)
-                If wResult = 1 Then
-                    txtMsg.Text = "消費税実施日不正"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                Else
-                    txt消費税実施日.Text = w日付
-                End If
-                Exit Function
-            Case "txt消費税区分"
-                'ctxtInp.BackColor = Color.White
-                'txt消費税区分名.Text = ""
-                'If txt消費税区分.Text = "" Then Exit Function
-
-                'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-                'Dim wKu As String = "1"
-                'Dim wCode As String = ctxtInp.Text
-                'Dim wRes As Byte = Mst.区分M00(wKu, wCode, SQLCmd, da0, dt0)
-                'If wRes = 9 Then
-                '    txtMsg.Text = "消費税計算区分不正入力"
-                '    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                'Else
-                '    txt消費税区分名.Text = Com.ChgNull(dt0.Tables("m0").Rows(0)("名称"), 1)
-                'End If
-                'dt0.Tables("m0").Clear()
-                'dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-                'Exit Function
-            Case "txt消費税計算"
-                'txt消費税計算名.Text = ""
-                'If txt消費税計算.Text = "" Then Exit Function
-
-                'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-                'Dim wKu As String = "6"
-                'Dim wCode As String = ctxtInp.Text
-                'Dim wRes As Byte = Mst.区分M00(wKu, wCode, SQLCmd, da0, dt0)
-                'If wRes = 9 Then
-                '    txtMsg.Text = "消費税計算区分不正入力"
-                '    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                'Else
-                '    txt消費税計算名.Text = Com.ChgNull(dt0.Tables("m0").Rows(0)("名称"), 1)
-                'End If
-                'dt0.Tables("m0").Clear()
-                'dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-                'Exit Function
-            Case "txt消費税端数"
-                'ctxtInp.BackColor = Color.White
-                'txt消費税端数名.Text = ""
-                'If txt消費税端数.Text = "" Then Exit Function
-
-                'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-                'Dim wKu As String = "3"
-                'Dim wCode As String = ctxtInp.Text
-                'Dim wRes As Byte = Mst.区分M00(wKu, wCode, SQLCmd, da0, dt0)
-                'If wRes = 9 Then
-                '    txtMsg.Text = "消費税計算区分不正入力"
-                '    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                'Else
-                '    txt消費税計算名.Text = Com.ChgNull(dt0.Tables("m0").Rows(0)("名称"), 1)
-                'End If
-                'dt0.Tables("m0").Clear()
-                'dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-                'Exit Function
-        End Select
+                r10.Fields("伝票日付").Value = r0.Fields("伝票日付").Value
+                r10.Fields("伝票No").Value = r0.Fields("伝票No").Value
+                r10.Fields("伝票頁").Value = r0.Fields("伝票頁").Value
+                r10.Fields("伝票行").Value = r0.Fields("伝票行").Value
+                r10.Fields("借方部門CD").Value = r0.Fields("借方部門CD").Value
+                r10.Fields("借方取引先CD").Value = r0.Fields("借方取引先CD").Value
+                r10.Fields("借方科目CD").Value = r0.Fields("借方科目CD").Value
+                r10.Fields("借方枝番CD").Value = r0.Fields("借方枝番CD").Value
+                r10.Fields("借方軽減税率区分").Value = r0.Fields("借方軽減税率区分").Value
+                r10.Fields("借方税率").Value = r0.Fields("借方税率").Value
+                r10.Fields("借方摘要").Value = r0.Fields("借方摘要").Value
+                r10.Fields("借方金額").Value = r0.Fields("借方金額").Value
+                r10.Fields("貸方部門CD").Value = r0.Fields("貸方部門CD").Value
+                r10.Fields("貸方取引先CD").Value = r0.Fields("貸方取引先CD").Value
+                r10.Fields("貸方科目CD").Value = r0.Fields("貸方科目CD").Value
+                r10.Fields("貸方枝番CD").Value = r0.Fields("貸方枝番CD").Value
+                r10.Fields("貸方軽減税率区分").Value = r0.Fields("貸方軽減税率区分").Value
+                r10.Fields("貸方税率").Value = r0.Fields("貸方税率").Value
+                r10.Fields("貸方摘要").Value = r0.Fields("貸方摘要").Value
+                r10.Fields("貸方金額").Value = r0.Fields("貸方金額").Value
+                r10.Fields("借方仕入経過区分").Value = r0.Fields("借方仕入経過区分").Value
+                r10.Fields("貸方仕入経過区分").Value = r0.Fields("貸方仕入経過区分").Value
+                r10.Fields("支払日").Value = r0.Fields("支払日").Value
+                r10.Fields("支払区分").Value = r0.Fields("支払区分").Value
+                r10.Fields("支払期日").Value = r0.Fields("支払期日").Value
+                r10.Update()
+            End If
+            r0.MoveNext()
+        Loop
+        r0.Close() : r0 = Nothing
+        r10.Close() : r10 = Nothing
     End Function
 
-    '******************************************************
-    '* 会社情報取得
-    '******************************************************
-    Private Sub btnOK00_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim pRet As Boolean = Inp_Chk00(txt決済1)
-        If pRet = False Then Exit Sub
-        Data_Get00()
-        txt内訳印刷F1.Focus()
-        GroupBox00.Enabled = False
+    Private Sub txtInp_GotFocus(Index As Integer)
+        txtInp(Index).SelStart = 0
+        txtInp(Index).SelLength = Len(txtInp(Index))
+        txtInp(Index).BackColor = &HF9C7FE
+        pFocus(0) = txtInp(Index)
     End Sub
-    '******************************************************
-    '*
-    '******************************************************
-    Public Sub Dsp_Init00()
-        For Each CtrlItem As Control In Me.GroupBox00.Controls
-            If TypeOf CtrlItem Is TextBox Then
-                AddHandler CtrlItem.Enter, AddressOf txtInp_Enter
-                AddHandler CtrlItem.KeyPress, AddressOf txtInp_KeyPress
-                AddHandler CtrlItem.KeyDown, AddressOf txtInp_KeyDown
-                AddHandler CtrlItem.Leave, AddressOf txtInp_Leave
-            End If
-        Next
-        For Each CtrlItem As Control In Me.GroupBox10.Controls
-            If TypeOf CtrlItem Is TextBox Then
-                AddHandler CtrlItem.Enter, AddressOf txtInp_Enter
-                AddHandler CtrlItem.KeyPress, AddressOf txtInp_KeyPress
-                AddHandler CtrlItem.KeyDown, AddressOf txtInp_KeyDown
-                AddHandler CtrlItem.Leave, AddressOf txtInp_Leave
-            End If
-        Next
-    End Sub
-    Private Sub txtInp_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim pTxtBox As TextBox = CType(sender, TextBox)
-        If pTxtBox.ReadOnly = True Then Exit Sub
-        pTxtBox.SelectAll()
-        pTxtBox.BackColor = Color.MistyRose
-        txtModified.Text = ""
-        Select Case pTxtBox.Name
-            Case "txt会社No"
-                AddHandler txt決済1.TextChanged, AddressOf txtModified_TextChanged
+
+    Private Sub txtInp_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+        Select Case KeyCode
+            Case 38 '↑ 'フォーカスを戻す
+            Case 123 'F12(検索)
+                Select Case Index
+                    Case 6, 7
+                        pubPARM(0) = ""
+                        F_S_KaM.Show 1
+            If pubPARM(0) <> "" Then
+                            txtInp(Index) = Format(pubPARM(0), "00000")
+                        End If
+                        pubPARM(0) = ""
+                    Case 8, 9
+                        pubPARM(0) = ""
+                        F_S_TorHik.Show 1
+            If pubPARM(0) <> "" Then
+                            txtInp(Index) = Format(pubPARM(0), "00000")
+                        End If
+                        pubPARM(0) = ""
+                End Select
         End Select
-        pFocus(0) = pTxtBox
     End Sub
-    Private Sub txtInp_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        Dim pTxtBox As TextBox = CType(sender, TextBox)
-        If pTxtBox.ReadOnly = True Then
-            Me.SelectNextControl(sender, True, True, True, True)
-            Exit Sub
+
+    Private Sub txtInp_KeyPress(Index As Integer, KeyAscii As Integer)
+        Dim pRes As Boolean
+
+        Select Case Index
+            Case 0, 1, 4, 5
+                Select Case KeyAscii
+                    Case 47, 48 To 57, 8, 13
+                    Case Else
+                        KeyAscii = 0
+                End Select
+            Case Else
+                Select Case KeyAscii
+                    Case 48 To 57, 8, 13
+                    Case Else
+                        KeyAscii = 0
+                End Select
+        End Select
+
+        If KeyAscii = 13 Then
+            pRes = Inp_Chk01(Index, Index)
+            If pRes = True Then
+                Call Get_TagNext(txtInp(Index).TabIndex)
+            End If
+            KeyAscii = 0
         End If
-
-        Select Case pTxtBox.Name
-            Case "txt会社No", "txt郵便番号1", "txt郵便番号2", "txt決算月", "txt決算日", "txt端数計算区分", "txt消費税区分", "txt消費税計算", "txt消費税端数"
-                Select Case e.KeyChar
-                    Case ChrW(48) To ChrW(57), ChrW(8), ChrW(13)
-                    Case Else
-                        e.Handled = True
-                End Select
-            Case "txt消費税実施日" '/,0-9,M,m,T,t,S,s,H,h
-                Select Case e.KeyChar
-                    Case ChrW(45) To ChrW(57), ChrW(8), ChrW(13)
-                    Case ChrW(72), ChrW(77), ChrW(82), ChrW(83), ChrW(84), ChrW(104), ChrW(109), ChrW(114), ChrW(115), ChrW(116)
-                    Case Else
-                        e.Handled = True
-                End Select
-            Case "txt消費税率", "txt旧消費税率"
-                Select Case e.KeyChar
-                    Case ChrW(46), ChrW(48) To ChrW(57), ChrW(8), ChrW(13)
-                    Case Else
-                        e.Handled = True
-                End Select
-        End Select
-
-        Select Case e.KeyChar
-            Case Chr(Keys.Enter)
-                Dim pRet As Boolean = Inp_Chk00(sender)
-                If pRet = False Then Exit Sub
-                Me.SelectNextControl(sender, True, True, True, True)
-                e.Handled = True
-        End Select
-    End Sub
-
-    Private Sub txtInp_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-        Dim pTxtBox As TextBox = CType(sender, TextBox)
-
-        Select Case e.KeyCode
-            Case 38
-                Me.SelectNextControl(sender, False, True, True, True)
-                e.Handled = True
-        End Select
     End Sub
 
     Private Sub txtInp_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim pTxtBox As TextBox = CType(sender, TextBox)
         If pTxtBox.ReadOnly = True Then Exit Sub
 
-        Select Case pTxtBox.Name
-            Case "txt会社No"
-                If txtModified.Text = "1" Then
-                    btn集計実行00.PerformClick()
-                    RemoveHandler pTxtBox.TextChanged, AddressOf txtModified_TextChanged
-                End If
-        End Select
-        txtModified.Text = "" : pTxtBox.BackColor = Color.White
+        pTxtBox.BackColor = Color.White
     End Sub
 
-    Private Sub txtModified_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-        txtModified.Text = "1"
+    Private Sub cmba_Enter(sender As Object, e As EventArgs) Handles cmba.Enter
+        pFocus(0) = cmba
     End Sub
 
-    Private Sub Cmd09_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmd09.Click
-        Dim strName As String = pFocus(0).Name
-        Select Case strName
-            Case "txt端数計算区分"
-                La端数区分_Click(sender, e)
-            Case "txt消費税区分"
-                La消費税区分_Click(sender, e)
-            Case "txt消費税計算"
-                La消費税計算_Click(sender, e)
-            Case "txt消費税端数"
-                La消費税端数_Click(sender, e)
-        End Select
-        Me.ActiveControl = pFocus(0)
+    Private Sub cmbb_Enter(sender As Object, e As EventArgs) Handles cmbb.Enter
+        pFocus(0) = cmbb
     End Sub
 
-    Private Sub Cmd11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmd11.Click
-        Me.Close()
-    End Sub
 
-    Private Sub Cmd04_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Cmd04.Click
-        Dim pRet As Boolean = Inp_Chk00(txt決済1)
-        If pRet = False Then Exit Sub
-
-        If MsgBox("該当データを削除します。確認してください。", vbOKCancel) = vbCancel Then Exit Sub
-        Data_Del00()
-        Inp_Clr00()
-        txt決済1.Focus()
-    End Sub
-
-    Private Sub btnOK10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim dialog As New OpenFileDialog
-
-        dialog.InitialDirectory = Application.StartupPath
-        dialog.Filter = "すべてのファイル(*.*)|*.*"
-        dialog.FilterIndex = 0
-        dialog.RestoreDirectory = True
-        dialog.CheckFileExists = False
-        dialog.CheckPathExists = True
-
-        If dialog.ShowDialog() = DialogResult.OK Then
-            Try
-                Pic会社Logo.Image = Nothing
-                Pic会社Logo.Image = System.Drawing.Image.FromFile(dialog.FileName)
-                txt会社Logo.Text = dialog.FileName
-            Catch ex As Exception
-            End Try
-        End If
-    End Sub
-
-    Private Sub btnOK20_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim dialog As New OpenFileDialog
-
-        dialog.InitialDirectory = Application.StartupPath
-        dialog.Filter = "すべてのファイル(*.*)|*.*"
-        dialog.FilterIndex = 0
-        dialog.RestoreDirectory = True
-        dialog.CheckFileExists = False
-        dialog.CheckPathExists = True
-
-        If dialog.ShowDialog() = DialogResult.OK Then
-            Try
-                Pic印鑑.Image = Nothing
-                Pic印鑑.Image = System.Drawing.Image.FromFile(dialog.FileName)
-                txt印鑑Image.Text = dialog.FileName
-            Catch ex As Exception
-            End Try
-        End If
-    End Sub
-
-    Private Sub Cmd01_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim pRet As Boolean = Inp_Chk00(txt決済1)
-        If pRet = False Then Exit Sub
-
-        For Each CtrlItem As Control In Me.GroupBox10.Controls
-            If TypeOf CtrlItem Is TextBox Then
-                pRet = Inp_Chk00(CtrlItem)
-                If pRet = False Then Exit Sub
-            End If
-        Next
-        Data_Put00()
-        Inp_Clr00()
-        txt決済1.Focus()
-    End Sub
-
-    Private Sub CmbComp_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
-        Add_Cmb()
-        AddHandler CmbComp.SelectedIndexChanged, AddressOf CmbComp_SelectedIndexChanged
-    End Sub
-
-    Private Sub CmbComp_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim item As MyComboBoxItemA
-        If CmbComp.SelectedIndex = -1 Then
-            txt決済1.Text = ""
-        Else
-            item = DirectCast(CmbComp.SelectedItem, MyComboBoxItemA)
-            txt決済1.Text = item.ItemCode
-            pubComPany = Integer.Parse(txt決済1.Text)
-            btn集計実行00.PerformClick()
-        End If
-    End Sub
-
-    Private Sub CmbComp_Leave(ByVal sender As Object, ByVal e As System.EventArgs)
-        RemoveHandler CmbComp.SelectedIndexChanged, AddressOf CmbComp_SelectedIndexChanged
-    End Sub
-
-    Private Sub MenuItem00_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles MenuItem00.Click
-        Dim frmForm = New F_Ms_Comp10
-        frmForm.pubCD = txt決済1.Text
-        frmForm.Show()
-    End Sub
-
-    Private Sub MenuItem01_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles MenuItem01.Click
-        Dim frmForm = New F_Ms_Comp20
-        frmForm.pubCD = txt決済1.Text
-        frmForm.Show()
-    End Sub
-
-    Private Sub MenuItem02_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles MenuItem02.Click
-        Dim frmForm = New F_Ms_Comp30
-        frmForm.pubCD = txt決済1.Text
-        frmForm.Show()
-    End Sub
-
-    Private Sub La端数区分_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim frmForm = New F_S_KuBunM00
-        frmForm.pubKuCD = 3 : frmForm.pubCD = ""
-        If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If IsNumeric(frmForm.pubCD) Then
-                txt端数計算区分.Text = Integer.Parse(frmForm.pubCD)
-                Inp_Chk00(txt端数計算区分)
-            End If
-            txt端数計算区分.Focus()
-        End If
-    End Sub
-
-    Private Sub La消費税区分_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim frmForm = New F_S_KuBunM00
-        frmForm.pubKuCD = 1 : frmForm.pubCD = ""
-        If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If IsNumeric(frmForm.pubCD) Then
-                txt消費税区分.Text = Integer.Parse(frmForm.pubCD)
-                Inp_Chk00(txt消費税区分)
-            End If
-            txt消費税区分.Focus()
-        End If
-    End Sub
-
-    Private Sub La消費税計算_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim frmForm = New F_S_KuBunM00
-        frmForm.pubKuCD = 6 : frmForm.pubCD = ""
-        If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If IsNumeric(frmForm.pubCD) Then
-                txt消費税計算.Text = Integer.Parse(frmForm.pubCD)
-                Inp_Chk00(txt消費税計算)
-            End If
-            txt消費税計算.Focus()
-        End If
-    End Sub
-
-    Private Sub La消費税端数_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim frmForm = New F_S_KuBunM00
-        frmForm.pubKuCD = 3 : frmForm.pubCD = ""
-        If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If IsNumeric(frmForm.pubCD) Then
-                txt消費税端数.Text = Integer.Parse(frmForm.pubCD)
-                Inp_Chk00(txt消費税端数)
-            End If
-            txt消費税端数.Focus()
-        End If
-    End Sub
-
-    Private Sub Cmd05_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Cmd05.Click
-        Inp_Clr00()
-        txt決済1.Focus()
-    End Sub
-
-    Private Sub txt科目集計CD_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub txt会社名_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub GroupBox00_Enter(sender As Object, e As EventArgs) Handles GroupBox00.Enter
-
-    End Sub
-
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn集計実行00.Click
-
-    End Sub
-
-    Private Sub Label5_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label9_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TextBox25_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TextBox1_TextChanged_1(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub txtエラーメッセージ_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles txt伝票日付終了日.TextChanged
-
-    End Sub
-
-    Private Sub txtTo2_TextChanged(sender As Object, e As EventArgs) Handles txtTo2.TextChanged
-
-    End Sub
 End Class
