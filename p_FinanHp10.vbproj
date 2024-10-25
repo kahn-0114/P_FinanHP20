@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C47F7E3-353F-4C9D-B010-3D3F47F559B3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>p_FinanHp10.My.MyApplication</StartupObject>
+    <RootNamespace>p_FinanHp10</RootNamespace>
+    <AssemblyName>p_FinanHp10</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>p_FinanHp10.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>p_FinanHp10.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>p_FinanHp10.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>p_FinanHp10.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dao, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Release\dao.dll</HintPath>
+    </Reference>
+    <Reference Include="DS.Documents.Imaging, Version=7.0.0.0, Culture=neutral, PublicKeyToken=d55d733d2bfd5065, processorArchitecture=MSIL">
+      <HintPath>packages\DS.Documents.Imaging.7.0.0\lib\net461\DS.Documents.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Framework.InputMan.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Framework.MultiRow.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.Win.Editors.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=0ce01a33ce55ca12" />
+    <Reference Include="GrapeCity.Win.MultiRow.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=0f7a722ee3c2bdd9, processorArchitecture=MSIL" />
+    <Reference Include="MESCIUS.ActiveReports, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Chart, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Chart.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Chart.Win, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Chart.Win.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.Chart.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.DataProviders, Version=3.0.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.DataProviders.3.0.0\lib\net462\MESCIUS.ActiveReports.Core.DataProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Document, Version=4.5.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Document.4.5.0\lib\net462\MESCIUS.ActiveReports.Core.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Document.Drawing.Gc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Document.Drawing.Gc.4.5.0\lib\net462\MESCIUS.ActiveReports.Core.Document.Drawing.Gc.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Document.Drawing.Gdi, Version=4.5.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Document.Drawing.Gdi.4.5.0\lib\net462\MESCIUS.ActiveReports.Core.Document.Drawing.Gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Drawing.Gc, Version=3.9.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Drawing.Gc.3.9.0\lib\net462\MESCIUS.ActiveReports.Core.Drawing.Gc.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Drawing.Gdi, Version=3.9.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Drawing.Gdi.3.9.0\lib\net462\MESCIUS.ActiveReports.Core.Drawing.Gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Rdl, Version=3.9.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Rdl.3.9.0\lib\net462\MESCIUS.ActiveReports.Core.Rdl.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Rendering, Version=3.9.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Rendering.3.9.0\lib\net462\MESCIUS.ActiveReports.Core.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Core.Scripting, Version=3.9.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Core.Scripting.3.9.0\lib\net462\MESCIUS.ActiveReports.Core.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Viewer.Common, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Viewer.Common.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.Viewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Viewer.Win, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.Viewer.Win.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.Viewer.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.ActiveReports.Win, Version=18.0.2.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.ActiveReports.ja.18.0.2\lib\net462\MESCIUS.ActiveReports.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.Data.DataEngine, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.Data.DataEngine.4.0.0\lib\net462\MESCIUS.Data.DataEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.Data.ExpressionInfo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.Data.ExpressionInfo.4.0.0\lib\net462\MESCIUS.Data.ExpressionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="MESCIUS.Data.VBFunctionLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>packages\MESCIUS.Data.VBFunctionLib.4.0.0\lib\net462\MESCIUS.Data.VBFunctionLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.8, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.6.0.8\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="GrapeCity.Framework.Forms" />
+    <Import Include="GrapeCity.Framework.Views.Windows" />
+    <Import Include="GrapeCity.Win.MultiRow" />
+    <Import Include="GrapeCity.Win.MultiRow.Design" />
+    <Import Include="GrapeCity.Win.MultiRow.InputMan" />
+    <Import Include="GrapeCity.Win.MultiRow.PlusPak" />
+    <Import Include="GrapeCity.Win.MultiRow.Serialization" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\C_Const.vb" />
+    <Compile Include="Common\C_Mconst.vb" />
+    <Compile Include="Common\Logger.vb" />
+    <Compile Include="Common\SQLServer.vb" />
+    <Compile Include="F_ActiveViewer00.designer.vb">
+      <DependentUpon>F_ActiveViewer00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ActiveViewer00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Co_LogIn00.designer.vb">
+      <DependentUpon>F_Co_LogIn00.vb</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="F_Co_LogIn00.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Co_Main00.designer.vb">
+      <DependentUpon>F_Co_Main00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Co_Main00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Co_Main10.designer.vb">
+      <DependentUpon>F_Co_Main10.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Co_Main10.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Co_Start00.designer.vb">
+      <DependentUpon>F_Co_Start00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Co_Start00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Co_SyoID00.designer.vb">
+      <DependentUpon>F_Co_SyoID00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Co_SyoID00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Ms_SiPatH00.designer.vb">
+      <DependentUpon>F_Ms_SiPatH00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Ms_SiPatH00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Ms_KubunH00.designer.vb">
+      <DependentUpon>F_Ms_KubunH00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Ms_KubunH00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Ms_KubunM00.designer.vb">
+      <DependentUpon>F_Ms_KubunM00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Ms_KubunM00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Ms_SiPatM00.designer.vb">
+      <DependentUpon>F_Ms_SiPatM00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Ms_SiPatM00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Pt_Gen000.designer.vb">
+      <DependentUpon>F_Pt_Gen000.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Pt_Gen000.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Pt_Gen010 .designer.vb">
+      <DependentUpon>F_Pt_Gen010 .vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Pt_Gen010 .vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Pt_Gen020.designer.vb">
+      <DependentUpon>F_Pt_Gen020.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Pt_Gen020.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Pt_Gen030.designer.vb">
+      <DependentUpon>F_Pt_Gen030.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Pt_Gen030.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Si_SiwGet00.designer.vb">
+      <DependentUpon>F_Si_SiwGet00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Si_SiwGet00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_Bank00.designer.vb">
+      <DependentUpon>F_S_Bank00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Bank00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_Bank00T.designer.vb">
+      <DependentUpon>F_S_Bank00T.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Bank00T.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_S_Bank10.designer.vb">
+      <DependentUpon>F_S_Bank10.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Bank10.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_Bank10T.designer.vb">
+      <DependentUpon>F_S_Bank10T.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Bank10T.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_S_Forgani00.designer.vb">
+      <DependentUpon>F_S_Forgani00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Forgani00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_Forgani00T.designer.vb">
+      <DependentUpon>F_S_Forgani00T.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Forgani00T.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_S_KaEda00.designer.vb">
+      <DependentUpon>F_S_KaEda00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_KaEda00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_KaEda00T.designer.vb">
+      <DependentUpon>F_S_KaEda00T.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_KaEda00T.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_S_Kam00.designer.vb">
+      <DependentUpon>F_S_Kam00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Kam00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_Kam00T.designer.vb">
+      <DependentUpon>F_S_Kam00T.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_Kam00T.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_S_KuBunH00.designer.vb">
+      <DependentUpon>F_S_KuBunH00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_KuBunH00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_KuBunM00.designer.vb">
+      <DependentUpon>F_S_KuBunM00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_KuBunM00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_OrgBank00.designer.vb">
+      <DependentUpon>F_S_OrgBank00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_OrgBank00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_S_mRebate00.designer.vb">
+      <DependentUpon>F_S_mRebate00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_S_mRebate00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="F_ActiveViewer00.resx">
+      <DependentUpon>F_ActiveViewer00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Co_LogIn00.resx">
+      <DependentUpon>F_Co_LogIn00.vb</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Co_Main00.resx">
+      <DependentUpon>F_Co_Main00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Co_Main10.resx">
+      <DependentUpon>F_Co_Main10.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Co_Start00.resx">
+      <DependentUpon>F_Co_Start00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Co_SyoID00.resx">
+      <DependentUpon>F_Co_SyoID00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Ms_SiPatH00.resx">
+      <DependentUpon>F_Ms_SiPatH00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Ms_KubunH00.resx">
+      <DependentUpon>F_Ms_KubunH00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Ms_KubunM00.resx">
+      <DependentUpon>F_Ms_KubunM00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Ms_SiPatM00.resx">
+      <DependentUpon>F_Ms_SiPatM00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Pt_Gen000.resx">
+      <DependentUpon>F_Pt_Gen000.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Pt_Gen010 .resx">
+      <DependentUpon>F_Pt_Gen010 .vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Pt_Gen020.resx">
+      <DependentUpon>F_Pt_Gen020.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Pt_Gen030.resx">
+      <DependentUpon>F_Pt_Gen030.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Si_SiwGet00.resx">
+      <DependentUpon>F_Si_SiwGet00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Bank00.resx">
+      <DependentUpon>F_S_Bank00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Bank00T.resx">
+      <DependentUpon>F_S_Bank00T.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Bank10.resx">
+      <DependentUpon>F_S_Bank10.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Bank10T.resx">
+      <DependentUpon>F_S_Bank10T.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Forgani00.resx">
+      <DependentUpon>F_S_Forgani00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Forgani00T.resx">
+      <DependentUpon>F_S_Forgani00T.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_KaEda00.resx">
+      <DependentUpon>F_S_KaEda00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_KaEda00T.resx">
+      <DependentUpon>F_S_KaEda00T.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Kam00.resx">
+      <DependentUpon>F_S_Kam00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_Kam00T.resx">
+      <DependentUpon>F_S_Kam00T.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_KuBunH00.resx">
+      <DependentUpon>F_S_KuBunH00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_KuBunM00.resx">
+      <DependentUpon>F_S_KuBunM00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_OrgBank00.resx">
+      <DependentUpon>F_S_OrgBank00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_S_mRebate00.resx">
+      <DependentUpon>F_S_mRebate00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Release\p_ReBateMN00.exe.config" />
+    <None Include="bin\Release\Setting00.ini" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Report2.rdlx">
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Release\GrapeCity.Framework.MultiRow.v34.dll" />
+    <Content Include="bin\Release\GrapeCity.Win.MultiRow.v110.dll" />
+    <Content Include="bin\Release\GrapeCity.Win.MultiRow.v110.xml" />
+    <Content Include="bin\Release\ja\GrapeCity.Framework.MultiRow.v34.resources.dll" />
+    <Content Include="bin\Release\ja\GrapeCity.Win.MultiRow.v110.resources.dll" />
+    <Content Include="bin\Release\p_ReBateMN00.exe" />
+    <Content Include="bin\Release\p_ReBateMN00.pdb" />
+    <Content Include="bin\Release\p_ReBateMN00.xml" />
+    <Content Include="Resources\LogIn-C.jpg" />
+    <Content Include="Resources\LogIn-G.jpg" />
+    <Content Include="Resources\logoVer1_2.jpg" />
+    <Content Include="Resources\終了-1.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

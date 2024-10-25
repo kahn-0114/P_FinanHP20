@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://cdn.grapecity.com/ActiveReports/reporting/2023/08/reportdefinition">
+	<Name>Report2.rdlx</Name>
+	<ReportSections>
+		<ReportSection Name="ReportSection1">
+			<Body>
+				<Height>27.9cm</Height>
+				<ReportItems>
+					<FixedPage Name="FixedPage1">
+						<Pages>
+							<Page>
+								<ReportItems>
+									<Textbox Name="TextBox1">
+										<Top>1.905cm</Top>
+										<Left>1.217083cm</Left>
+										<Width>1.455208cm</Width>
+										<Height>0.79375cm</Height>
+										<Style>
+											<FontFamily>メイリオ</FontFamily>
+											<PaddingBottom>2pt</PaddingBottom>
+											<PaddingLeft>2pt</PaddingLeft>
+											<PaddingRight>2pt</PaddingRight>
+											<PaddingTop>2pt</PaddingTop>
+										</Style>
+										<ZIndex>1</ZIndex>
+										<Value>ActiveReports for .NET クイックスタート</Value>
+									</Textbox>
+								</ReportItems>
+								<PaperOrientation>Portrait</PaperOrientation>
+								<Width>21.6cm</Width>
+								<Height>27.9cm</Height>
+								<LeftMargin>2.5cm</LeftMargin>
+								<TopMargin>2.5cm</TopMargin>
+								<RightMargin>2.5cm</RightMargin>
+								<BottomMargin>2.5cm</BottomMargin>
+							</Page>
+						</Pages>
+					</FixedPage>
+				</ReportItems>
+			</Body>
+			<Page>
+				<PaperOrientation>Portrait</PaperOrientation>
+				<PageHeight>27.9cm</PageHeight>
+				<PageWidth>21.6cm</PageWidth>
+				<TopMargin>2.5cm</TopMargin>
+				<BottomMargin>2.5cm</BottomMargin>
+				<LeftMargin>2.5cm</LeftMargin>
+				<RightMargin>2.5cm</RightMargin>
+			</Page>
+			<Width>21.6cm</Width>
+			<DataElementName>ReportSection1</DataElementName>
+		</ReportSection>
+	</ReportSections>
+</Report>
