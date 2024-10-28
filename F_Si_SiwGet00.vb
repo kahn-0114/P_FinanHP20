@@ -88,6 +88,7 @@ Public Class F_Si_SiwGet00
         Dim SQL As String
         Dim itmX As ListItem
 
+
         'lv.ListItems.Clear mrutirowになるよ
         SQL = "SELECT T_HIS_財務Imp.* " _
             & "From T_HIS_財務Imp " _
@@ -109,10 +110,11 @@ Public Class F_Si_SiwGet00
         r0.Close() : r0 = Nothing
     End Function
     Public Sub AddLog(ByVal s As String)
+
+
         With txtLog
-            If LenB(.Text) > 32000 Then .Text = ""
-            .SelStart = Len(.Text)
-            .SelText = s
+            If Len(.Text) > 32000 Then .Text = ""
+            .SelectAll()
         End With
     End Sub
 
@@ -120,54 +122,57 @@ Public Class F_Si_SiwGet00
     '*
     '******************************************************
     Private Function Dsp_Init00()
-        Dim r1 As Recordset
-        Dim SQL As String, i As Integer, Tmp(10)
+        'Dim r1 As Recordset
+        'Dim SQL As String, i As Integer, Tmp(10)
 
-        SQL = "SELECT MM_決算期.年度 " _
-            & "From MM_決算期 " _
-            & "Where (MM_決算期.会社No =" & pubComPany & ") " _
-            & "GROUP BY MM_決算期.年度 " _
-            & "ORDER BY MM_決算期.年度 DESC;"
-        Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
-        cmba.Text : i = -1
-        i = 0 : x = -1
-        Do Until r0.EOF
-            cmba.AddItem(Format(r0.Fields("年度").Value, "0000"))
-            cmba.(cmba.SelectedIndex) = i
-            r0.MoveNext()
-        Loop
-        r0.Close() : r0 = Nothing
-        cmba.SelectedIndex = 0
 
-        txt処理No.Text = 1
-        r0 = DB.OpenRecordset("MM_SYS", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
-        r0.Index = "Key_0"
-        r0.Seek("=", pubComPany, pubLogInName, 0)
-        If r0.NoMatch Then
-        Else
-            For i = 0 To cmba.ListCount - 1
-                Tmp(0) = -1
-                If IsNumeric(cmba.ItemData(i)) Then
-                    Tmp(0) = CInt(cmba.ItemData(i))
-                End If
-                If Tmp(0) = r0.Fields("年度").Value Then
-                    cmba.ListIndex = i
-                    Exit For
-                End If
-            Next
-            txt処理No.Text = IIf(IsDBNull(r0.Fields("締No").Value), 1, r0.Fields("締No").Value)
-        End If
-        r0.Close() : r0 = Nothing
 
-        r0 = ComDB.OpenRecordset("MM_SiPat", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
-        r0.Index = "Key_0"
-        r0.Seek("=", pubComPany, 900, 10)
-        If r0.NoMatch Then
-        Else
-            txt科目CDFrom.Text = r0.Fields("借方科目").Value
-            txt科目CDTo.Text = r0.Fields("借方科目").Value
-        End If
-        r0.Close() : r0 = Nothing
+        'SQL = "SELECT MM_決算期.年度 " _
+        '    & "From MM_決算期 " _
+        '    & "Where (MM_決算期.会社No =" & pubComPany & ") " _
+        '    & "GROUP BY MM_決算期.年度 " _
+        '    & "ORDER BY MM_決算期.年度 DESC;"
+        'Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        'i = -1
+        'i = 0
+        'Do Until r0.EOF
+        '    Dim pCD As String = MyCom.ChgNull(i)
+        '    Dim pName As String = MyCom.ChgNull(r0.Fields("年度"), 1)
+        '    ComboItemA.Add(New MyComboBoxItemA(pName, pCD))
+        '    r0.MoveNext()
+        'Loop
+        'r0.Close() : r0 = Nothing
+        'cmba.SelectedIndex = 0
+
+        'txt処理No.Text = 1
+        'r0 = DB.OpenRecordset("MM_SYS", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        'r0.Index = "Key_0"
+        'r0.Seek("=", pubComPany, pubLogInName, 0)
+        'If r0.NoMatch Then
+        'Else
+        '    For i = 0 To cmba.ListCount - 1
+        '        Tmp(0) = -1
+        '        If IsNumeric(cmba.ItemData(i)) Then
+        '            Tmp(0) = CInt(cmba.ItemData(i))
+        '        End If
+        '        If Tmp(0) = r0.Fields("年度").Value Then
+        '            cmba.ListIndex = i
+        '            Exit For
+        '        End If
+        '    Next
+        '    txt処理No.Text = IIf(IsDBNull(r0.Fields("締No").Value), 1, r0.Fields("締No").Value)
+        'End If
+        'r0.Close() : r0 = Nothing
+
+        'r0 = ComDB.OpenRecordset("MM_SiPat", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+        'r0.Index = "Key_0"
+        'r0.Seek("=", pubComPany, 900, 10)
+        'If r0.NoMatch Then
+        'Else
+        '    txt科目CDFrom.Text = r0.Fields("借方科目").Value
+        '    txt科目CDTo.Text = r0.Fields("借方科目").Value
+        'End If
+        'r0.Close() : r0 = Nothing
     End Function
     '****************************************************************
     '**
@@ -212,7 +217,7 @@ Public Class F_Si_SiwGet00
     Private Sub Btn_Click(Index As Integer)
         txt処理No.Text = Index + 1
         Call Dsp_Set00()
-        Call Inp_Chk00()
+        'Call Inp_Chk00()
     End Sub
 
     Private Sub btnUp_Click(Index As Integer)
@@ -221,16 +226,17 @@ Public Class F_Si_SiwGet00
 
         Select Case Index
             Case 0
-                pRes = Inp_Chk00()
-                If pRes = False Then
-                    Exit Sub
-                End If
-                pRes = Inp_Chk01(0, txtInp.Count - 1)
-                If pRes = False Then
-                    Exit Sub
-                End If
+                'pRes = Inp_Chk00()
 
-                Cursor.Current = Cursors.Default = 11 : Me.Enabled = False
+                'If pRes = False Then
+                '    Exit Sub
+                'End If
+                'pRes = Inp_Chk01(0, txtInp.Count - 1)
+                'If pRes = False Then
+                '    Exit Sub
+                'End If
+
+                Cursor.Current = Cursors.Default : Me.Enabled = False
                 If "処理対象仕訳" = 1 Then
                     Call MakeData000()
                 End If
@@ -244,51 +250,53 @@ Public Class F_Si_SiwGet00
                 Call MakeData010()
                 Call Data_Put00()
                 MsgBox("支払集計処理が完了しました")
-                Unload Me
-       Cursor.Current = Cursors.Default = 0 : Me.Enabled = True
-        End Select
-    End Sub
-
-    Private Sub CmbCD_Click(Index As Integer)
-        Select Case Index
-            Case 0
-                txt処理No.Text = 1
-                Call Dsp_00()
-                Call Inp_Chk00()
-            Case 1
-                If CmbCD(Index).ListIndex <> -1 Then
-                    txt処理対象仕訳.Text = CmbCD(Index).ItemData(CmbCD(Index).ListIndex)
-                End If
+                Close()
+                Cursor.Current = Cursors.Default : Me.Enabled = True
         End Select
     End Sub
 
 
 
-    Private Sub CmbCD_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-        Select Case KeyCode
-            Case 38 '↑ 'フォーカスを戻す
-                Get_TagBak(CmbCD(Index).TabIndex)
-                KeyCode = 0
-        End Select
-    End Sub
+    'Private Sub CmbCD_Click(Index As Integer)
+    '    Select Case Index
+    '        Case 0
+    '            txt処理No.Text = 1
+    '            Call Dsp_00()
+    '            Call Inp_Chk00()
+    '        Case 1
+    '            If CmbCD(Index).ListIndex <> -1 Then
+    '                txt処理対象仕訳.Text = CmbCD(Index).ItemData(CmbCD(Index).ListIndex)
+    '            End If
+    '    End Select
+    'End Sub
 
-    Private Sub CmbCD_KeyPress(Index As Integer, KeyAscii As Integer)
-        Dim i As Integer
 
-        Select Case Index
-            Case Else
-                Select Case KeyAscii
-                    Case 13, 38              '数値とBSだけ
-                    Case Else
-                        KeyAscii = 0
-                End Select
-        End Select
 
-        If KeyAscii = 13 Then
-            KeyAscii = 0
-            Call Get_TagNext(CmbCD(Index).TabIndex)
-        End If
-    End Sub
+    'Private Sub CmbCD_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+    '    Select Case KeyCode
+    '        Case 38 '↑ 'フォーカスを戻す
+    '            Get_TagBak(CmbCD(Index).TabIndex)
+    '            KeyCode = 0
+    '    End Select
+    'End Sub
+
+    'Private Sub CmbCD_KeyPress(Index As Integer, KeyAscii As Integer)
+    '    Dim i As Integer
+
+    '    Select Case Index
+    '        Case Else
+    '            Select Case KeyAscii
+    '                Case 13, 38              '数値とBSだけ
+    '                Case Else
+    '                    KeyAscii = 0
+    '            End Select
+    '    End Select
+
+    '    If KeyAscii = 13 Then
+    '        KeyAscii = 0
+    '        Call Get_TagNext(CmbCD(Index).TabIndex)
+    '    End If
+    'End Sub
 
     Private Sub Cmd_Click(Index As Integer)
         Dim pRet As Integer, pResp As Boolean, strName As String, i As Integer
@@ -298,57 +306,46 @@ Public Class F_Si_SiwGet00
         Select Case Index
             Case 1
             Case 10
-                Unload Me
-    Case 12
-                i = CInt(pFocus(0).Index) '整数
-                strName = pFocus(0).Name
-                Select Case strName
-                    Case "txtInp"
-                        Call txtInp_KeyDown(i, 123, 0)
-                End Select
-                pFocus(0).SetFocus
+                Close()
+            Case 12
+                'i = CInt(pFocus(0).Index) '整数
+                'strName = pFocus(0).Name
+                'Select Case strName
+                '    Case "txtInp"
+                '        Call txtInp_KeyDown(i, 123, 0)
+                'End Select
+                'pFocus(0).SetFocus
         End Select
     End Sub
 
-    Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-        Select Case KeyCode
-            Case 121 'F10
-                If Cmd(10).Enabled = True Then
-                    Call Cmd_Click(10) : KeyCode = 0
-                End If
-            Case 123 'F12
-                Call Cmd_Click(12) : KeyCode = 0
-        End Select
-    End Sub
+
 
     Private Sub Form_Load()
-        Call SetLVStyle(Me.LV, 1)
+        'Call SetLVStyle(Me.LV, 1)
         Call Inp_Clr00()
         Call Dsp_Init00()
         Call Item_ADD()
-        Call Inp_Chk00()
+        'Call Inp_Chk00()
 
-        If cmba.ListIndex <> -1 Then
-            Call Dsp_Set00()
-        End If
+        'If cmba.ListIndex <> -1 Then
+        '    Call Dsp_Set00()
+        'End If
     End Sub
 
     '******************************************************
     '* フィールドクリア関数
     '******************************************************
-    Private Function Inp_Clr00()
 
-        For i As Integer = 0 To txtInp.Count - 1
-            txtInp(i) = ""
-        Next
-        For i As Integer = 0 To txtOut.Count - 1
-            txtOut(i) = ""
-        Next
-        txt処理対象仕訳.Text = 0
-        Cmbb.ListIndex = 1
-        txtMsg = "" : txtMsg.Visible = False
-    End Function
 
+    Private Sub Inp_Clr00()
+        For Each CtrlItem As Control In Me.GroupBox00.Controls
+            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        Next
+        For Each CtrlItem As Control In Me.GroupBox20.Controls
+            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        Next
+        LV.Items.Clear()
+    End Sub
 
     '******************************************************
     ''* 入力チェック関数
@@ -427,13 +424,7 @@ Public Class F_Si_SiwGet00
                 End If
 
 
-                '        Case "txt明細CD"
-                '            ctxtInp.BackColor = Color.White
-                '            If txt明細CD.Text = "" Then
-                '                txtMsg.Text = "CD未入力"
-                '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                '            End If
-                If Inp_Chk00() = True Then
+                If Inp_Chk00 = True Then
                     Dim r0 As dao.Recordset = ComDB.OpenRecordset("MM_決算期", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbReadOnly)
                     r0.Index = "Key_0"
                     r0.Seek("=", pubComPany, cmba, txt処理No.Text)
@@ -448,24 +439,24 @@ Public Class F_Si_SiwGet00
                     r0.Close() : r0 = Nothing
                 End If
 
-                If Inp_Chk00() = False Then : txtMsg.Visible = True
+                If Inp_Chk00 = False Then : txtMsg.Visible = True
                 End If
-        End Select
+    '    End Select
 
 
-    End Function
+    'End Function
 
 
-  
 
-    Private Function Inp_Chk00(ByVal ctxtInp As Control)
-        Inp_Chk00 = True
-        txtMsg.Visible = False : txtMsg.Text = ""
-        Select Case ctxtInp.Name
+
+    'Private Function Inp_Chk00(ByVal ctxtInp As Control)
+    '    Inp_Chk00 = True
+    '    txtMsg.Visible = False : txtMsg.Text = ""
+    '    Select Case ctxtInp.Name
             Case "txt科目CDFrom"
                 Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_科目", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
-                    r0.Index = "Key_0"
-                    r0.Seek("=", pubComPany, txt科目CDFrom.Text)
+                r0.Index = "Key_0"
+                r0.Seek("=", pubComPany, txt科目CDFrom名.Text)
                 If r0.NoMatch Then
                     Inp_Chk00 = False
                     txtMsg.Text = "科目不正入力"
@@ -478,7 +469,7 @@ Public Class F_Si_SiwGet00
             Case "txt科目CDTo"
                 Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_科目", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
                 r0.Index = "Key_0"
-                r0.Seek("=", pubComPany, txt科目CDTo.Text)
+                r0.Seek("=", pubComPany, txt科目CDTo名.Text)
                 If r0.NoMatch Then
                     Inp_Chk00 = False
                     txtMsg.Text = "科目不正入力"
@@ -491,7 +482,7 @@ Public Class F_Si_SiwGet00
             Case "txt取引先CDFrom"
                 Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
                 r0.Index = "Key_0"
-                r0.Seek("=", pubComPany, txt科目CDFrom.Text)
+                r0.Seek("=", pubComPany, txt取引先CDFrom名.Text)
                 If r0.NoMatch Then
                     Inp_Chk00 = False
                     txtMsg.Text = "取引先不正入力"
@@ -504,7 +495,7 @@ Public Class F_Si_SiwGet00
             Case "txt取引先CDTo"
                 Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
                 r0.Index = "Key_0"
-                r0.Seek("=", pubComPany, txt科目CDTo.Text)
+                r0.Seek("=", pubComPany, txt取引先CDTo名.Text)
                 If r0.NoMatch Then
                     Inp_Chk00 = False
                     txtMsg.Text = "取引先不正入力"
@@ -515,82 +506,40 @@ Public Class F_Si_SiwGet00
                 r0.Close() : r0 = Nothing
 
 
-            'Case 8, 9
-            '    Select Case i
-            '        Case 8
-            '            x = 6
-            '        Case 7
-            '            x = 7
-            '    End Select
-            '    txtOut(X) = ""
-            '        If txtInp(i) = "" Then
-            '        Else
-            '            Dim r0 As dao.Recordset = ComDB.OpenRecordset("M_取引先", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbReadOnly)
-            '            r0.Index = "Key_0"
-            '            r0.Seek("=", pubComPany, txtInp(i))
-            '            If r0.NoMatch Then
-            '                Inp_Chk01 = False
-            '                Msg(0) = "取引先不正入力"
-            '            Else
-            '                txtOut(X) = IIf(IsDBNull(r0.Fields("取引先名").Value), "", r0.Fields("取引先名").Value)
-            '            End If
-            '            r0.Close() : r0 = Nothing
-            '        End If
 
 
-                Case 10
-                    If txtInp(i) = "" Then
-                        CmbCD(1).ListIndex = -1
-                    Else
-                        pFl(0) = False
-                        For X = 0 To CmbCD(1).ListCount - 1
-                            If txtInp(i) = CmbCD(1).ItemData(X) Then
-                                CmbCD(1).ListIndex = X
-                                pFl(0) = True
-                                Exit For
-                            End If
-                        Next X
-                        If pFl(0) = False Then
-                            Inp_Chk01 = False
-                            txtMsg.Text = "処理対象仕訳不正入力"
-                        End If
-                    End If
+                '    Case "txt処理対象仕訳"
+                '        If txtInp(i) = "" Then
+                '                CmbCD(1).ListIndex = -1
+                '            Else
+                '                pFl(0) = False
+                '                For X = 0 To CmbCD(1).ListCount - 1
+                '                    If txtInp(i) = CmbCD(1).ItemData(X) Then
+                '                        CmbCD(1).ListIndex = X
+                '                        pFl(0) = True
+                '                        Exit For
+                '                    End If
+                '                Next X
+                '                If pFl(0) = False Then
+                '                    Inp_Chk01 = False
+                '                    txtMsg.Text = "処理対象仕訳不正入力"
+                '                End If
+                '            End If
 
-            End Select
-            If Inp_Chk01() = False Then
-                txtInp(i).BackColor = &H8080FF
-            Else
-                txtInp(i).BackColor = &HFFFFFF
-            End If
-        Next i
-        If Inp_Chk01() = False Then
-            txtMsg.Visible = True
-        End If
+        End Select
+        '    If Inp_Chk01() = False Then
+        '        txtInp(i).BackColor = &H8080FF
+        '    Else
+        '        txtInp(i).BackColor = &HFFFFFF
+        '    End If
+        'Next i
+        'If Inp_Chk01() = False Then
+        '    txtMsg.Visible = True
+        'End If
     End Function
-    Private Sub Add_Cmb()
-        Dim SQL As String
-        Dim ComboItemA As New ArrayList()
-        'Dim da0 As New SqlDataAdapter, dt0 As New DataSet
-        SQL = "SELECT MM_会社00.会社No,MM_会社00.会社名 " _
-            & "FROM MM_会社00 " _
-            & "ORDER BY 会社No"
 
-        Dim result As DataTable = Mysqlserver.GetData(SQL)
 
-        For i As Integer = 0 To result.Rows.Count - 1
-            Dim wCD As String = PubCom.ChgNull(result.Rows(i)("会社No"), 0)
-            Dim wName As String = PubCom.ChgNull(result.Rows(i)("会社名"), 1)
-            ComboItemA.Add(New MyComboBoxItemA(wName, wCD))
-        Next
 
-        result.Dispose()
-
-        CmbComp.DisplayMember = "ItemName"
-        CmbComp.ValueMember = "ItemCode"
-        CmbComp.DataSource = ComboItemA
-        CmbComp.SelectedIndex = -1
-
-    End Sub
     '***************************
     '* 財務仕訳インポート処理
     '***************************
@@ -618,6 +567,7 @@ Public Class F_Si_SiwGet00
         Dim odbcCommand As New OdbcCommand()
         Dim da0 As New OdbcDataAdapter
         Dim dt0 As New DataSet
+        Dim Tmp(3) As String
 
         Try
             odbcconn.ConnectionString = pubDsnODBC
@@ -719,9 +669,9 @@ Public Class F_Si_SiwGet00
 
 
 
-        AddLog "財務仕訳インポート処理-1を開始しました..." & vbCrLf
+        AddLog("財務仕訳インポート処理-1を開始しました..." & vbCrLf)
 
-    'On Error Resume Next
+        'On Error Resume Next
 
         'WrkSp = CreateWorkspace("", "", "", dbUseODBC)
         'dbsPubs = WrkSp.OpenConnection("", dbDriverNoPrompt, False, pubDsn)
@@ -743,9 +693,9 @@ Public Class F_Si_SiwGet00
         Dim dt0 As New DataSet
         Dim SQL As String, Tmp(10), i As Integer
 
-        AddLog "財務仕訳インポート処理-1を開始しました..." & vbCrLf
+        AddLog("財務仕訳インポート処理-1を開始しました..." & vbCrLf)
 
-    On Error Resume Next
+        On Error Resume Next
 
         'WrkSp = CreateWorkspace("", "", "", dbUseODBC)
         'dbsPubs = WrkSp.OpenConnection("", dbDriverNoPrompt, False, pubDsn)
@@ -850,9 +800,9 @@ Public Class F_Si_SiwGet00
         Dim SQL As String, Tmp(5), pFl(1) As Boolean
         Dim i As Integer
 
-        AddLog "財務仕訳インポート処理-2を開始しました..." & vbCrLf
+        AddLog("財務仕訳インポート処理-2を開始しました..." & vbCrLf)
 
-     Dim r0 As dao.Recordset = DB.OpenRecordset("T_支払仕訳明細", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
+        Dim r0 As dao.Recordset = DB.OpenRecordset("T_支払仕訳明細", dao.RecordsetTypeEnum.dbOpenTable, dao.RecordsetOptionEnum.dbConsistent, dao.LockTypeEnum.dbOptimistic)
         r10.Index = "Key_0"
 
         SQL = "SELECT T_支払仕訳明細.* " _
@@ -938,70 +888,108 @@ Public Class F_Si_SiwGet00
         r10.Close() : r10 = Nothing
     End Function
 
-    Private Sub txtInp_GotFocus(Index As Integer)
-        txtInp(Index).SelStart = 0
-        txtInp(Index).SelLength = Len(txtInp(Index))
-        txtInp(Index).BackColor = &HF9C7FE
-        pFocus(0) = txtInp(Index)
+    Private Sub txtInp_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim pTxtBox As TextBox = CType(sender, TextBox)
+
+        pTxtBox.SelectAll()
+        pTxtBox.BackColor = Color.MistyRose
+
+        pFocus(0) = pTxtBox
     End Sub
 
-    Private Sub txtInp_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-        Select Case KeyCode
-            Case 38 '↑ 'フォーカスを戻す
-            Case 123 'F12(検索)
-                Select Case Index
-                    Case 6, 7
-                        pubPARM(0) = ""
-                        F_S_KaM.Show 1
-            If pubPARM(0) <> "" Then
-                            txtInp(Index) = Format(pubPARM(0), "00000")
-                        End If
-                        pubPARM(0) = ""
-                    Case 8, 9
-                        pubPARM(0) = ""
-                        F_S_TorHik.Show 1
-            If pubPARM(0) <> "" Then
-                            txtInp(Index) = Format(pubPARM(0), "00000")
-                        End If
-                        pubPARM(0) = ""
-                End Select
+    'Private Sub txtInp_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+    '    Select Case KeyCode
+    '        Case 38 '↑ 'フォーカスを戻す
+    '        Case 123 'F12(検索)
+    '            Select Case Index
+    '                Case 6, 7
+    '                    pubPARM(0) = ""
+    '                    F_S_KaM.Show 1
+    '        If pubPARM(0) <> "" Then
+    '                        txtInp(Index) = Format(pubPARM(0), "00000")
+    '                    End If
+    '                    pubPARM(0) = ""
+    '                Case 8, 9
+    '                    pubPARM(0) = ""
+    '                    F_S_TorHik.Show 1
+    '        If pubPARM(0) <> "" Then
+    '                        txtInp(Index) = Format(pubPARM(0), "00000")
+    '                    End If
+    '                    pubPARM(0) = ""
+    '            End Select
+    '    End Select
+    'End Sub
+    Private Sub txtInp_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+        Select Case e.KeyCode
+            Case 38
+                Me.SelectNextControl(sender, False, True, True, True)
+                e.Handled = True
         End Select
     End Sub
 
-    Private Sub txtInp_KeyPress(Index As Integer, KeyAscii As Integer)
-        Dim pRes As Boolean
+    'Private Sub txtInp_KeyPress(Index As Integer, KeyAscii As Integer)
+    '    Dim pRes As Boolean
 
-        Select Case Index
-            Case 0, 1, 4, 5
-                Select Case KeyAscii
-                    Case 47, 48 To 57, 8, 13
+    '    Select Case Index
+    '        Case 0, 1, 4, 5
+    '            Select Case KeyAscii
+    '                Case 47, 48 To 57, 8, 13
+    '                Case Else
+    '                    KeyAscii = 0
+    '            End Select
+    '        Case Else
+    '            Select Case KeyAscii
+    '                Case 48 To 57, 8, 13
+    '                Case Else
+    '                    KeyAscii = 0
+    '            End Select
+    '    End Select
+
+    '    If KeyAscii = 13 Then
+    '        pRes = Inp_Chk01(Index, Index)
+    '        If pRes = True Then
+    '            Call Get_TagNext(txtInp(Index).TabIndex)
+    '        End If
+    '        KeyAscii = 0
+    '    End If
+    'End Sub
+
+    Private Sub txtInp_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        Dim pTxtBox As TextBox = CType(sender, TextBox)
+
+        Select Case pTxtBox.Name
+            Case "txt伝票日付開始日", "txt伝票日付終了日", "txt支払指定開始日", "txt支払指定終了日"
+                Select Case e.KeyChar
+                    Case ChrW(47), ChrW(48) To ChrW(57), ChrW(8), ChrW(13)
                     Case Else
-                        KeyAscii = 0
+                        e.Handled = True
                 End Select
+
             Case Else
-                Select Case KeyAscii
-                    Case 48 To 57, 8, 13
+                Select Case e.KeyChar
+                    Case ChrW(48) To ChrW(57), ChrW(8), ChrW(13)
                     Case Else
-                        KeyAscii = 0
+                        e.Handled = True
                 End Select
+
         End Select
 
-        If KeyAscii = 13 Then
-            pRes = Inp_Chk01(Index, Index)
-            If pRes = True Then
-                Call Get_TagNext(txtInp(Index).TabIndex)
-            End If
-            KeyAscii = 0
-        End If
+        Select Case e.KeyChar
+            Case Chr(Keys.Enter)
+                Dim pRet As Boolean = Inp_Chk00(sender)
+                If pRet = False Then Exit Sub
+                SelectNextControl(sender, True, True, True, True)
+                e.Handled = True
+        End Select
     End Sub
 
     Private Sub txtInp_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim pTxtBox As TextBox = CType(sender, TextBox)
         If pTxtBox.ReadOnly = True Then Exit Sub
 
+
         pTxtBox.BackColor = Color.White
     End Sub
-
     Private Sub cmba_Enter(sender As Object, e As EventArgs) Handles cmba.Enter
         pFocus(0) = cmba
     End Sub
@@ -1010,5 +998,7 @@ Public Class F_Si_SiwGet00
         pFocus(0) = cmbb
     End Sub
 
+    Private Sub btnUp00_Click(sender As Object, e As EventArgs) Handles btnUp00.Click
 
+    End Sub
 End Class
