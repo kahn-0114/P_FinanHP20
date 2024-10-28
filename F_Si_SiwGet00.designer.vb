@@ -23,7 +23,7 @@ Partial Class F_Si_SiwGet00
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim Cmd01 As System.Windows.Forms.Button
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"0000", "9999/99/99 99:99:99", "9999年99月", "zzzzzzzzz1", "9999999"}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"0000", "9999/99/99 99:99:99", "9999年99月", "zzzzzzzzz1", "9999999"}, -1)
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd03 = New System.Windows.Forms.Button()
         Me.Cmd10 = New System.Windows.Forms.Button()
@@ -640,9 +640,9 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDTo名.Multiline = True
         Me.txt科目CDTo名.Name = "txt科目CDTo名"
         Me.txt科目CDTo名.ReadOnly = True
-        Me.txt科目CDTo名.Size = New System.Drawing.Size(335, 27)
+        Me.txt科目CDTo名.Size = New System.Drawing.Size(307, 27)
         Me.txt科目CDTo名.TabIndex = 10010
-        Me.txt科目CDTo名.Text = "zzzzzzzzz1"
+        Me.txt科目CDTo名.Text = "zzzzzzzzz1zzzzzzzzz2zzzzzzzzz3"
         '
         'btnUp00
         '
@@ -664,9 +664,9 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDFrom名.Multiline = True
         Me.txt取引先CDFrom名.Name = "txt取引先CDFrom名"
         Me.txt取引先CDFrom名.ReadOnly = True
-        Me.txt取引先CDFrom名.Size = New System.Drawing.Size(335, 27)
+        Me.txt取引先CDFrom名.Size = New System.Drawing.Size(307, 27)
         Me.txt取引先CDFrom名.TabIndex = 10009
-        Me.txt取引先CDFrom名.Text = "zzzzzzzzz1"
+        Me.txt取引先CDFrom名.Text = "zzzzzzzzz1zzzzzzzzz2zzzzzzzzz3"
         '
         'txt取引先CDTo名
         '
@@ -677,9 +677,9 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDTo名.Multiline = True
         Me.txt取引先CDTo名.Name = "txt取引先CDTo名"
         Me.txt取引先CDTo名.ReadOnly = True
-        Me.txt取引先CDTo名.Size = New System.Drawing.Size(335, 27)
+        Me.txt取引先CDTo名.Size = New System.Drawing.Size(307, 27)
         Me.txt取引先CDTo名.TabIndex = 10008
-        Me.txt取引先CDTo名.Text = "zzzzzzzzz1"
+        Me.txt取引先CDTo名.Text = "zzzzzzzzz1zzzzzzzzz2zzzzzzzzz3"
         '
         'txt取引先CDTo
         '
@@ -923,9 +923,9 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDFrom名.Multiline = True
         Me.txt科目CDFrom名.Name = "txt科目CDFrom名"
         Me.txt科目CDFrom名.ReadOnly = True
-        Me.txt科目CDFrom名.Size = New System.Drawing.Size(335, 27)
+        Me.txt科目CDFrom名.Size = New System.Drawing.Size(307, 27)
         Me.txt科目CDFrom名.TabIndex = 39
-        Me.txt科目CDFrom名.Text = "zzzzzzzzz1"
+        Me.txt科目CDFrom名.Text = "zzzzzzzzz1zzzzzzzzz2zzzzzzzzz3"
         '
         'txt処理対象仕訳
         '
@@ -1031,11 +1031,11 @@ Partial Class F_Si_SiwGet00
         Me.LV.FullRowSelect = True
         Me.LV.GridLines = True
         Me.LV.HideSelection = False
-        Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4})
-        Me.LV.Location = New System.Drawing.Point(6, 7)
+        Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        Me.LV.Location = New System.Drawing.Point(6, 12)
         Me.LV.MultiSelect = False
         Me.LV.Name = "LV"
-        Me.LV.Size = New System.Drawing.Size(713, 126)
+        Me.LV.Size = New System.Drawing.Size(468, 126)
         Me.LV.TabIndex = 4
         Me.LV.UseCompatibleStateImageBehavior = False
         Me.LV.View = System.Windows.Forms.View.Details
@@ -1057,7 +1057,7 @@ Partial Class F_Si_SiwGet00
         'LV処理
         '
         Me.LV処理.Text = "処理"
-        Me.LV処理.Width = 188
+        Me.LV処理.Width = 380
         '
         'txtLog
         '
