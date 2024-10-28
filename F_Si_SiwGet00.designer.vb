@@ -23,6 +23,7 @@ Partial Class F_Si_SiwGet00
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim Cmd01 As System.Windows.Forms.Button
+        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"0000", "9999/99/99 99:99:99", "9999年99月", "zzzzzzzzz1", "9999999"}, -1)
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd03 = New System.Windows.Forms.Button()
         Me.Cmd10 = New System.Windows.Forms.Button()
@@ -35,7 +36,6 @@ Partial Class F_Si_SiwGet00
         Me.Cmd11 = New System.Windows.Forms.Button()
         Me.Cmd12 = New System.Windows.Forms.Button()
         Me.GroupBox00 = New System.Windows.Forms.GroupBox()
-        Me.GcMultiRow1 = New GrapeCity.Win.MultiRow.GcMultiRow()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.MenuItem00 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuItem01 = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,10 +65,10 @@ Partial Class F_Si_SiwGet00
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.cmbb = New System.Windows.Forms.ComboBox()
-        Me.txtTo1 = New System.Windows.Forms.TextBox()
+        Me.txt科目CDTo名 = New System.Windows.Forms.TextBox()
         Me.btnUp00 = New System.Windows.Forms.Button()
-        Me.txtFrom2 = New System.Windows.Forms.TextBox()
-        Me.txtTo2 = New System.Windows.Forms.TextBox()
+        Me.txt取引先CDFrom名 = New System.Windows.Forms.TextBox()
+        Me.txt取引先CDTo名 = New System.Windows.Forms.TextBox()
         Me.txt取引先CDTo = New System.Windows.Forms.TextBox()
         Me.txt取引先CDFrom = New System.Windows.Forms.TextBox()
         Me.txt科目CDTo = New System.Windows.Forms.TextBox()
@@ -86,7 +86,7 @@ Partial Class F_Si_SiwGet00
         Me.txtから1 = New System.Windows.Forms.TextBox()
         Me.La支払指定日 = New System.Windows.Forms.Label()
         Me.La伝票番号 = New System.Windows.Forms.Label()
-        Me.txtFrom1 = New System.Windows.Forms.TextBox()
+        Me.txt科目CDFrom名 = New System.Windows.Forms.TextBox()
         Me.txt処理対象仕訳 = New System.Windows.Forms.TextBox()
         Me.txt伝票日付開始日 = New System.Windows.Forms.TextBox()
         Me.txt科目CDFrom = New System.Windows.Forms.TextBox()
@@ -94,9 +94,14 @@ Partial Class F_Si_SiwGet00
         Me.LaFrom1 = New System.Windows.Forms.Label()
         Me.La処理対象仕訳 = New System.Windows.Forms.Label()
         Me.La抽出範囲指定 = New System.Windows.Forms.Label()
+        Me.LV = New System.Windows.Forms.ListView()
+        Me.LVNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.LV処理日時 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.LV対象年月 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.LV処理 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.txtLog = New System.Windows.Forms.TextBox()
         Cmd01 = New System.Windows.Forms.Button()
         Me.GroupBox00.SuspendLayout()
-        CType(Me.GcMultiRow1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
@@ -237,20 +242,12 @@ Partial Class F_Si_SiwGet00
         '
         'GroupBox00
         '
-        Me.GroupBox00.Controls.Add(Me.GcMultiRow1)
+        Me.GroupBox00.Controls.Add(Me.LV)
         Me.GroupBox00.Location = New System.Drawing.Point(4, 75)
         Me.GroupBox00.Name = "GroupBox00"
-        Me.GroupBox00.Size = New System.Drawing.Size(1004, 87)
+        Me.GroupBox00.Size = New System.Drawing.Size(1004, 144)
         Me.GroupBox00.TabIndex = 2
         Me.GroupBox00.TabStop = False
-        '
-        'GcMultiRow1
-        '
-        Me.GcMultiRow1.Location = New System.Drawing.Point(10, 4)
-        Me.GcMultiRow1.Name = "GcMultiRow1"
-        Me.GcMultiRow1.Size = New System.Drawing.Size(240, 75)
-        Me.GcMultiRow1.TabIndex = 0
-        Me.GcMultiRow1.Text = "GcMultiRow1"
         '
         'MenuStrip1
         '
@@ -309,7 +306,7 @@ Partial Class F_Si_SiwGet00
         Me.GroupBox10.Controls.Add(Me.La年度)
         Me.GroupBox10.Controls.Add(Me.txt対象年月1)
         Me.GroupBox10.Controls.Add(Me.btn1)
-        Me.GroupBox10.Location = New System.Drawing.Point(4, 160)
+        Me.GroupBox10.Location = New System.Drawing.Point(6, 214)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(1004, 67)
         Me.GroupBox10.TabIndex = 241
@@ -357,7 +354,7 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月2.Size = New System.Drawing.Size(113, 27)
         Me.txt対象年月2.TabIndex = 10006
         Me.txt対象年月2.TabStop = False
-        Me.txt対象年月2.Text = "2022/12/01"
+        Me.txt対象年月2.Text = "9999/99/99"
         Me.txt対象年月2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt対象年月3
@@ -372,7 +369,7 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月3.Size = New System.Drawing.Size(113, 27)
         Me.txt対象年月3.TabIndex = 16
         Me.txt対象年月3.TabStop = False
-        Me.txt対象年月3.Text = "2022/12/31"
+        Me.txt対象年月3.Text = "9999/99/99"
         Me.txt対象年月3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btn11
@@ -512,10 +509,11 @@ Partial Class F_Si_SiwGet00
         '
         'cmba
         '
+        Me.cmba.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cmba.FormattingEnabled = True
-        Me.cmba.Location = New System.Drawing.Point(71, 14)
+        Me.cmba.Location = New System.Drawing.Point(71, 9)
         Me.cmba.Name = "cmba"
-        Me.cmba.Size = New System.Drawing.Size(67, 20)
+        Me.cmba.Size = New System.Drawing.Size(67, 28)
         Me.cmba.TabIndex = 0
         Me.cmba.Text = "2022"
         '
@@ -526,9 +524,9 @@ Partial Class F_Si_SiwGet00
         Me.La年度.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.La年度.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.La年度.ForeColor = System.Drawing.Color.White
-        Me.La年度.Location = New System.Drawing.Point(2, 8)
+        Me.La年度.Location = New System.Drawing.Point(2, 9)
         Me.La年度.Name = "La年度"
-        Me.La年度.Size = New System.Drawing.Size(69, 27)
+        Me.La年度.Size = New System.Drawing.Size(69, 28)
         Me.La年度.TabIndex = 37
         Me.La年度.Text = "年度"
         Me.La年度.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -545,7 +543,7 @@ Partial Class F_Si_SiwGet00
         Me.txt対象年月1.Size = New System.Drawing.Size(113, 27)
         Me.txt対象年月1.TabIndex = 15
         Me.txt対象年月1.TabStop = False
-        Me.txt対象年月1.Text = "2022年12月"
+        Me.txt対象年月1.Text = "9999年99月"
         Me.txt対象年月1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btn1
@@ -577,10 +575,10 @@ Partial Class F_Si_SiwGet00
         '
         Me.GroupBox20.Controls.Add(Me.txtMsg)
         Me.GroupBox20.Controls.Add(Me.cmbb)
-        Me.GroupBox20.Controls.Add(Me.txtTo1)
+        Me.GroupBox20.Controls.Add(Me.txt科目CDTo名)
         Me.GroupBox20.Controls.Add(Me.btnUp00)
-        Me.GroupBox20.Controls.Add(Me.txtFrom2)
-        Me.GroupBox20.Controls.Add(Me.txtTo2)
+        Me.GroupBox20.Controls.Add(Me.txt取引先CDFrom名)
+        Me.GroupBox20.Controls.Add(Me.txt取引先CDTo名)
         Me.GroupBox20.Controls.Add(Me.txt取引先CDTo)
         Me.GroupBox20.Controls.Add(Me.txt取引先CDFrom)
         Me.GroupBox20.Controls.Add(Me.txt科目CDTo)
@@ -599,7 +597,7 @@ Partial Class F_Si_SiwGet00
         Me.GroupBox20.Controls.Add(Me.txtから1)
         Me.GroupBox20.Controls.Add(Me.La支払指定日)
         Me.GroupBox20.Controls.Add(Me.La伝票番号)
-        Me.GroupBox20.Controls.Add(Me.txtFrom1)
+        Me.GroupBox20.Controls.Add(Me.txt科目CDFrom名)
         Me.GroupBox20.Controls.Add(Me.txt処理対象仕訳)
         Me.GroupBox20.Controls.Add(Me.txt伝票日付開始日)
         Me.GroupBox20.Controls.Add(Me.txt科目CDFrom)
@@ -608,7 +606,7 @@ Partial Class F_Si_SiwGet00
         Me.GroupBox20.Controls.Add(Me.La処理対象仕訳)
         Me.GroupBox20.Controls.Add(Me.La抽出範囲指定)
         Me.GroupBox20.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(6, 225)
+        Me.GroupBox20.Location = New System.Drawing.Point(6, 278)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Size = New System.Drawing.Size(1002, 232)
         Me.GroupBox20.TabIndex = 9999
@@ -633,18 +631,18 @@ Partial Class F_Si_SiwGet00
         Me.cmbb.TabIndex = 13
         Me.cmbb.Text = "全件インポート"
         '
-        'txtTo1
+        'txt科目CDTo名
         '
-        Me.txtTo1.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtTo1.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtTo1.Location = New System.Drawing.Point(667, 41)
-        Me.txtTo1.MaxLength = 10
-        Me.txtTo1.Multiline = True
-        Me.txtTo1.Name = "txtTo1"
-        Me.txtTo1.ReadOnly = True
-        Me.txtTo1.Size = New System.Drawing.Size(335, 27)
-        Me.txtTo1.TabIndex = 10010
-        Me.txtTo1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt科目CDTo名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt科目CDTo名.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt科目CDTo名.Location = New System.Drawing.Point(667, 41)
+        Me.txt科目CDTo名.MaxLength = 10
+        Me.txt科目CDTo名.Multiline = True
+        Me.txt科目CDTo名.Name = "txt科目CDTo名"
+        Me.txt科目CDTo名.ReadOnly = True
+        Me.txt科目CDTo名.Size = New System.Drawing.Size(335, 27)
+        Me.txt科目CDTo名.TabIndex = 10010
+        Me.txt科目CDTo名.Text = "zzzzzzzzz1"
         '
         'btnUp00
         '
@@ -657,31 +655,31 @@ Partial Class F_Si_SiwGet00
         Me.btnUp00.Text = "集計実行"
         Me.btnUp00.UseVisualStyleBackColor = True
         '
-        'txtFrom2
+        'txt取引先CDFrom名
         '
-        Me.txtFrom2.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtFrom2.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtFrom2.Location = New System.Drawing.Point(667, 68)
-        Me.txtFrom2.MaxLength = 10
-        Me.txtFrom2.Multiline = True
-        Me.txtFrom2.Name = "txtFrom2"
-        Me.txtFrom2.ReadOnly = True
-        Me.txtFrom2.Size = New System.Drawing.Size(335, 27)
-        Me.txtFrom2.TabIndex = 10009
-        Me.txtFrom2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt取引先CDFrom名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt取引先CDFrom名.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt取引先CDFrom名.Location = New System.Drawing.Point(667, 68)
+        Me.txt取引先CDFrom名.MaxLength = 10
+        Me.txt取引先CDFrom名.Multiline = True
+        Me.txt取引先CDFrom名.Name = "txt取引先CDFrom名"
+        Me.txt取引先CDFrom名.ReadOnly = True
+        Me.txt取引先CDFrom名.Size = New System.Drawing.Size(335, 27)
+        Me.txt取引先CDFrom名.TabIndex = 10009
+        Me.txt取引先CDFrom名.Text = "zzzzzzzzz1"
         '
-        'txtTo2
+        'txt取引先CDTo名
         '
-        Me.txtTo2.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtTo2.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtTo2.Location = New System.Drawing.Point(667, 95)
-        Me.txtTo2.MaxLength = 10
-        Me.txtTo2.Multiline = True
-        Me.txtTo2.Name = "txtTo2"
-        Me.txtTo2.ReadOnly = True
-        Me.txtTo2.Size = New System.Drawing.Size(335, 27)
-        Me.txtTo2.TabIndex = 10008
-        Me.txtTo2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt取引先CDTo名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt取引先CDTo名.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt取引先CDTo名.Location = New System.Drawing.Point(667, 95)
+        Me.txt取引先CDTo名.MaxLength = 10
+        Me.txt取引先CDTo名.Multiline = True
+        Me.txt取引先CDTo名.Name = "txt取引先CDTo名"
+        Me.txt取引先CDTo名.ReadOnly = True
+        Me.txt取引先CDTo名.Size = New System.Drawing.Size(335, 27)
+        Me.txt取引先CDTo名.TabIndex = 10008
+        Me.txt取引先CDTo名.Text = "zzzzzzzzz1"
         '
         'txt取引先CDTo
         '
@@ -693,6 +691,7 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDTo.Name = "txt取引先CDTo"
         Me.txt取引先CDTo.Size = New System.Drawing.Size(83, 27)
         Me.txt取引先CDTo.TabIndex = 11
+        Me.txt取引先CDTo.Text = "99999999"
         Me.txt取引先CDTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt取引先CDFrom
@@ -705,6 +704,7 @@ Partial Class F_Si_SiwGet00
         Me.txt取引先CDFrom.Name = "txt取引先CDFrom"
         Me.txt取引先CDFrom.Size = New System.Drawing.Size(83, 27)
         Me.txt取引先CDFrom.TabIndex = 10
+        Me.txt取引先CDFrom.Text = "99999999"
         Me.txt取引先CDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt科目CDTo
@@ -717,7 +717,7 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDTo.Name = "txt科目CDTo"
         Me.txt科目CDTo.Size = New System.Drawing.Size(83, 27)
         Me.txt科目CDTo.TabIndex = 8
-        Me.txt科目CDTo.Text = "303"
+        Me.txt科目CDTo.Text = "99999999"
         Me.txt科目CDTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LaTo2
@@ -786,6 +786,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票会開始番号.Name = "txt伝票会開始番号"
         Me.txt伝票会開始番号.Size = New System.Drawing.Size(113, 27)
         Me.txt伝票会開始番号.TabIndex = 2
+        Me.txt伝票会開始番号.Text = "99999999"
         Me.txt伝票会開始番号.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt支払指定開始日
@@ -798,6 +799,7 @@ Partial Class F_Si_SiwGet00
         Me.txt支払指定開始日.Name = "txt支払指定開始日"
         Me.txt支払指定開始日.Size = New System.Drawing.Size(113, 27)
         Me.txt支払指定開始日.TabIndex = 4
+        Me.txt支払指定開始日.Text = "9999/99/99"
         Me.txt支払指定開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt伝票日付終了日
@@ -810,6 +812,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票日付終了日.Name = "txt伝票日付終了日"
         Me.txt伝票日付終了日.Size = New System.Drawing.Size(113, 27)
         Me.txt伝票日付終了日.TabIndex = 1
+        Me.txt伝票日付終了日.Text = "9999/99/99"
         Me.txt伝票日付終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt伝票終了番号
@@ -822,6 +825,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票終了番号.Name = "txt伝票終了番号"
         Me.txt伝票終了番号.Size = New System.Drawing.Size(113, 27)
         Me.txt伝票終了番号.TabIndex = 3
+        Me.txt伝票終了番号.Text = "99999999"
         Me.txt伝票終了番号.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt支払指定終了日
@@ -834,6 +838,7 @@ Partial Class F_Si_SiwGet00
         Me.txt支払指定終了日.Name = "txt支払指定終了日"
         Me.txt支払指定終了日.Size = New System.Drawing.Size(113, 27)
         Me.txt支払指定終了日.TabIndex = 5
+        Me.txt支払指定終了日.Text = "9999/99/99"
         Me.txt支払指定終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtから2
@@ -909,18 +914,18 @@ Partial Class F_Si_SiwGet00
         Me.La伝票番号.Text = "伝票番号"
         Me.La伝票番号.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txtFrom1
+        'txt科目CDFrom名
         '
-        Me.txtFrom1.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtFrom1.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtFrom1.Location = New System.Drawing.Point(667, 14)
-        Me.txtFrom1.MaxLength = 10
-        Me.txtFrom1.Multiline = True
-        Me.txtFrom1.Name = "txtFrom1"
-        Me.txtFrom1.ReadOnly = True
-        Me.txtFrom1.Size = New System.Drawing.Size(335, 27)
-        Me.txtFrom1.TabIndex = 39
-        Me.txtFrom1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt科目CDFrom名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt科目CDFrom名.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt科目CDFrom名.Location = New System.Drawing.Point(667, 14)
+        Me.txt科目CDFrom名.MaxLength = 10
+        Me.txt科目CDFrom名.Multiline = True
+        Me.txt科目CDFrom名.Name = "txt科目CDFrom名"
+        Me.txt科目CDFrom名.ReadOnly = True
+        Me.txt科目CDFrom名.Size = New System.Drawing.Size(335, 27)
+        Me.txt科目CDFrom名.TabIndex = 39
+        Me.txt科目CDFrom名.Text = "zzzzzzzzz1"
         '
         'txt処理対象仕訳
         '
@@ -946,6 +951,7 @@ Partial Class F_Si_SiwGet00
         Me.txt伝票日付開始日.Name = "txt伝票日付開始日"
         Me.txt伝票日付開始日.Size = New System.Drawing.Size(113, 27)
         Me.txt伝票日付開始日.TabIndex = 0
+        Me.txt伝票日付開始日.Text = "9999/99/99"
         Me.txt伝票日付開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt科目CDFrom
@@ -958,7 +964,7 @@ Partial Class F_Si_SiwGet00
         Me.txt科目CDFrom.Name = "txt科目CDFrom"
         Me.txt科目CDFrom.Size = New System.Drawing.Size(83, 27)
         Me.txt科目CDFrom.TabIndex = 7
-        Me.txt科目CDFrom.Text = "303"
+        Me.txt科目CDFrom.Text = "99999999"
         Me.txt科目CDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'La伝票日付
@@ -1017,11 +1023,61 @@ Partial Class F_Si_SiwGet00
         Me.La抽出範囲指定.Text = "抽出範囲指定"
         Me.La抽出範囲指定.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'LV
+        '
+        Me.LV.Activation = System.Windows.Forms.ItemActivation.OneClick
+        Me.LV.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.LVNo, Me.LV処理日時, Me.LV対象年月, Me.LV処理})
+        Me.LV.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.LV.FullRowSelect = True
+        Me.LV.GridLines = True
+        Me.LV.HideSelection = False
+        Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4})
+        Me.LV.Location = New System.Drawing.Point(6, 7)
+        Me.LV.MultiSelect = False
+        Me.LV.Name = "LV"
+        Me.LV.Size = New System.Drawing.Size(713, 126)
+        Me.LV.TabIndex = 4
+        Me.LV.UseCompatibleStateImageBehavior = False
+        Me.LV.View = System.Windows.Forms.View.Details
+        '
+        'LVNo
+        '
+        Me.LVNo.Text = "No"
+        '
+        'LV処理日時
+        '
+        Me.LV処理日時.Text = "処理日時"
+        Me.LV処理日時.Width = 158
+        '
+        'LV対象年月
+        '
+        Me.LV対象年月.Text = "対象年月"
+        Me.LV対象年月.Width = 115
+        '
+        'LV処理
+        '
+        Me.LV処理.Text = "処理"
+        Me.LV処理.Width = 188
+        '
+        'txtLog
+        '
+        Me.txtLog.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtLog.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txtLog.Location = New System.Drawing.Point(7, 510)
+        Me.txtLog.MaxLength = 10
+        Me.txtLog.Multiline = True
+        Me.txtLog.Name = "txtLog"
+        Me.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtLog.Size = New System.Drawing.Size(638, 109)
+        Me.txtLog.TabIndex = 10000
+        Me.txtLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'F_Si_SiwGet00
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1010, 631)
+        Me.Controls.Add(Me.txtLog)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Cmd12)
         Me.Controls.Add(Me.Cmd11)
@@ -1044,7 +1100,6 @@ Partial Class F_Si_SiwGet00
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " 財務データインポート処理"
         Me.GroupBox00.ResumeLayout(False)
-        CType(Me.GcMultiRow1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
@@ -1083,7 +1138,7 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents txt伝票日付開始日 As TextBox
     Friend WithEvents txt科目CDFrom As TextBox
     Friend WithEvents txt処理対象仕訳 As TextBox
-    Friend WithEvents txtFrom1 As TextBox
+    Friend WithEvents txt科目CDFrom名 As TextBox
     Friend WithEvents La科目CD As Label
     Friend WithEvents btn1 As Button
     Friend WithEvents cmba As ComboBox
@@ -1115,9 +1170,9 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents LaTo2 As Label
     Friend WithEvents LaFrom2 As Label
     Friend WithEvents LaTo1 As Label
-    Friend WithEvents txtTo1 As TextBox
-    Friend WithEvents txtFrom2 As TextBox
-    Friend WithEvents txtTo2 As TextBox
+    Friend WithEvents txt科目CDTo名 As TextBox
+    Friend WithEvents txt取引先CDFrom名 As TextBox
+    Friend WithEvents txt取引先CDTo名 As TextBox
     Friend WithEvents txt取引先CDTo As TextBox
     Friend WithEvents txt取引先CDFrom As TextBox
     Friend WithEvents txt科目CDTo As TextBox
@@ -1125,5 +1180,10 @@ Partial Class F_Si_SiwGet00
     Friend WithEvents txtMsg As TextBox
     Friend WithEvents txt決算期 As TextBox
     Friend WithEvents txt処理No As TextBox
-    Friend WithEvents GcMultiRow1 As GcMultiRow
+    Friend WithEvents LV As ListView
+    Friend WithEvents LVNo As ColumnHeader
+    Friend WithEvents LV処理日時 As ColumnHeader
+    Friend WithEvents LV対象年月 As ColumnHeader
+    Friend WithEvents LV処理 As ColumnHeader
+    Friend WithEvents txtLog As TextBox
 End Class
