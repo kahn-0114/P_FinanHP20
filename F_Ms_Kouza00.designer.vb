@@ -51,7 +51,6 @@ Partial Class s
         Me.txt対応科目名 = New System.Windows.Forms.TextBox()
         Me.txt対応枝番名 = New System.Windows.Forms.TextBox()
         Me.txt本社管轄CD = New System.Windows.Forms.TextBox()
-        Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -152,22 +151,23 @@ Partial Class s
         Me.La分割支払3 = New System.Windows.Forms.Label()
         Me.La端数支払 = New System.Windows.Forms.Label()
         Me.La取扱区分 = New System.Windows.Forms.Label()
+        Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.GroupBox00 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txt支店名 = New System.Windows.Forms.TextBox()
         Me.txt預金種別名 = New System.Windows.Forms.TextBox()
-        Me.txt取引先CDTo = New System.Windows.Forms.TextBox()
+        Me.txt会社No = New System.Windows.Forms.TextBox()
         Me.txt銀行名 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txt支店CD = New System.Windows.Forms.TextBox()
-        Me.txt取引先CDFrom = New System.Windows.Forms.TextBox()
-        Me.txt預金種別 = New System.Windows.Forms.TextBox()
+        Me.txt口座No = New System.Windows.Forms.TextBox()
+        Me.txt預金種別CD = New System.Windows.Forms.TextBox()
         Me.txt銀行CD = New System.Windows.Forms.TextBox()
         Me.La銀行CD = New System.Windows.Forms.Label()
         Me.La支店CD = New System.Windows.Forms.Label()
         Me.La預金種別 = New System.Windows.Forms.Label()
         Me.btnOK00 = New System.Windows.Forms.Button()
-        Me.txt取引先CD01 = New System.Windows.Forms.TextBox()
+        Me.txt口座番号 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDel00 = New System.Windows.Forms.Button()
         Me.btnUp00 = New System.Windows.Forms.Button()
@@ -185,10 +185,11 @@ Partial Class s
         Me.LV = New System.Windows.Forms.ListView()
         Me.LV銀行 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.LV銀行名 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.LV支店CD = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.LV預金種別 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.LV口座No = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.LV名称 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.LV支店CD = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.txtModified = New System.Windows.Forms.TextBox()
         Button12 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -524,18 +525,6 @@ Partial Class s
         Me.txt本社管轄CD.TabIndex = 5
         Me.txt本社管轄CD.Text = "9"
         Me.txt本社管轄CD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtMsg
-        '
-        Me.txtMsg.BackColor = System.Drawing.SystemColors.Control
-        Me.txtMsg.ForeColor = System.Drawing.Color.Red
-        Me.txtMsg.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txtMsg.Location = New System.Drawing.Point(449, 694)
-        Me.txtMsg.Name = "txtMsg"
-        Me.txtMsg.Size = New System.Drawing.Size(246, 19)
-        Me.txtMsg.TabIndex = 65
-        Me.txtMsg.TabStop = False
-        Me.txtMsg.Text = "エラーメッセージ"
         '
         'Label8
         '
@@ -1957,23 +1946,35 @@ Partial Class s
         Me.La取扱区分.Text = "残高"
         Me.La取扱区分.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'txtMsg
+        '
+        Me.txtMsg.BackColor = System.Drawing.SystemColors.Control
+        Me.txtMsg.ForeColor = System.Drawing.Color.Red
+        Me.txtMsg.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txtMsg.Location = New System.Drawing.Point(449, 694)
+        Me.txtMsg.Name = "txtMsg"
+        Me.txtMsg.Size = New System.Drawing.Size(246, 19)
+        Me.txtMsg.TabIndex = 65
+        Me.txtMsg.TabStop = False
+        Me.txtMsg.Text = "エラーメッセージ"
+        '
         'GroupBox00
         '
         Me.GroupBox00.Controls.Add(Me.Label3)
         Me.GroupBox00.Controls.Add(Me.txt支店名)
         Me.GroupBox00.Controls.Add(Me.txt預金種別名)
-        Me.GroupBox00.Controls.Add(Me.txt取引先CDTo)
+        Me.GroupBox00.Controls.Add(Me.txt会社No)
         Me.GroupBox00.Controls.Add(Me.txt銀行名)
         Me.GroupBox00.Controls.Add(Me.Label2)
         Me.GroupBox00.Controls.Add(Me.txt支店CD)
-        Me.GroupBox00.Controls.Add(Me.txt取引先CDFrom)
-        Me.GroupBox00.Controls.Add(Me.txt預金種別)
+        Me.GroupBox00.Controls.Add(Me.txt口座No)
+        Me.GroupBox00.Controls.Add(Me.txt預金種別CD)
         Me.GroupBox00.Controls.Add(Me.txt銀行CD)
         Me.GroupBox00.Controls.Add(Me.La銀行CD)
         Me.GroupBox00.Controls.Add(Me.La支店CD)
         Me.GroupBox00.Controls.Add(Me.La預金種別)
         Me.GroupBox00.Controls.Add(Me.btnOK00)
-        Me.GroupBox00.Controls.Add(Me.txt取引先CD01)
+        Me.GroupBox00.Controls.Add(Me.txt口座番号)
         Me.GroupBox00.Controls.Add(Me.Label1)
         Me.GroupBox00.ForeColor = System.Drawing.SystemColors.WindowText
         Me.GroupBox00.Location = New System.Drawing.Point(445, 74)
@@ -2021,19 +2022,19 @@ Partial Class s
         Me.txt預金種別名.TabStop = False
         Me.txt預金種別名.Text = "zzzzzzzzz1zzzzzzzzz2"
         '
-        'txt取引先CDTo
+        'txt会社No
         '
-        Me.txt取引先CDTo.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt取引先CDTo.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txt取引先CDTo.Location = New System.Drawing.Point(442, 35)
-        Me.txt取引先CDTo.MaxLength = 3
-        Me.txt取引先CDTo.Name = "txt取引先CDTo"
-        Me.txt取引先CDTo.ReadOnly = True
-        Me.txt取引先CDTo.Size = New System.Drawing.Size(33, 27)
-        Me.txt取引先CDTo.TabIndex = 3
-        Me.txt取引先CDTo.TabStop = False
-        Me.txt取引先CDTo.Text = "999"
-        Me.txt取引先CDTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt会社No.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt会社No.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txt会社No.Location = New System.Drawing.Point(442, 35)
+        Me.txt会社No.MaxLength = 3
+        Me.txt会社No.Name = "txt会社No"
+        Me.txt会社No.ReadOnly = True
+        Me.txt会社No.Size = New System.Drawing.Size(33, 27)
+        Me.txt会社No.TabIndex = 3
+        Me.txt会社No.TabStop = False
+        Me.txt会社No.Text = "999"
+        Me.txt会社No.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt銀行名
         '
@@ -2074,31 +2075,31 @@ Partial Class s
         Me.txt支店CD.Text = "999"
         Me.txt支店CD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txt取引先CDFrom
+        'txt口座No
         '
-        Me.txt取引先CDFrom.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt取引先CDFrom.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txt取引先CDFrom.Location = New System.Drawing.Point(442, 8)
-        Me.txt取引先CDFrom.MaxLength = 3
-        Me.txt取引先CDFrom.Name = "txt取引先CDFrom"
-        Me.txt取引先CDFrom.ReadOnly = True
-        Me.txt取引先CDFrom.Size = New System.Drawing.Size(33, 27)
-        Me.txt取引先CDFrom.TabIndex = 2
-        Me.txt取引先CDFrom.TabStop = False
-        Me.txt取引先CDFrom.Text = "999"
-        Me.txt取引先CDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt口座No.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt口座No.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txt口座No.Location = New System.Drawing.Point(442, 8)
+        Me.txt口座No.MaxLength = 3
+        Me.txt口座No.Name = "txt口座No"
+        Me.txt口座No.ReadOnly = True
+        Me.txt口座No.Size = New System.Drawing.Size(33, 27)
+        Me.txt口座No.TabIndex = 2
+        Me.txt口座No.TabStop = False
+        Me.txt口座No.Text = "999"
+        Me.txt口座No.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txt預金種別
+        'txt預金種別CD
         '
-        Me.txt預金種別.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt預金種別.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt預金種別.Location = New System.Drawing.Point(95, 62)
-        Me.txt預金種別.MaxLength = 1
-        Me.txt預金種別.Name = "txt預金種別"
-        Me.txt預金種別.Size = New System.Drawing.Size(18, 27)
-        Me.txt預金種別.TabIndex = 2
-        Me.txt預金種別.Text = "9"
-        Me.txt預金種別.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt預金種別CD.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt預金種別CD.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt預金種別CD.Location = New System.Drawing.Point(95, 62)
+        Me.txt預金種別CD.MaxLength = 1
+        Me.txt預金種別CD.Name = "txt預金種別CD"
+        Me.txt預金種別CD.Size = New System.Drawing.Size(18, 27)
+        Me.txt預金種別CD.TabIndex = 2
+        Me.txt預金種別CD.Text = "9"
+        Me.txt預金種別CD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt銀行CD
         '
@@ -2124,7 +2125,7 @@ Partial Class s
         Me.La銀行CD.Name = "La銀行CD"
         Me.La銀行CD.Size = New System.Drawing.Size(96, 28)
         Me.La銀行CD.TabIndex = 52
-        Me.La銀行CD.Text = "振込CD"
+        Me.La銀行CD.Text = "銀行CD"
         Me.La銀行CD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'La支店CD
@@ -2166,17 +2167,17 @@ Partial Class s
         Me.btnOK00.Text = "Enter"
         Me.btnOK00.UseVisualStyleBackColor = True
         '
-        'txt取引先CD01
+        'txt口座番号
         '
-        Me.txt取引先CD01.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt取引先CD01.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt取引先CD01.Location = New System.Drawing.Point(95, 89)
-        Me.txt取引先CD01.MaxLength = 10
-        Me.txt取引先CD01.Name = "txt取引先CD01"
-        Me.txt取引先CD01.Size = New System.Drawing.Size(79, 27)
-        Me.txt取引先CD01.TabIndex = 3
-        Me.txt取引先CD01.Text = "9999999999"
-        Me.txt取引先CD01.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt口座番号.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt口座番号.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt口座番号.Location = New System.Drawing.Point(95, 89)
+        Me.txt口座番号.MaxLength = 10
+        Me.txt口座番号.Name = "txt口座番号"
+        Me.txt口座番号.Size = New System.Drawing.Size(79, 27)
+        Me.txt口座番号.TabIndex = 3
+        Me.txt口座番号.Text = "9999999999"
+        Me.txt口座番号.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
         '
@@ -2363,6 +2364,12 @@ Partial Class s
         Me.LV銀行名.Text = "銀行名"
         Me.LV銀行名.Width = 96
         '
+        'LV支店CD
+        '
+        Me.LV支店CD.DisplayIndex = 5
+        Me.LV支店CD.Text = "銀行支店"
+        Me.LV支店CD.Width = 0
+        '
         'LV預金種別
         '
         Me.LV預金種別.DisplayIndex = 2
@@ -2381,17 +2388,28 @@ Partial Class s
         Me.LV名称.Text = "名称"
         Me.LV名称.Width = 188
         '
-        'LV支店CD
+        'txtModified
         '
-        Me.LV支店CD.DisplayIndex = 5
-        Me.LV支店CD.Text = "銀行支店"
-        Me.LV支店CD.Width = 0
+        Me.txtModified.BackColor = System.Drawing.SystemColors.Control
+        Me.txtModified.Enabled = False
+        Me.txtModified.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtModified.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txtModified.Location = New System.Drawing.Point(701, 690)
+        Me.txtModified.Multiline = True
+        Me.txtModified.Name = "txtModified"
+        Me.txtModified.ReadOnly = True
+        Me.txtModified.Size = New System.Drawing.Size(15, 27)
+        Me.txtModified.TabIndex = 331
+        Me.txtModified.TabStop = False
+        Me.txtModified.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtModified.Visible = False
         '
         's
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1011, 761)
+        Me.Controls.Add(Me.txtModified)
         Me.Controls.Add(Me.LV)
         Me.Controls.Add(Me.btnDel00)
         Me.Controls.Add(Me.GroupBox00)
@@ -2467,14 +2485,14 @@ Partial Class s
     Friend WithEvents btnDel00 As Button
     Friend WithEvents btnOK00 As Button
     Friend WithEvents btnUp00 As Button
-    Friend WithEvents txt取引先CD01 As TextBox
+    Friend WithEvents txt口座番号 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents txt取引先CDTo As TextBox
+    Friend WithEvents txt会社No As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txt取引先CDFrom As TextBox
+    Friend WithEvents txt口座No As TextBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
@@ -2511,7 +2529,7 @@ Partial Class s
     Friend WithEvents txt預金種別名 As TextBox
     Friend WithEvents txt銀行名 As TextBox
     Friend WithEvents txt支店CD As TextBox
-    Friend WithEvents txt預金種別 As TextBox
+    Friend WithEvents txt預金種別CD As TextBox
     Friend WithEvents txt銀行CD As TextBox
     Friend WithEvents La銀行CD As Label
     Friend WithEvents La支店CD As Label
@@ -2609,4 +2627,5 @@ Partial Class s
     Friend WithEvents LV口座No As ColumnHeader
     Friend WithEvents LV名称 As ColumnHeader
     Friend WithEvents LV支店CD As ColumnHeader
+    Friend WithEvents txtModified As TextBox
 End Class
