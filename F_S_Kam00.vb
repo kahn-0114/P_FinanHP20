@@ -3,7 +3,6 @@ Imports System.Data.SqlClient
 Imports GrapeCity.Win.MultiRow
 Public Class F_S_Kam00
     Dim pFocus(10) As Object
-    Dim SQLCmdA As New SqlCommand()
     Dim _pubKaCD As String = String.Empty
     Dim _pubFrom As String = String.Empty
     Dim _pubTo As String = String.Empty
@@ -59,9 +58,7 @@ Public Class F_S_Kam00
     '* ﾘｽﾄにItemを追加する
     '***************************************
     Private Sub Add_Item00()
-        Dim da0 As New SqlDataAdapter, dt0 As New DataSet
         Dim SQL As String
-
         With GcMultiRow1
             .AllowUserToAddRows = False
             .Rows.Clear()
@@ -72,38 +69,23 @@ Public Class F_S_Kam00
             .ColumnHeaders(0).Cells("Fi科目名").Value = ""
 
             SQL = "SELECT * " _
-                & "FROM M_財務科目00 " _
+                & "FROM M_科目 " _
                 & "WHERE (会社No =" & pubComPany & ") " _
-                & "AND (年度 =0) " _
-                & "AND (削除区分 =0)"
-            If Len(txt科目CDF.Text) > 0 Then
-                SQL = SQL & "And (科目CD>='" & txt科目CDF.Text & "')"
-            End If
-            If Len(txt科目CDT.Text) > 0 Then
-                SQL = SQL & "And (科目CD<='" & txt科目CDT.Text & "')"
-            End If
-            SQL = SQL & "ORDER BY 科目CD"
-            SQLCmdA.CommandText = SQL
-            da0.SelectCommand = SQLCmdA
-            da0.Fill(dt0, "t0")
-            For i0 As Integer = 0 To dt0.Tables("t0").Rows.Count - 1
+                & "ORDER BY 科目CD"
+            Dim r0 As dao.Recordset = ComDB.OpenRecordset(SQL, dao.RecordsetTypeEnum.dbOpenForwardOnly, dao.RecordsetOptionEnum.dbReadOnly)
+            Dim i0 As Integer = 0
+            Do Until r0.EOF
                 .Rows.Add(1)
                 .Rows(i0).Cells("SEQ").Value = i0 + 1
-                .Rows(i0).Cells("科目CD").Value = dt0.Tables("t0").Rows(i0)("科目CD")
-                .Rows(i0).Cells("科目Kana名").Value = dt0.Tables("t0").Rows(i0)("科目Kana名")
-                .Rows(i0).Cells("科目名").Value = dt0.Tables("t0").Rows(i0)("科目略称名")
-                .Rows(i0).Cells("内部CD").Value = dt0.Tables("t0").Rows(i0)("科目内部CD")
-            Next
-            .ResumeLayout()
+                .Rows(i0).Cells("科目CD").Value = r0.Fields("科目CD").Value
+                .Rows(i0).Cells("科目Kana名").Value = r0.Fields("カナ名").Value
+                .Rows(i0).Cells("科目名").Value = r0.Fields("科目名").Value
+                .Rows(i0).Cells("内部CD").Value = ""
+                i0 += 1
+                r0.MoveNext()
+            Loop
+            r0.Close()
         End With
-        dt0.Dispose() : dt0 = Nothing : da0.Dispose() : da0 = Nothing
-    End Sub
-
-    Private Sub F_S_Kam00_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        Try
-            SQLCmdA.Dispose() : SQLCmdA = Nothing
-        Catch ex As Exception
-        End Try
     End Sub
 
     Private Sub F_S_Kam00_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -114,8 +96,6 @@ Public Class F_S_Kam00
     End Sub
 
     Private Sub F_S_Kam00_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        SQLCmdA = Cn00.CreateCommand()
-
         Inp_Clr00()
         Add_Item00()
         If GcMultiRow1.Rows.Count > 0 Then
