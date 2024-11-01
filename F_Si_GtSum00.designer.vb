@@ -23,7 +23,7 @@ Partial Class F_Si_GtSum00
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim Cmd01 As System.Windows.Forms.Button
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"00", "9999", "99", "9999/99/99", "99", "9999/99/99 99:99:99", "9999/99/99"}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"00", "9999", "99", "9999/99/99", "99", "9999/99/99 99:99:99", "9999/99/99 99:99:99"}, -1)
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd03 = New System.Windows.Forms.Button()
         Me.Cmd10 = New System.Windows.Forms.Button()
@@ -473,7 +473,7 @@ Partial Class F_Si_GtSum00
         Me.LV.GridLines = True
         Me.LV.HideSelection = False
         Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
-        Me.LV.Location = New System.Drawing.Point(6, 73)
+        Me.LV.Location = New System.Drawing.Point(3, 73)
         Me.LV.MultiSelect = False
         Me.LV.Name = "LV"
         Me.LV.Size = New System.Drawing.Size(798, 152)
@@ -509,12 +509,12 @@ Partial Class F_Si_GtSum00
         'LV集計日
         '
         Me.LV集計日.Text = "集計日"
-        Me.LV集計日.Width = 200
+        Me.LV集計日.Width = 188
         '
         'LV完了日
         '
         Me.LV完了日.Text = "完了日"
-        Me.LV完了日.Width = 171
+        Me.LV完了日.Width = 182
         '
         'F_Si_GtSum00
         '
