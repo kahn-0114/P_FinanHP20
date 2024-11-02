@@ -80,7 +80,7 @@ Partial Class F_Ms_TorHik
         Me.La締切日 = New System.Windows.Forms.Label()
         Me.La支払日2 = New System.Windows.Forms.Label()
         Me.銀行CD締切日1 = New System.Windows.Forms.TextBox()
-        Me.txt銀行CD締切日CD2 = New System.Windows.Forms.TextBox()
+        Me.txt銀行CD締切日2 = New System.Windows.Forms.TextBox()
         Me.txt手形銀行締切日 = New System.Windows.Forms.TextBox()
         Me.txt小切手銀行締切日 = New System.Windows.Forms.TextBox()
         Me.txt振込銀行締切日 = New System.Windows.Forms.TextBox()
@@ -126,7 +126,7 @@ Partial Class F_Ms_TorHik
         Me.txtﾊﾟｰｾﾝﾄ3 = New System.Windows.Forms.TextBox()
         Me.txtﾊﾟｰｾﾝﾄ1 = New System.Windows.Forms.TextBox()
         Me.分割支払い3パーセント = New System.Windows.Forms.TextBox()
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ = New System.Windows.Forms.TextBox()
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1 = New System.Windows.Forms.TextBox()
         Me.txt分割支払い2パーセント = New System.Windows.Forms.TextBox()
         Me.cmb6 = New System.Windows.Forms.ComboBox()
         Me.cmb7 = New System.Windows.Forms.ComboBox()
@@ -143,7 +143,7 @@ Partial Class F_Ms_TorHik
         Me.txt手形期日日 = New System.Windows.Forms.TextBox()
         Me.txt送付区分 = New System.Windows.Forms.TextBox()
         Me.txt節印区分 = New System.Windows.Forms.TextBox()
-        Me.txt分割支払 = New System.Windows.Forms.TextBox()
+        Me.txt分割支払1 = New System.Windows.Forms.TextBox()
         Me.La部門CD = New System.Windows.Forms.Label()
         Me.La科目DC = New System.Windows.Forms.Label()
         Me.La財務管理CD = New System.Windows.Forms.Label()
@@ -436,7 +436,7 @@ Partial Class F_Ms_TorHik
         Me.GroupBox30.Controls.Add(Me.La締切日)
         Me.GroupBox30.Controls.Add(Me.La支払日2)
         Me.GroupBox30.Controls.Add(Me.銀行CD締切日1)
-        Me.GroupBox30.Controls.Add(Me.txt銀行CD締切日CD2)
+        Me.GroupBox30.Controls.Add(Me.txt銀行CD締切日2)
         Me.GroupBox30.Controls.Add(Me.txt手形銀行締切日)
         Me.GroupBox30.Controls.Add(Me.txt小切手銀行締切日)
         Me.GroupBox30.Controls.Add(Me.txt振込銀行締切日)
@@ -918,17 +918,17 @@ Partial Class F_Ms_TorHik
         Me.銀行CD締切日1.TabIndex = 48
         Me.銀行CD締切日1.Text = "締切日"
         '
-        'txt銀行CD締切日CD2
+        'txt銀行CD締切日2
         '
-        Me.txt銀行CD締切日CD2.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt銀行CD締切日CD2.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt銀行CD締切日CD2.Location = New System.Drawing.Point(336, 306)
-        Me.txt銀行CD締切日CD2.MaxLength = 14
-        Me.txt銀行CD締切日CD2.Name = "txt銀行CD締切日CD2"
-        Me.txt銀行CD締切日CD2.ReadOnly = True
-        Me.txt銀行CD締切日CD2.Size = New System.Drawing.Size(160, 27)
-        Me.txt銀行CD締切日CD2.TabIndex = 47
-        Me.txt銀行CD締切日CD2.Text = "締切日"
+        Me.txt銀行CD締切日2.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt銀行CD締切日2.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt銀行CD締切日2.Location = New System.Drawing.Point(336, 306)
+        Me.txt銀行CD締切日2.MaxLength = 14
+        Me.txt銀行CD締切日2.Name = "txt銀行CD締切日2"
+        Me.txt銀行CD締切日2.ReadOnly = True
+        Me.txt銀行CD締切日2.Size = New System.Drawing.Size(160, 27)
+        Me.txt銀行CD締切日2.TabIndex = 47
+        Me.txt銀行CD締切日2.Text = "締切日"
         '
         'txt手形銀行締切日
         '
@@ -1335,7 +1335,7 @@ Partial Class F_Ms_TorHik
         Me.GroupBox40.Controls.Add(Me.txtﾊﾟｰｾﾝﾄ3)
         Me.GroupBox40.Controls.Add(Me.txtﾊﾟｰｾﾝﾄ1)
         Me.GroupBox40.Controls.Add(Me.分割支払い3パーセント)
-        Me.GroupBox40.Controls.Add(Me.txt分割支払ﾊﾟｰｾﾝﾄ)
+        Me.GroupBox40.Controls.Add(Me.txt分割支払ﾊﾟｰｾﾝﾄ1)
         Me.GroupBox40.Controls.Add(Me.txt分割支払い2パーセント)
         Me.GroupBox40.Controls.Add(Me.cmb6)
         Me.GroupBox40.Controls.Add(Me.cmb7)
@@ -1352,7 +1352,7 @@ Partial Class F_Ms_TorHik
         Me.GroupBox40.Controls.Add(Me.txt手形期日日)
         Me.GroupBox40.Controls.Add(Me.txt送付区分)
         Me.GroupBox40.Controls.Add(Me.txt節印区分)
-        Me.GroupBox40.Controls.Add(Me.txt分割支払)
+        Me.GroupBox40.Controls.Add(Me.txt分割支払1)
         Me.GroupBox40.Controls.Add(Me.La部門CD)
         Me.GroupBox40.Controls.Add(Me.La科目DC)
         Me.GroupBox40.Controls.Add(Me.La財務管理CD)
@@ -1511,16 +1511,16 @@ Partial Class F_Ms_TorHik
         Me.分割支払い3パーセント.TabIndex = 9
         Me.分割支払い3パーセント.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txt分割支払ﾊﾟｰｾﾝﾄ
+        'txt分割支払ﾊﾟｰｾﾝﾄ1
         '
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.Location = New System.Drawing.Point(259, 9)
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.MaxLength = 3
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.Name = "txt分割支払ﾊﾟｰｾﾝﾄ"
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.Size = New System.Drawing.Size(39, 27)
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.TabIndex = 3
-        Me.txt分割支払ﾊﾟｰｾﾝﾄ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.Location = New System.Drawing.Point(259, 9)
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.MaxLength = 3
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.Name = "txt分割支払ﾊﾟｰｾﾝﾄ1"
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.Size = New System.Drawing.Size(39, 27)
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.TabIndex = 3
+        Me.txt分割支払ﾊﾟｰｾﾝﾄ1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txt分割支払い2パーセント
         '
@@ -1679,16 +1679,16 @@ Partial Class F_Ms_TorHik
         Me.txt節印区分.TabIndex = 18
         Me.txt節印区分.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txt分割支払
+        'txt分割支払1
         '
-        Me.txt分割支払.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt分割支払.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txt分割支払.Location = New System.Drawing.Point(101, 9)
-        Me.txt分割支払.MaxLength = 3
-        Me.txt分割支払.Name = "txt分割支払"
-        Me.txt分割支払.Size = New System.Drawing.Size(39, 27)
-        Me.txt分割支払.TabIndex = 1
-        Me.txt分割支払.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt分割支払1.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt分割支払1.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txt分割支払1.Location = New System.Drawing.Point(101, 9)
+        Me.txt分割支払1.MaxLength = 3
+        Me.txt分割支払1.Name = "txt分割支払1"
+        Me.txt分割支払1.Size = New System.Drawing.Size(39, 27)
+        Me.txt分割支払1.TabIndex = 1
+        Me.txt分割支払1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'La部門CD
         '
@@ -2052,7 +2052,7 @@ Partial Class F_Ms_TorHik
         Me.txt取引先CDTo.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.txt取引先CDTo.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.txt取引先CDTo.Location = New System.Drawing.Point(294, 35)
-        Me.txt取引先CDTo.MaxLength = 30
+        Me.txt取引先CDTo.MaxLength = 9
         Me.txt取引先CDTo.Name = "txt取引先CDTo"
         Me.txt取引先CDTo.Size = New System.Drawing.Size(67, 27)
         Me.txt取引先CDTo.TabIndex = 3
@@ -2296,7 +2296,7 @@ Partial Class F_Ms_TorHik
     Friend WithEvents La締切日 As Label
     Friend WithEvents La支払日2 As Label
     Friend WithEvents 銀行CD締切日1 As TextBox
-    Friend WithEvents txt銀行CD締切日CD2 As TextBox
+    Friend WithEvents txt銀行CD締切日2 As TextBox
     Friend WithEvents txt手形銀行締切日 As TextBox
     Friend WithEvents txt小切手銀行締切日 As TextBox
     Friend WithEvents txt振込銀行締切日 As TextBox
@@ -2395,14 +2395,14 @@ Partial Class F_Ms_TorHik
     Friend WithEvents La手形管理CD As Label
     Friend WithEvents La財務管理CD As Label
     Friend WithEvents La仕入先変換 As Label
-    Friend WithEvents txt分割支払 As TextBox
+    Friend WithEvents txt分割支払1 As TextBox
     Friend WithEvents La部門CD As Label
     Friend WithEvents La科目DC As Label
     Friend WithEvents txtﾊﾟｰｾﾝﾄ2 As TextBox
     Friend WithEvents txtﾊﾟｰｾﾝﾄ3 As TextBox
     Friend WithEvents txtﾊﾟｰｾﾝﾄ1 As TextBox
     Friend WithEvents 分割支払い3パーセント As TextBox
-    Friend WithEvents txt分割支払ﾊﾟｰｾﾝﾄ As TextBox
+    Friend WithEvents txt分割支払ﾊﾟｰｾﾝﾄ1 As TextBox
     Friend WithEvents txt分割支払い2パーセント As TextBox
     Friend WithEvents cmb6 As ComboBox
     Friend WithEvents cmb7 As ComboBox
