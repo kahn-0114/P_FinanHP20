@@ -840,4 +840,12 @@ Public Class F_Ms_TorHik
     Private Sub txt手形期日月_TextChanged(sender As Object, e As EventArgs) Handles txt手形期日月.TextChanged
 
     End Sub
+
+    Private Sub txt支払区分_Enter(sender As Object, e As EventArgs) Handles GroupBox30.Enter
+
+    End Sub
+
+    Private Sub 基本情報_Click(sender As Object, e As EventArgs) Handles 基本情報.Click
+
+    End Sub
 End Class
