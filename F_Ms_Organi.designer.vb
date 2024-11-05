@@ -69,7 +69,7 @@ Partial Class F_Ms_Organi
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.La部門CD = New System.Windows.Forms.Label()
         Me.txt部門CD = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnOK10 = New System.Windows.Forms.Button()
         Me.txt枝番名 = New System.Windows.Forms.TextBox()
         Cmd01 = New System.Windows.Forms.Button()
         Me.GroupBox00.SuspendLayout()
@@ -441,7 +441,7 @@ Partial Class F_Ms_Organi
         Me.La現金枝番.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.La現金枝番.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.La現金枝番.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.La現金枝番.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.La現金枝番.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.La現金枝番.ForeColor = System.Drawing.Color.White
         Me.La現金枝番.Location = New System.Drawing.Point(4, 154)
         Me.La現金枝番.Name = "La現金枝番"
@@ -607,7 +607,7 @@ Partial Class F_Ms_Organi
         '
         'GroupBox10
         '
-        Me.GroupBox10.Controls.Add(Me.Button1)
+        Me.GroupBox10.Controls.Add(Me.btnOK10)
         Me.GroupBox10.Controls.Add(Me.txt部門CD)
         Me.GroupBox10.Controls.Add(Me.La部門CD)
         Me.GroupBox10.Location = New System.Drawing.Point(447, 290)
@@ -642,16 +642,16 @@ Partial Class F_Ms_Organi
         Me.txt部門CD.Text = "99999"
         Me.txt部門CD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Button1
+        'btnOK10
         '
-        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.Button1.Location = New System.Drawing.Point(166, 10)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(88, 30)
-        Me.Button1.TabIndex = 10009
-        Me.Button1.Text = "Enter"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnOK10.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnOK10.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.btnOK10.Location = New System.Drawing.Point(166, 10)
+        Me.btnOK10.Name = "btnOK10"
+        Me.btnOK10.Size = New System.Drawing.Size(88, 30)
+        Me.btnOK10.TabIndex = 10009
+        Me.btnOK10.Text = "Enter"
+        Me.btnOK10.UseVisualStyleBackColor = True
         '
         'txt枝番名
         '
@@ -749,7 +749,7 @@ Partial Class F_Ms_Organi
     Friend WithEvents La階層記号 As Label
     Friend WithEvents ListView2 As ListView
     Friend WithEvents GroupBox10 As GroupBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnOK10 As Button
     Friend WithEvents txt部門CD As TextBox
     Friend WithEvents La部門CD As Label
     Friend WithEvents txt枝番名 As TextBox
