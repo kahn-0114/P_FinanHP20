@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Public Class F_Ms_TorHik
+Public Class F_Ms_TorCnv
     Dim pFocus(10) As Object
     Dim SQLCmd As New SqlCommand()
     Dim pDateFormat As String = "yyyy/MM/dd"
@@ -821,31 +821,35 @@ Public Class F_Ms_TorHik
 
     End Sub
 
-    Private Sub txt口座名義_TextChanged(sender As Object, e As EventArgs) Handles txt口座名義.TextChanged
+    Private Sub txt口座名義_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles 支払区分.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox1_TextChanged_1(sender As Object, e As EventArgs) Handles txt資本金.TextChanged
+    Private Sub TextBox1_TextChanged_1(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub 支払条件_Click(sender As Object, e As EventArgs) Handles 支払条件.Click
+    Private Sub 支払条件_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub txt手形期日月_TextChanged(sender As Object, e As EventArgs) Handles txt手形期日月.TextChanged
+    Private Sub txt手形期日月_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub txt支払区分_Enter(sender As Object, e As EventArgs) Handles GroupBox30.Enter
+    Private Sub txt支払区分_Enter(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub 基本情報_Click(sender As Object, e As EventArgs) Handles 基本情報.Click
+    Private Sub 基本情報_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub GroupBox10_Enter(sender As Object, e As EventArgs) Handles GroupBox10.Enter
 
     End Sub
 End Class
