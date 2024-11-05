@@ -252,7 +252,7 @@ Partial Class F_Ms_Tanto
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuItem00, Me.MenuItem01, Me.MenuItem02})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1021, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1021, 28)
         Me.MenuStrip1.TabIndex = 240
         Me.MenuStrip1.Text = "ｸﾞﾙｰﾌﾟ体系"
         '
@@ -535,7 +535,7 @@ Partial Class F_Ms_Tanto
         Me.KeyPreview = True
         Me.Name = "F_Ms_Tanto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "組織構成メンテナンス"
+        Me.Text = "担当者マスタメンテナンス"
         Me.GroupBox00.ResumeLayout(False)
         Me.GroupBox00.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
