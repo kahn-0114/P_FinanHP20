@@ -115,6 +115,9 @@ Public Class F_Ms_Test
     '******************************************************
     Private Sub Add_Item00()
         Dim SQL As String
+
+
+
         SQL = "SELECT * From MM_区分M00 WHERE 会社No = @会社No AND 区分 = @区分 ORDER BY CD"
 
         ' パラメータのリストを作成
@@ -135,8 +138,8 @@ Public Class F_Ms_Test
                 LV.Items(i0).SubItems.Add(pubCom.ChgNull(Row("名称"), 1))
                 i0 += 1
             Next
-
         End If
+
         result.Dispose()
 
     End Sub
@@ -155,8 +158,9 @@ Public Class F_Ms_Test
         For Each CtrlItem As Control In Me.GroupBox20.Controls
             If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
         Next
-        lv.Items.Clear()
-        txtMsg.Text = "" : txtMsg.Visible = False
+        LV.Items.Clear()
+        txtMsg.Text = ""
+        txtMsg.Visible = False
 
         GroupBox10.Enabled = False
         GroupBox20.Enabled = False
@@ -165,14 +169,14 @@ Public Class F_Ms_Test
     '* フィールドクリア関数
     '******************************************************
     Private Sub Inp_Clr10()
-        For Each CtrlItem As Control In Me.GroupBox10.Controls
-            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
-        Next
-        For Each CtrlItem As Control In Me.GroupBox20.Controls
-            If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
-        Next
-        lv.Items.Clear()
-        txtMsg.Text = "" : txtMsg.Visible = False
+        'For Each CtrlItem As Control In Me.GroupBox10.Controls
+        '    If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        'Next
+        'For Each CtrlItem As Control In Me.GroupBox20.Controls
+        '    If TypeOf CtrlItem Is TextBox Then CtrlItem.Text = ""
+        'Next
+        'lv.Items.Clear()
+        'txtMsg.Text = "" : txtMsg.Visible = False
     End Sub
 
 
@@ -181,20 +185,20 @@ Public Class F_Ms_Test
     End Sub
 
     Private Sub Cmd11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmd11.Click
-        Me.Close()
+        'Me.Close()
     End Sub
 
 
 
     Private Sub F_Ms_Test_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        Select Case e.KeyCode
-            Case 116
-                Cmd05.PerformClick() : e.Handled = True
-            Case 120
-                Cmd09.PerformClick() : e.Handled = True
-            Case 122
-                Cmd11.PerformClick() : e.Handled = True
-        End Select
+        'Select Case e.KeyCode
+        '    Case 116
+        '        Cmd05.PerformClick() : e.Handled = True
+        '    Case 120
+        '        Cmd09.PerformClick() : e.Handled = True
+        '    Case 122
+        '        Cmd11.PerformClick() : e.Handled = True
+        'End Select
     End Sub
 
     Private Sub F_Ms_Test_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -207,16 +211,16 @@ Public Class F_Ms_Test
 
     Private Sub Cmd09_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmd09.Click
         Dim strName As String = pFocus(0).Name
-        Select Case strName
-            Case "txt区分CD"
-                La区分CD_Click(sender, e)
-        End Select
-        Me.ActiveControl = pFocus(0)
+        'Select Case strName
+        '    Case "txt区分CD"
+        '        La区分CD_Click(sender, e)
+        'End Select
+        'Me.ActiveControl = pFocus(0)
     End Sub
 
     Private Sub btnOK00_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOK00.Click
-        Dim pRet As Boolean = Inp_Chk00(txt区分CD)
-        If pRet = False Then Exit Sub
+        'Dim pRet As Boolean = Inp_Chk00(txt区分CD)
+        'If pRet = False Then Exit Sub
 
 
         Add_Item00()
@@ -226,79 +230,79 @@ Public Class F_Ms_Test
         GroupBox00.Enabled = False
     End Sub
     Private Sub btnOK10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim pRet As Boolean = Inp_Chk00(txt区分CD)
-        If pRet = False Then Exit Sub
-        pRet = Inp_Chk00(txt明細CD)
-        If pRet = False Then Exit Sub
+        'Dim pRet As Boolean = Inp_Chk00(txt区分CD)
+        'If pRet = False Then Exit Sub
+        'pRet = Inp_Chk00(txt明細CD)
+        'If pRet = False Then Exit Sub
 
-        Data_Get00()
-        txt明細名.Focus()
+        'Data_Get00()
+        'txt明細名.Focus()
     End Sub
 
     '******************************************************
     '* 入力項目ﾁｪｯｸ
     '******************************************************
     Private Function Inp_Chk00(ByVal ctxtInp As Control)
-        Inp_Chk00 = True
-        txtMsg.Visible = False : txtMsg.Text = ""
-        Select Case ctxtInp.Name
-            Case "txt区分CD"
-                ctxtInp.BackColor = Color.White
-                If txt区分CD.Text = "" Then
-                    txtMsg.Text = "区分CD未入力"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
+        '    Inp_Chk00 = True
+        '    txtMsg.Visible = False : txtMsg.Text = ""
+        '    Select Case ctxtInp.Name
+        '        Case "txt区分CD"
+        '            ctxtInp.BackColor = Color.White
+        '            If txt区分CD.Text = "" Then
+        '                txtMsg.Text = "区分CD未入力"
+        '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+        '            End If
 
-                Dim SQL As String
-                SQL = "SELECT * " _
-                    & "FROM MM_区分H00 " _
-                    & "WHERE 会社No = @会社No " _
-                    & "AND 区分 = @区分 "
-                Dim parameters As New List(Of SqlParameter) From {
-        New SqlParameter("@会社No", pubComPany),
-        New SqlParameter("@区分", txt区分CD.Text)
-    }
-                Dim result As DataTable = Mysqlserver.GetData(SQL, parameters.ToArray())
-                If result.Rows.Count = 0 Then
-                    txtMsg.Text = "区分CD不正入力"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
-                Else
-                    txt区分名.Text = pubCom.ChgNull(result.Rows(0)("区分名"), 1)
+        '            Dim SQL As String
+        '            SQL = "SELECT * " _
+        '                & "FROM MM_区分M00 " _
+        '                & "WHERE 会社No = @会社No " _
+        '                & "AND 区分 = @区分 "
+        '            Dim parameters As New List(Of SqlParameter) From {
+        '    New SqlParameter("@会社No", pubComPany),
+        '    New SqlParameter("@区分", txt区分CD.Text)
+        '}
+        '            Dim result As DataTable = Mysqlserver.GetData(SQL, parameters.ToArray())
+        '            If result.Rows.Count = 0 Then
+        '                txtMsg.Text = "区分CD不正入力"
+        '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral
+        '            Else
+        '                txt区分名.Text = pubCom.ChgNull(result.Rows(0)("区分名"), 1)
 
-                End If
+        '            End If
 
-                Exit Function
-            Case "txt明細CD"
-                ctxtInp.BackColor = Color.White
-                If txt明細CD.Text = "" Then
-                    txtMsg.Text = "CD未入力"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-            Case "txt名称"
-                ctxtInp.BackColor = Color.White
-                Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(ctxtInp.Text)
-                If LenB > 20 Then
-                    txtMsg.Text = "名称超過:20"
-                    Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
-                End If
-        End Select
+        '            Exit Function
+        '        Case "txt明細CD"
+        '            ctxtInp.BackColor = Color.White
+        '            If txt明細CD.Text = "" Then
+        '                txtMsg.Text = "CD未入力"
+        '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+        '            End If
+        '        Case "txt名称"
+        '            ctxtInp.BackColor = Color.White
+        '            Dim LenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(ctxtInp.Text)
+        '            If LenB > 20 Then
+        '                txtMsg.Text = "名称超過:20"
+        '                Inp_Chk00 = False : txtMsg.Visible = True : ctxtInp.BackColor = Color.LightCoral : Exit Function
+        '            End If
+        '    End Select
 
     End Function
     '******************************************************
     '* データの削除
     '******************************************************
     Public Sub Data_Del00()
-        Dim condition As String = "会社No = @会社No " &
-                                  "AND 区分 = @区分 " &
-                                  "AND CD = @CD "
+        'Dim condition As String = "会社No = @会社No " &
+        '                          "AND 区分 = @区分 " &
+        '                          "AND CD = @CD "
 
-        Dim parameters As New List(Of SqlParameter) From {
-            New SqlParameter("@会社No", pubComPany),
-            New SqlParameter("@区分", txt区分CD.Text),
-            New SqlParameter("@CD", txt明細CD.Text)
-        }
+        'Dim parameters As New List(Of SqlParameter) From {
+        '    New SqlParameter("@会社No", pubComPany),
+        '    New SqlParameter("@区分", txt区分CD.Text),
+        '    New SqlParameter("@CD", txt明細CD.Text)
+        '}
 
-        Mysqlserver.DeleteData("MM_区分M00", condition, parameters.ToArray())
+        'Mysqlserver.DeleteData("MM_区分M00", condition, parameters.ToArray())
     End Sub
 
     '******************************************************
@@ -343,66 +347,66 @@ Public Class F_Ms_Test
     '* MM_区分M00保存
     '******************************************************
     Public Sub Data_Put00()
-        Dim SQL As String
-        SQL = " SELECT * FROM MM_区分M00 WHERE 会社No = @会社No AND 区分 = @区分 AND CD = @CD"
+        'Dim SQL As String
+        'SQL = " SELECT * FROM MM_区分M00 WHERE 会社No = @会社No AND 区分 = @区分 AND CD = @CD"
 
-        Dim parameters As New List(Of SqlParameter) From {
-        New SqlParameter("@会社No", pubComPany),
-        New SqlParameter("@区分", txt区分CD.Text),
-        New SqlParameter("@CD", txt明細CD.Text),
-        New SqlParameter("@区分名", txt区分名.Text),
-        New SqlParameter("@名称", txt明細名.Text),
-        New SqlParameter("@Sub項目1", txtSub項目1.Text),
-        New SqlParameter("@Sub項目2", txtSub項目2.Text),
-        New SqlParameter("@削除", 0)
-        }
+        'Dim parameters As New List(Of SqlParameter) From {
+        'New SqlParameter("@会社No", pubComPany),
+        'New SqlParameter("@区分", txt区分CD.Text),
+        'New SqlParameter("@CD", txt明細CD.Text),
+        'New SqlParameter("@区分名", txt区分名.Text),
+        'New SqlParameter("@名称", txt明細名.Text),
+        'New SqlParameter("@Sub項目1", txtSub項目1.Text),
+        'New SqlParameter("@Sub項目2", txtSub項目2.Text),
+        'New SqlParameter("@削除", 0)
+        '}
 
-        Dim result As DataTable = Mysqlserver.GetData(SQL, parameters.ToArray())
+        'Dim result As DataTable = Mysqlserver.GetData(SQL, parameters.ToArray())
 
-        parameters.Clear()
-        parameters.Add(New SqlParameter("@会社No", pubComPany))
-        parameters.Add(New SqlParameter("@区分", txt区分CD.Text))
-        parameters.Add(New SqlParameter("@CD", txt明細CD.Text))
-        parameters.Add(New SqlParameter("@区分名", txt区分名.Text))
-        parameters.Add(New SqlParameter("@名称", txt明細名.Text))
-        parameters.Add(New SqlParameter("@Sub項目1", txtSub項目1.Text))
-        parameters.Add(New SqlParameter("@Sub項目2", txtSub項目2.Text))
-        parameters.Add(New SqlParameter("@削除", 0))
+        'parameters.Clear()
+        'parameters.Add(New SqlParameter("@会社No", pubComPany))
+        'parameters.Add(New SqlParameter("@区分", txt区分CD.Text))
+        'parameters.Add(New SqlParameter("@CD", txt明細CD.Text))
+        'parameters.Add(New SqlParameter("@区分名", txt区分名.Text))
+        'parameters.Add(New SqlParameter("@名称", txt明細名.Text))
+        'parameters.Add(New SqlParameter("@Sub項目1", txtSub項目1.Text))
+        'parameters.Add(New SqlParameter("@Sub項目2", txtSub項目2.Text))
+        'parameters.Add(New SqlParameter("@削除", 0))
 
-        If result.Rows.Count = 0 Then
-            Dim columns As String = "会社No " &
-                ", 区分 " &
-                ", CD " &
-                ", 区分名 " &
-                ", 名称 " &
-                ", Sub項目1 " &
-                ", Sub項目2 " &
-                ", 削除 "
+        'If result.Rows.Count = 0 Then
+        '    Dim columns As String = "会社No " &
+        '        ", 区分 " &
+        '        ", CD " &
+        '        ", 区分名 " &
+        '        ", 名称 " &
+        '        ", Sub項目1 " &
+        '        ", Sub項目2 " &
+        '        ", 削除 "
 
-            Dim values As String = "@会社No " &
-                ", @区分 " &
-                ", @CD " &
-                ", @区分名 " &
-                ", @名称 " &
-                ", @Sub項目1 " &
-                ", @Sub項目2 " &
-                ", @削除 "
+        '    Dim values As String = "@会社No " &
+        '        ", @区分 " &
+        '        ", @CD " &
+        '        ", @区分名 " &
+        '        ", @名称 " &
+        '        ", @Sub項目1 " &
+        '        ", @Sub項目2 " &
+        '        ", @削除 "
 
-            Mysqlserver.InsertData("MM_区分M00", columns, values, parameters.ToArray())
+        '    Mysqlserver.InsertData("MM_区分M00", columns, values, parameters.ToArray())
 
-        Else
-            Dim setStatement As String = "区分名 = @区分名" &
-                                         ", 名称 = @名称 " &
-                                         ", Sub項目1 = @Sub項目1 " &
-                                         ", Sub項目2 = @Sub項目2 " &
-                                         ", 削除 = @削除 "
-            ' 更新条件を指定
-            Dim condition As String = "会社No = @会社No " &
-                                      "AND 区分 = @区分 " &
-                                      "AND CD = @CD "
-            Mysqlserver.UpdateData("MM_区分M00", setStatement, condition, parameters.ToArray())
-        End If
-        result.Dispose()
+        'Else
+        '    Dim setStatement As String = "区分名 = @区分名" &
+        '                                 ", 名称 = @名称 " &
+        '                                 ", Sub項目1 = @Sub項目1 " &
+        '                                 ", Sub項目2 = @Sub項目2 " &
+        '                                 ", 削除 = @削除 "
+        '    ' 更新条件を指定
+        '    Dim condition As String = "会社No = @会社No " &
+        '                              "AND 区分 = @区分 " &
+        '                              "AND CD = @CD "
+        '    Mysqlserver.UpdateData("MM_区分M00", setStatement, condition, parameters.ToArray())
+        'End If
+        'result.Dispose()
 
 
 
@@ -412,68 +416,68 @@ Public Class F_Ms_Test
     '* MM_区分M00保存
     '******************************************************
     Private Sub btnUp00_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUp00.Click
-        Dim pRet As Boolean = Inp_Chk00(txt区分CD)
-        If pRet = False Then Exit Sub
-        pRet = Inp_Chk00(txt明細CD)
-        If pRet = False Then Exit Sub
+        'Dim pRet As Boolean = Inp_Chk00(txt区分CD)
+        'If pRet = False Then Exit Sub
+        'pRet = Inp_Chk00(txt明細CD)
+        'If pRet = False Then Exit Sub
 
-        For Each CtrlItem As Control In Me.GroupBox10.Controls
-            If TypeOf CtrlItem Is TextBox Then
-                pRet = Inp_Chk00(CtrlItem)
-                If pRet = False Then Exit Sub
-            End If
-        Next
+        'For Each CtrlItem As Control In Me.GroupBox10.Controls
+        '    If TypeOf CtrlItem Is TextBox Then
+        '        pRet = Inp_Chk00(CtrlItem)
+        '        If pRet = False Then Exit Sub
+        '    End If
+        'Next
 
-        Data_Put00()
-        Inp_Clr10()
-        Add_Item00()
-        txt明細CD.Focus()
+        'Data_Put00()
+        'Inp_Clr10()
+        'Add_Item00()
+        'txt明細CD.Focus()
     End Sub
 
     '******************************************************
     '* MM_区分M00削除
     '******************************************************
     Private Sub btnDel00_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDel00.Click
-        Dim pRet As Boolean = Inp_Chk00(txt区分CD)
-        If pRet = False Then Exit Sub
-        pRet = Inp_Chk00(txt明細CD)
-        If pRet = False Then Exit Sub
+        'Dim pRet As Boolean = Inp_Chk00(txt区分CD)
+        'If pRet = False Then Exit Sub
+        'pRet = Inp_Chk00(txt明細CD)
+        'If pRet = False Then Exit Sub
 
-        Dim wMsg As String = "CD:" & txt明細CD.Text & Chr(13) _
-            & "名称:" & txt明細名.Text & Chr(13) _
-            & "このデータをマスタから削除します。"
-        Dim wAns As Integer = MsgBox(wMsg, vbYesNo + vbQuestion, "データ削除")
-        If wAns = vbNo Then Exit Sub
+        'Dim wMsg As String = "CD:" & txt明細CD.Text & Chr(13) _
+        '    & "名称:" & txt明細名.Text & Chr(13) _
+        '    & "このデータをマスタから削除します。"
+        'Dim wAns As Integer = MsgBox(wMsg, vbYesNo + vbQuestion, "データ削除")
+        'If wAns = vbNo Then Exit Sub
 
-        Data_Del00()
-        Inp_Clr10()
-        Add_Item00()
-        txt明細CD.Focus()
+        'Data_Del00()
+        'Inp_Clr10()
+        'Add_Item00()
+        'txt明細CD.Focus()
     End Sub
 
     Private Sub LV_ItemActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LV.ItemActivate
-        Dim lv As ListView = DirectCast(sender, ListView)
+        'Dim lv As ListView = DirectCast(sender, ListView)
 
-        txt明細CD.Text = lv.FocusedItem.Text
-        Data_Get00()
+        'txt明細CD.Text = lv.FocusedItem.Text
+        'Data_Get00()
     End Sub
 
     Private Sub La区分CD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles La区分CD.Click
-        Dim frmForm = New F_S_KuBunH00
-        frmForm.pubCD = ""
-        If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If IsNumeric(frmForm.pubCD) Then
-                txt区分CD.Text = Integer.Parse(frmForm.pubCD)
-                btnOK00.PerformClick()
-            End If
-            txt区分CD.Focus()
-        End If
+        'Dim frmForm = New F_S_KuBunH00
+        'frmForm.pubCD = ""
+        'If frmForm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        '    If IsNumeric(frmForm.pubCD) Then
+        '        txt区分CD.Text = Integer.Parse(frmForm.pubCD)
+        '        btnOK00.PerformClick()
+        '    End If
+        '    txt区分CD.Focus()
+        'End If
     End Sub
 
     Private Sub Cmd05_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Cmd05.Click
-        Inp_Clr00()
-        GroupBox00.Enabled = True
-        txt区分CD.Focus()
+        'Inp_Clr00()
+        'GroupBox00.Enabled = True
+        'txt区分CD.Focus()
     End Sub
 
     'Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
