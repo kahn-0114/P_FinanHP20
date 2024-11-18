@@ -22,7 +22,7 @@ Partial Class F_Ms_KubunH00
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"9999", "1ooooooooo2ooooooooo3ooooooooo"}, -1)
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"9999", "1ooooooooo2ooooooooo3ooooooooo"}, -1)
         Me.Cmd09 = New System.Windows.Forms.Button()
         Me.Cmd10 = New System.Windows.Forms.Button()
         Me.Cmd11 = New System.Windows.Forms.Button()
@@ -250,7 +250,7 @@ Partial Class F_Ms_KubunH00
         Me.LV.GridLines = True
         Me.LV.HideSelection = False
         Me.LV.HoverSelection = True
-        Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        Me.LV.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
         Me.LV.Location = New System.Drawing.Point(5, 52)
         Me.LV.MultiSelect = False
         Me.LV.Name = "LV"
