@@ -44,11 +44,11 @@ Partial Class F_Ms_AnsCnv
         Me.Label2 = New System.Windows.Forms.Label()
         Me.La取引区分 = New System.Windows.Forms.Label()
         Me.La口座No = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.btnOK10 = New System.Windows.Forms.Button()
         Me.txt連番 = New System.Windows.Forms.TextBox()
         Me.La連番 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
         Me.btnUP00 = New System.Windows.Forms.Button()
         Me.btnDel00 = New System.Windows.Forms.Button()
         Me.txtMsg = New System.Windows.Forms.TextBox()
@@ -87,8 +87,8 @@ Partial Class F_Ms_AnsCnv
         Me.La銀行CD = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.GroupBox00.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox10.SuspendLayout()
+        Me.GroupBox20.SuspendLayout()
         Me.SuspendLayout()
         '
         'Cmd12
@@ -360,16 +360,16 @@ Partial Class F_Ms_AnsCnv
         Me.La口座No.Text = "口座No"
         Me.La口座No.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'GroupBox1
+        'GroupBox10
         '
-        Me.GroupBox1.Controls.Add(Me.btnOK10)
-        Me.GroupBox1.Controls.Add(Me.txt連番)
-        Me.GroupBox1.Controls.Add(Me.La連番)
-        Me.GroupBox1.Location = New System.Drawing.Point(470, 72)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(588, 52)
-        Me.GroupBox1.TabIndex = 67
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox10.Controls.Add(Me.btnOK10)
+        Me.GroupBox10.Controls.Add(Me.txt連番)
+        Me.GroupBox10.Controls.Add(Me.La連番)
+        Me.GroupBox10.Location = New System.Drawing.Point(470, 72)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(588, 52)
+        Me.GroupBox10.TabIndex = 67
+        Me.GroupBox10.TabStop = False
         '
         'btnOK10
         '
@@ -405,50 +405,50 @@ Partial Class F_Ms_AnsCnv
         Me.La連番.Text = "連番"
         Me.La連番.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'GroupBox2
+        'GroupBox20
         '
-        Me.GroupBox2.Controls.Add(Me.btnUP00)
-        Me.GroupBox2.Controls.Add(Me.btnDel00)
-        Me.GroupBox2.Controls.Add(Me.txtMsg)
-        Me.GroupBox2.Controls.Add(Me.txt免税事業者名)
-        Me.GroupBox2.Controls.Add(Me.txt手数料負担名)
-        Me.GroupBox2.Controls.Add(Me.txt送料区分名)
-        Me.GroupBox2.Controls.Add(Me.txt税区分名)
-        Me.GroupBox2.Controls.Add(Me.txt免税事業者)
-        Me.GroupBox2.Controls.Add(Me.txt手数料負担)
-        Me.GroupBox2.Controls.Add(Me.txt送料区分)
-        Me.GroupBox2.Controls.Add(Me.txt税区分)
-        Me.GroupBox2.Controls.Add(Me.La免税事業者)
-        Me.GroupBox2.Controls.Add(Me.La手数料負担)
-        Me.GroupBox2.Controls.Add(Me.La送料区分)
-        Me.GroupBox2.Controls.Add(Me.La税区分)
-        Me.GroupBox2.Controls.Add(Me.txt摘要)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.txt枝番名)
-        Me.GroupBox2.Controls.Add(Me.txt科目名)
-        Me.GroupBox2.Controls.Add(Me.txt部門名)
-        Me.GroupBox2.Controls.Add(Me.txt枝番CD)
-        Me.GroupBox2.Controls.Add(Me.txt科目CD)
-        Me.GroupBox2.Controls.Add(Me.txt部門CD)
-        Me.GroupBox2.Controls.Add(Me.La枝番CD)
-        Me.GroupBox2.Controls.Add(Me.La科目CD)
-        Me.GroupBox2.Controls.Add(Me.La部門CD)
-        Me.GroupBox2.Controls.Add(Me.txt検索摘要)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.txt預金種別名)
-        Me.GroupBox2.Controls.Add(Me.txt銀行名)
-        Me.GroupBox2.Controls.Add(Me.txt口座番号)
-        Me.GroupBox2.Controls.Add(Me.txt預金種別)
-        Me.GroupBox2.Controls.Add(Me.txt銀行CD)
-        Me.GroupBox2.Controls.Add(Me.La口座番号)
-        Me.GroupBox2.Controls.Add(Me.La預金種別)
-        Me.GroupBox2.Controls.Add(Me.La銀行CD)
-        Me.GroupBox2.ForeColor = System.Drawing.Color.Blue
-        Me.GroupBox2.Location = New System.Drawing.Point(469, 130)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(589, 474)
-        Me.GroupBox2.TabIndex = 68
-        Me.GroupBox2.TabStop = False
+        Me.GroupBox20.Controls.Add(Me.btnUP00)
+        Me.GroupBox20.Controls.Add(Me.btnDel00)
+        Me.GroupBox20.Controls.Add(Me.txtMsg)
+        Me.GroupBox20.Controls.Add(Me.txt免税事業者名)
+        Me.GroupBox20.Controls.Add(Me.txt手数料負担名)
+        Me.GroupBox20.Controls.Add(Me.txt送料区分名)
+        Me.GroupBox20.Controls.Add(Me.txt税区分名)
+        Me.GroupBox20.Controls.Add(Me.txt免税事業者)
+        Me.GroupBox20.Controls.Add(Me.txt手数料負担)
+        Me.GroupBox20.Controls.Add(Me.txt送料区分)
+        Me.GroupBox20.Controls.Add(Me.txt税区分)
+        Me.GroupBox20.Controls.Add(Me.La免税事業者)
+        Me.GroupBox20.Controls.Add(Me.La手数料負担)
+        Me.GroupBox20.Controls.Add(Me.La送料区分)
+        Me.GroupBox20.Controls.Add(Me.La税区分)
+        Me.GroupBox20.Controls.Add(Me.txt摘要)
+        Me.GroupBox20.Controls.Add(Me.Label3)
+        Me.GroupBox20.Controls.Add(Me.txt枝番名)
+        Me.GroupBox20.Controls.Add(Me.txt科目名)
+        Me.GroupBox20.Controls.Add(Me.txt部門名)
+        Me.GroupBox20.Controls.Add(Me.txt枝番CD)
+        Me.GroupBox20.Controls.Add(Me.txt科目CD)
+        Me.GroupBox20.Controls.Add(Me.txt部門CD)
+        Me.GroupBox20.Controls.Add(Me.La枝番CD)
+        Me.GroupBox20.Controls.Add(Me.La科目CD)
+        Me.GroupBox20.Controls.Add(Me.La部門CD)
+        Me.GroupBox20.Controls.Add(Me.txt検索摘要)
+        Me.GroupBox20.Controls.Add(Me.Label1)
+        Me.GroupBox20.Controls.Add(Me.txt預金種別名)
+        Me.GroupBox20.Controls.Add(Me.txt銀行名)
+        Me.GroupBox20.Controls.Add(Me.txt口座番号)
+        Me.GroupBox20.Controls.Add(Me.txt預金種別)
+        Me.GroupBox20.Controls.Add(Me.txt銀行CD)
+        Me.GroupBox20.Controls.Add(Me.La口座番号)
+        Me.GroupBox20.Controls.Add(Me.La預金種別)
+        Me.GroupBox20.Controls.Add(Me.La銀行CD)
+        Me.GroupBox20.ForeColor = System.Drawing.Color.Blue
+        Me.GroupBox20.Location = New System.Drawing.Point(469, 130)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(589, 474)
+        Me.GroupBox20.TabIndex = 68
+        Me.GroupBox20.TabStop = False
         '
         'btnUP00
         '
@@ -877,8 +877,8 @@ Partial Class F_Ms_AnsCnv
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 616)
         Me.Controls.Add(Me.ListView1)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GroupBox20)
+        Me.Controls.Add(Me.GroupBox10)
         Me.Controls.Add(Me.GroupBox00)
         Me.Controls.Add(Me.Cmd12)
         Me.Controls.Add(Me.Cmd11)
@@ -896,10 +896,10 @@ Partial Class F_Ms_AnsCnv
         Me.Text = "アンサー変換マスタメンテナンス"
         Me.GroupBox00.ResumeLayout(False)
         Me.GroupBox00.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
+        Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
+        Me.GroupBox20.ResumeLayout(False)
+        Me.GroupBox20.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -926,11 +926,11 @@ Partial Class F_Ms_AnsCnv
     Friend WithEvents txt検索摘要S As TextBox
     Friend WithEvents txt口座名 As TextBox
     Friend WithEvents txt取引区分名 As TextBox
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents btnOK10 As Button
     Friend WithEvents txt連番 As TextBox
     Friend WithEvents La連番 As Label
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBox20 As GroupBox
     Friend WithEvents La口座番号 As Label
     Friend WithEvents La預金種別 As Label
     Friend WithEvents La銀行CD As Label
