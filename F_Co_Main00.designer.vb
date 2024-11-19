@@ -122,7 +122,7 @@ Partial Class F_Co_Main00
         '
         ButtonEnd.Font = New System.Drawing.Font("メイリオ", 11.25!)
         ButtonEnd.Image = CType(resources.GetObject("ButtonEnd.Image"), System.Drawing.Image)
-        ButtonEnd.Location = New System.Drawing.Point(933, 9)
+        ButtonEnd.Location = New System.Drawing.Point(785, 9)
         ButtonEnd.Name = "ButtonEnd"
         ButtonEnd.Size = New System.Drawing.Size(220, 40)
         ButtonEnd.TabIndex = 24
@@ -135,7 +135,7 @@ Partial Class F_Co_Main00
         Me.GroupBox0.Controls.Add(Me.Label0)
         Me.GroupBox0.Location = New System.Drawing.Point(4, 28)
         Me.GroupBox0.Name = "GroupBox0"
-        Me.GroupBox0.Size = New System.Drawing.Size(1157, 52)
+        Me.GroupBox0.Size = New System.Drawing.Size(1008, 52)
         Me.GroupBox0.TabIndex = 23
         Me.GroupBox0.TabStop = False
         '
@@ -554,7 +554,7 @@ Partial Class F_Co_Main00
         Me.CmbA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbA.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.CmbA.FormattingEnabled = True
-        Me.CmbA.Location = New System.Drawing.Point(69, 7)
+        Me.CmbA.Location = New System.Drawing.Point(69, 10)
         Me.CmbA.Name = "CmbA"
         Me.CmbA.Size = New System.Drawing.Size(307, 28)
         Me.CmbA.TabIndex = 28
@@ -565,7 +565,7 @@ Partial Class F_Co_Main00
         Me.txtComp.BackColor = System.Drawing.SystemColors.Window
         Me.txtComp.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.txtComp.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtComp.Location = New System.Drawing.Point(5, 7)
+        Me.txtComp.Location = New System.Drawing.Point(5, 10)
         Me.txtComp.Name = "txtComp"
         Me.txtComp.ReadOnly = True
         Me.txtComp.Size = New System.Drawing.Size(63, 27)
@@ -579,7 +579,7 @@ Partial Class F_Co_Main00
         Me.GroupBox11.Controls.Add(Me.Laﾒﾆｭｰ名)
         Me.GroupBox11.Location = New System.Drawing.Point(387, 81)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(774, 35)
+        Me.GroupBox11.Size = New System.Drawing.Size(625, 35)
         Me.GroupBox11.TabIndex = 28
         Me.GroupBox11.TabStop = False
         '
@@ -592,7 +592,7 @@ Partial Class F_Co_Main00
         Me.Laﾒﾆｭｰ名.Name = "Laﾒﾆｭｰ名"
         Me.Laﾒﾆｭｰ名.Size = New System.Drawing.Size(476, 26)
         Me.Laﾒﾆｭｰ名.TabIndex = 24
-        Me.Laﾒﾆｭｰ名.Text = "財　務　管　理　シ　ス　テ　ム"
+        Me.Laﾒﾆｭｰ名.Text = "債　権　管　理　シ　ス　テ　ム"
         Me.Laﾒﾆｭｰ名.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox21
@@ -646,7 +646,7 @@ Partial Class F_Co_Main00
         Me.GroupBox21.Controls.Add(Me.MenuNo1)
         Me.GroupBox21.Location = New System.Drawing.Point(388, 116)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(772, 584)
+        Me.GroupBox21.Size = New System.Drawing.Size(624, 584)
         Me.GroupBox21.TabIndex = 29
         Me.GroupBox21.TabStop = False
         '
@@ -656,7 +656,7 @@ Partial Class F_Co_Main00
         Me.txtMsg.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.txtMsg.ForeColor = System.Drawing.Color.Red
         Me.txtMsg.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtMsg.Location = New System.Drawing.Point(389, 513)
+        Me.txtMsg.Location = New System.Drawing.Point(316, 517)
         Me.txtMsg.Name = "txtMsg"
         Me.txtMsg.ReadOnly = True
         Me.txtMsg.Size = New System.Drawing.Size(305, 27)
@@ -669,7 +669,7 @@ Partial Class F_Co_Main00
         Me.txtMenu.BackColor = System.Drawing.Color.White
         Me.txtMenu.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.txtMenu.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtMenu.Location = New System.Drawing.Point(498, 543)
+        Me.txtMenu.Location = New System.Drawing.Point(424, 543)
         Me.txtMenu.MaxLength = 2
         Me.txtMenu.Name = "txtMenu"
         Me.txtMenu.Size = New System.Drawing.Size(32, 27)
@@ -683,7 +683,7 @@ Partial Class F_Co_Main00
         Me.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(390, 543)
+        Me.Label2.Location = New System.Drawing.Point(316, 543)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(108, 27)
         Me.Label2.TabIndex = 46
@@ -693,9 +693,9 @@ Partial Class F_Co_Main00
         'Menu22
         '
         Me.Menu22.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu22.Location = New System.Drawing.Point(413, 433)
+        Me.Menu22.Location = New System.Drawing.Point(342, 433)
         Me.Menu22.Name = "Menu22"
-        Me.Menu22.Size = New System.Drawing.Size(350, 45)
+        Me.Menu22.Size = New System.Drawing.Size(282, 45)
         Me.Menu22.TabIndex = 44
         Me.Menu22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu22.UseVisualStyleBackColor = True
@@ -703,9 +703,9 @@ Partial Class F_Co_Main00
         'Menu21
         '
         Me.Menu21.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu21.Location = New System.Drawing.Point(413, 387)
+        Me.Menu21.Location = New System.Drawing.Point(342, 387)
         Me.Menu21.Name = "Menu21"
-        Me.Menu21.Size = New System.Drawing.Size(350, 45)
+        Me.Menu21.Size = New System.Drawing.Size(282, 45)
         Me.Menu21.TabIndex = 43
         Me.Menu21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu21.UseVisualStyleBackColor = True
@@ -713,9 +713,9 @@ Partial Class F_Co_Main00
         'Menu20
         '
         Me.Menu20.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu20.Location = New System.Drawing.Point(413, 341)
+        Me.Menu20.Location = New System.Drawing.Point(342, 341)
         Me.Menu20.Name = "Menu20"
-        Me.Menu20.Size = New System.Drawing.Size(350, 45)
+        Me.Menu20.Size = New System.Drawing.Size(282, 45)
         Me.Menu20.TabIndex = 42
         Me.Menu20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu20.UseVisualStyleBackColor = True
@@ -723,9 +723,9 @@ Partial Class F_Co_Main00
         'Menu19
         '
         Me.Menu19.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu19.Location = New System.Drawing.Point(413, 295)
+        Me.Menu19.Location = New System.Drawing.Point(342, 295)
         Me.Menu19.Name = "Menu19"
-        Me.Menu19.Size = New System.Drawing.Size(350, 45)
+        Me.Menu19.Size = New System.Drawing.Size(282, 45)
         Me.Menu19.TabIndex = 41
         Me.Menu19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu19.UseVisualStyleBackColor = True
@@ -733,9 +733,9 @@ Partial Class F_Co_Main00
         'Menu18
         '
         Me.Menu18.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu18.Location = New System.Drawing.Point(413, 249)
+        Me.Menu18.Location = New System.Drawing.Point(342, 249)
         Me.Menu18.Name = "Menu18"
-        Me.Menu18.Size = New System.Drawing.Size(350, 45)
+        Me.Menu18.Size = New System.Drawing.Size(282, 45)
         Me.Menu18.TabIndex = 40
         Me.Menu18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu18.UseVisualStyleBackColor = True
@@ -743,9 +743,9 @@ Partial Class F_Co_Main00
         'Menu17
         '
         Me.Menu17.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu17.Location = New System.Drawing.Point(413, 203)
+        Me.Menu17.Location = New System.Drawing.Point(342, 203)
         Me.Menu17.Name = "Menu17"
-        Me.Menu17.Size = New System.Drawing.Size(350, 45)
+        Me.Menu17.Size = New System.Drawing.Size(282, 45)
         Me.Menu17.TabIndex = 39
         Me.Menu17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu17.UseVisualStyleBackColor = True
@@ -753,9 +753,9 @@ Partial Class F_Co_Main00
         'Menu16
         '
         Me.Menu16.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu16.Location = New System.Drawing.Point(413, 157)
+        Me.Menu16.Location = New System.Drawing.Point(342, 157)
         Me.Menu16.Name = "Menu16"
-        Me.Menu16.Size = New System.Drawing.Size(350, 45)
+        Me.Menu16.Size = New System.Drawing.Size(282, 45)
         Me.Menu16.TabIndex = 38
         Me.Menu16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu16.UseVisualStyleBackColor = True
@@ -763,9 +763,9 @@ Partial Class F_Co_Main00
         'Menu15
         '
         Me.Menu15.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu15.Location = New System.Drawing.Point(413, 111)
+        Me.Menu15.Location = New System.Drawing.Point(342, 111)
         Me.Menu15.Name = "Menu15"
-        Me.Menu15.Size = New System.Drawing.Size(350, 45)
+        Me.Menu15.Size = New System.Drawing.Size(282, 45)
         Me.Menu15.TabIndex = 37
         Me.Menu15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu15.UseVisualStyleBackColor = True
@@ -773,9 +773,9 @@ Partial Class F_Co_Main00
         'Menu14
         '
         Me.Menu14.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu14.Location = New System.Drawing.Point(413, 65)
+        Me.Menu14.Location = New System.Drawing.Point(342, 65)
         Me.Menu14.Name = "Menu14"
-        Me.Menu14.Size = New System.Drawing.Size(350, 45)
+        Me.Menu14.Size = New System.Drawing.Size(282, 45)
         Me.Menu14.TabIndex = 36
         Me.Menu14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu14.UseVisualStyleBackColor = True
@@ -785,7 +785,7 @@ Partial Class F_Co_Main00
         Me.Menu12.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu12.Location = New System.Drawing.Point(30, 525)
         Me.Menu12.Name = "Menu12"
-        Me.Menu12.Size = New System.Drawing.Size(350, 45)
+        Me.Menu12.Size = New System.Drawing.Size(282, 45)
         Me.Menu12.TabIndex = 35
         Me.Menu12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu12.UseVisualStyleBackColor = True
@@ -795,7 +795,7 @@ Partial Class F_Co_Main00
         Me.Menu11.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu11.Location = New System.Drawing.Point(30, 479)
         Me.Menu11.Name = "Menu11"
-        Me.Menu11.Size = New System.Drawing.Size(350, 45)
+        Me.Menu11.Size = New System.Drawing.Size(282, 45)
         Me.Menu11.TabIndex = 34
         Me.Menu11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu11.UseVisualStyleBackColor = True
@@ -805,7 +805,7 @@ Partial Class F_Co_Main00
         Me.Menu10.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu10.Location = New System.Drawing.Point(30, 433)
         Me.Menu10.Name = "Menu10"
-        Me.Menu10.Size = New System.Drawing.Size(350, 45)
+        Me.Menu10.Size = New System.Drawing.Size(282, 45)
         Me.Menu10.TabIndex = 33
         Me.Menu10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu10.UseVisualStyleBackColor = True
@@ -815,7 +815,7 @@ Partial Class F_Co_Main00
         Me.Menu9.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu9.Location = New System.Drawing.Point(30, 387)
         Me.Menu9.Name = "Menu9"
-        Me.Menu9.Size = New System.Drawing.Size(350, 45)
+        Me.Menu9.Size = New System.Drawing.Size(282, 45)
         Me.Menu9.TabIndex = 32
         Me.Menu9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu9.UseVisualStyleBackColor = True
@@ -825,7 +825,7 @@ Partial Class F_Co_Main00
         Me.Menu8.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu8.Location = New System.Drawing.Point(30, 341)
         Me.Menu8.Name = "Menu8"
-        Me.Menu8.Size = New System.Drawing.Size(350, 45)
+        Me.Menu8.Size = New System.Drawing.Size(282, 45)
         Me.Menu8.TabIndex = 31
         Me.Menu8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu8.UseVisualStyleBackColor = True
@@ -835,7 +835,7 @@ Partial Class F_Co_Main00
         Me.Menu7.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu7.Location = New System.Drawing.Point(30, 295)
         Me.Menu7.Name = "Menu7"
-        Me.Menu7.Size = New System.Drawing.Size(350, 45)
+        Me.Menu7.Size = New System.Drawing.Size(282, 45)
         Me.Menu7.TabIndex = 30
         Me.Menu7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu7.UseVisualStyleBackColor = True
@@ -845,7 +845,7 @@ Partial Class F_Co_Main00
         Me.Menu6.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu6.Location = New System.Drawing.Point(30, 249)
         Me.Menu6.Name = "Menu6"
-        Me.Menu6.Size = New System.Drawing.Size(350, 45)
+        Me.Menu6.Size = New System.Drawing.Size(282, 45)
         Me.Menu6.TabIndex = 29
         Me.Menu6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu6.UseVisualStyleBackColor = True
@@ -855,7 +855,7 @@ Partial Class F_Co_Main00
         Me.Menu5.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu5.Location = New System.Drawing.Point(30, 203)
         Me.Menu5.Name = "Menu5"
-        Me.Menu5.Size = New System.Drawing.Size(350, 45)
+        Me.Menu5.Size = New System.Drawing.Size(282, 45)
         Me.Menu5.TabIndex = 28
         Me.Menu5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu5.UseVisualStyleBackColor = True
@@ -865,7 +865,7 @@ Partial Class F_Co_Main00
         Me.Menu4.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu4.Location = New System.Drawing.Point(30, 157)
         Me.Menu4.Name = "Menu4"
-        Me.Menu4.Size = New System.Drawing.Size(350, 45)
+        Me.Menu4.Size = New System.Drawing.Size(282, 45)
         Me.Menu4.TabIndex = 27
         Me.Menu4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu4.UseVisualStyleBackColor = True
@@ -875,7 +875,7 @@ Partial Class F_Co_Main00
         Me.Menu3.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu3.Location = New System.Drawing.Point(30, 111)
         Me.Menu3.Name = "Menu3"
-        Me.Menu3.Size = New System.Drawing.Size(350, 45)
+        Me.Menu3.Size = New System.Drawing.Size(282, 45)
         Me.Menu3.TabIndex = 26
         Me.Menu3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu3.UseVisualStyleBackColor = True
@@ -885,7 +885,7 @@ Partial Class F_Co_Main00
         Me.Menu2.Font = New System.Drawing.Font("メイリオ", 9.75!)
         Me.Menu2.Location = New System.Drawing.Point(30, 65)
         Me.Menu2.Name = "Menu2"
-        Me.Menu2.Size = New System.Drawing.Size(350, 45)
+        Me.Menu2.Size = New System.Drawing.Size(282, 45)
         Me.Menu2.TabIndex = 25
         Me.Menu2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu2.UseVisualStyleBackColor = True
@@ -895,7 +895,7 @@ Partial Class F_Co_Main00
         Me.MenuNo22.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo22.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo22.ForeColor = System.Drawing.Color.White
-        Me.MenuNo22.Location = New System.Drawing.Point(386, 433)
+        Me.MenuNo22.Location = New System.Drawing.Point(315, 433)
         Me.MenuNo22.Name = "MenuNo22"
         Me.MenuNo22.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo22.TabIndex = 24
@@ -907,7 +907,7 @@ Partial Class F_Co_Main00
         Me.MenuNo21.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo21.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo21.ForeColor = System.Drawing.Color.White
-        Me.MenuNo21.Location = New System.Drawing.Point(386, 387)
+        Me.MenuNo21.Location = New System.Drawing.Point(315, 387)
         Me.MenuNo21.Name = "MenuNo21"
         Me.MenuNo21.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo21.TabIndex = 23
@@ -919,7 +919,7 @@ Partial Class F_Co_Main00
         Me.MenuNo20.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo20.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo20.ForeColor = System.Drawing.Color.White
-        Me.MenuNo20.Location = New System.Drawing.Point(386, 341)
+        Me.MenuNo20.Location = New System.Drawing.Point(315, 341)
         Me.MenuNo20.Name = "MenuNo20"
         Me.MenuNo20.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo20.TabIndex = 22
@@ -931,7 +931,7 @@ Partial Class F_Co_Main00
         Me.MenuNo19.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo19.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo19.ForeColor = System.Drawing.Color.White
-        Me.MenuNo19.Location = New System.Drawing.Point(386, 295)
+        Me.MenuNo19.Location = New System.Drawing.Point(315, 295)
         Me.MenuNo19.Name = "MenuNo19"
         Me.MenuNo19.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo19.TabIndex = 21
@@ -943,7 +943,7 @@ Partial Class F_Co_Main00
         Me.MenuNo18.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo18.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo18.ForeColor = System.Drawing.Color.White
-        Me.MenuNo18.Location = New System.Drawing.Point(386, 249)
+        Me.MenuNo18.Location = New System.Drawing.Point(315, 249)
         Me.MenuNo18.Name = "MenuNo18"
         Me.MenuNo18.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo18.TabIndex = 20
@@ -955,7 +955,7 @@ Partial Class F_Co_Main00
         Me.MenuNo17.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo17.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo17.ForeColor = System.Drawing.Color.White
-        Me.MenuNo17.Location = New System.Drawing.Point(386, 203)
+        Me.MenuNo17.Location = New System.Drawing.Point(315, 203)
         Me.MenuNo17.Name = "MenuNo17"
         Me.MenuNo17.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo17.TabIndex = 19
@@ -967,7 +967,7 @@ Partial Class F_Co_Main00
         Me.MenuNo16.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo16.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo16.ForeColor = System.Drawing.Color.White
-        Me.MenuNo16.Location = New System.Drawing.Point(386, 157)
+        Me.MenuNo16.Location = New System.Drawing.Point(315, 157)
         Me.MenuNo16.Name = "MenuNo16"
         Me.MenuNo16.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo16.TabIndex = 18
@@ -979,7 +979,7 @@ Partial Class F_Co_Main00
         Me.MenuNo15.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo15.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo15.ForeColor = System.Drawing.Color.White
-        Me.MenuNo15.Location = New System.Drawing.Point(386, 111)
+        Me.MenuNo15.Location = New System.Drawing.Point(315, 111)
         Me.MenuNo15.Name = "MenuNo15"
         Me.MenuNo15.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo15.TabIndex = 17
@@ -991,7 +991,7 @@ Partial Class F_Co_Main00
         Me.MenuNo14.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo14.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo14.ForeColor = System.Drawing.Color.White
-        Me.MenuNo14.Location = New System.Drawing.Point(386, 65)
+        Me.MenuNo14.Location = New System.Drawing.Point(315, 65)
         Me.MenuNo14.Name = "MenuNo14"
         Me.MenuNo14.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo14.TabIndex = 16
@@ -1001,9 +1001,9 @@ Partial Class F_Co_Main00
         'Menu13
         '
         Me.Menu13.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu13.Location = New System.Drawing.Point(413, 19)
+        Me.Menu13.Location = New System.Drawing.Point(342, 19)
         Me.Menu13.Name = "Menu13"
-        Me.Menu13.Size = New System.Drawing.Size(350, 45)
+        Me.Menu13.Size = New System.Drawing.Size(282, 45)
         Me.Menu13.TabIndex = 15
         Me.Menu13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu13.UseVisualStyleBackColor = True
@@ -1013,7 +1013,7 @@ Partial Class F_Co_Main00
         Me.MenuNo13.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
         Me.MenuNo13.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MenuNo13.ForeColor = System.Drawing.Color.White
-        Me.MenuNo13.Location = New System.Drawing.Point(386, 19)
+        Me.MenuNo13.Location = New System.Drawing.Point(315, 19)
         Me.MenuNo13.Name = "MenuNo13"
         Me.MenuNo13.Size = New System.Drawing.Size(28, 45)
         Me.MenuNo13.TabIndex = 14
@@ -1023,9 +1023,9 @@ Partial Class F_Co_Main00
         'Menu1
         '
         Me.Menu1.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Menu1.Location = New System.Drawing.Point(29, 19)
+        Me.Menu1.Location = New System.Drawing.Point(30, 19)
         Me.Menu1.Name = "Menu1"
-        Me.Menu1.Size = New System.Drawing.Size(350, 45)
+        Me.Menu1.Size = New System.Drawing.Size(282, 45)
         Me.Menu1.TabIndex = 13
         Me.Menu1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Menu1.UseVisualStyleBackColor = True
@@ -1178,7 +1178,7 @@ Partial Class F_Co_Main00
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1164, 711)
+        Me.ClientSize = New System.Drawing.Size(1014, 711)
         Me.Controls.Add(Me.GroupBox21)
         Me.Controls.Add(Me.GroupBox11)
         Me.Controls.Add(Me.GroupBox10)

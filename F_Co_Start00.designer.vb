@@ -23,17 +23,32 @@ Partial Class F_Co_Start00
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_Co_Start00))
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.txtOut0 = New System.Windows.Forms.Label()
         Me.txtOut1 = New System.Windows.Forms.Label()
         Me.txtOut2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Timer1
         '
         Me.Timer1.Interval = 300
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.ErrorImage = Nothing
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 1)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(159, 69)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'txtOut0
         '
@@ -42,7 +57,7 @@ Partial Class F_Co_Start00
         Me.txtOut0.Name = "txtOut0"
         Me.txtOut0.Size = New System.Drawing.Size(359, 45)
         Me.txtOut0.TabIndex = 1
-        Me.txtOut0.Text = "経理補助システム"
+        Me.txtOut0.Text = "リベート管理システム"
         Me.txtOut0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtOut1
@@ -101,12 +116,15 @@ Partial Class F_Co_Start00
         Me.Controls.Add(Me.txtOut2)
         Me.Controls.Add(Me.txtOut1)
         Me.Controls.Add(Me.txtOut0)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Name = "F_Co_Start00"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents txtOut0 As System.Windows.Forms.Label
     Friend WithEvents txtOut1 As System.Windows.Forms.Label
     Friend WithEvents txtOut2 As System.Windows.Forms.Label
