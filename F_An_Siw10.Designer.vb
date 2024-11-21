@@ -297,7 +297,7 @@ Partial Class F_An_Siw10
         Me.Controls.Add(Me.Cmd02)
         Me.Controls.Add(Me.Cmd01)
         Me.Name = "F_An_Siw10"
-        Me.Text = "F_An_Siw10"
+        Me.Text = "口座番号別入出金一覧表"
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox20.ResumeLayout(False)
         Me.GroupBox20.PerformLayout()
