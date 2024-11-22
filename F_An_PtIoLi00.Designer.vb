@@ -46,15 +46,15 @@ Partial Class F_An_PtIoLi00
         Me.txt決算開始 = New System.Windows.Forms.TextBox()
         Me.txt決算期区分 = New System.Windows.Forms.TextBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txt対象開始日 = New System.Windows.Forms.TextBox()
-        Me.txt対象終了日 = New System.Windows.Forms.TextBox()
-        Me.btnOK00 = New System.Windows.Forms.Button()
-        Me.txtMsg = New System.Windows.Forms.TextBox()
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
-        Me.btnSel00 = New System.Windows.Forms.Button()
-        Me.btnDel00 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtMsg = New System.Windows.Forms.TextBox()
+        Me.btnOK00 = New System.Windows.Forms.Button()
+        Me.txt対象終了日 = New System.Windows.Forms.TextBox()
+        Me.txt対象開始日 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.btnDel00 = New System.Windows.Forms.Button()
+        Me.btnSel00 = New System.Windows.Forms.Button()
         Me.GroupBox00.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
@@ -360,50 +360,19 @@ Partial Class F_An_PtIoLi00
         Me.GroupBox10.TabIndex = 122
         Me.GroupBox10.TabStop = False
         '
-        'Label3
+        'TextBox1
         '
-        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
-        Me.Label3.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(5, 15)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(61, 27)
-        Me.Label3.TabIndex = 124
-        Me.Label3.Text = "対象日"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'txt対象開始日
-        '
-        Me.txt対象開始日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt対象開始日.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt対象開始日.Location = New System.Drawing.Point(68, 15)
-        Me.txt対象開始日.Name = "txt対象開始日"
-        Me.txt対象開始日.Size = New System.Drawing.Size(61, 27)
-        Me.txt対象開始日.TabIndex = 0
-        Me.txt対象開始日.Text = "9999"
-        Me.txt対象開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txt対象終了日
-        '
-        Me.txt対象終了日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt対象終了日.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt対象終了日.Location = New System.Drawing.Point(151, 14)
-        Me.txt対象終了日.Name = "txt対象終了日"
-        Me.txt対象終了日.Size = New System.Drawing.Size(61, 27)
-        Me.txt対象終了日.TabIndex = 1
-        Me.txt対象終了日.Text = "9999"
-        Me.txt対象終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'btnOK00
-        '
-        Me.btnOK00.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnOK00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnOK00.Location = New System.Drawing.Point(6, 48)
-        Me.btnOK00.Name = "btnOK00"
-        Me.btnOK00.Size = New System.Drawing.Size(103, 37)
-        Me.btnOK00.TabIndex = 2
-        Me.btnOK00.Text = "印刷対象抽出"
-        Me.btnOK00.UseVisualStyleBackColor = False
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.TextBox1.Location = New System.Drawing.Point(131, 15)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(17, 27)
+        Me.TextBox1.TabIndex = 129
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.Text = "~"
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtMsg
         '
@@ -420,6 +389,51 @@ Partial Class F_An_PtIoLi00
         Me.txtMsg.TabStop = False
         Me.txtMsg.Text = "エラーメッセージ"
         '
+        'btnOK00
+        '
+        Me.btnOK00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnOK00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnOK00.Location = New System.Drawing.Point(6, 48)
+        Me.btnOK00.Name = "btnOK00"
+        Me.btnOK00.Size = New System.Drawing.Size(103, 37)
+        Me.btnOK00.TabIndex = 2
+        Me.btnOK00.Text = "印刷対象抽出"
+        Me.btnOK00.UseVisualStyleBackColor = False
+        '
+        'txt対象終了日
+        '
+        Me.txt対象終了日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt対象終了日.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt対象終了日.Location = New System.Drawing.Point(151, 14)
+        Me.txt対象終了日.Name = "txt対象終了日"
+        Me.txt対象終了日.Size = New System.Drawing.Size(61, 27)
+        Me.txt対象終了日.TabIndex = 1
+        Me.txt対象終了日.Text = "9999"
+        Me.txt対象終了日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txt対象開始日
+        '
+        Me.txt対象開始日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt対象開始日.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt対象開始日.Location = New System.Drawing.Point(68, 15)
+        Me.txt対象開始日.Name = "txt対象開始日"
+        Me.txt対象開始日.Size = New System.Drawing.Size(61, 27)
+        Me.txt対象開始日.TabIndex = 0
+        Me.txt対象開始日.Text = "9999"
+        Me.txt対象開始日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
+        Me.Label3.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(5, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(61, 27)
+        Me.Label3.TabIndex = 124
+        Me.Label3.Text = "対象日"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'GroupBox20
         '
         Me.GroupBox20.Controls.Add(Me.btnDel00)
@@ -429,17 +443,6 @@ Partial Class F_An_PtIoLi00
         Me.GroupBox20.Size = New System.Drawing.Size(1063, 358)
         Me.GroupBox20.TabIndex = 123
         Me.GroupBox20.TabStop = False
-        '
-        'btnSel00
-        '
-        Me.btnSel00.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnSel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSel00.Location = New System.Drawing.Point(4, 11)
-        Me.btnSel00.Name = "btnSel00"
-        Me.btnSel00.Size = New System.Drawing.Size(103, 37)
-        Me.btnSel00.TabIndex = 0
-        Me.btnSel00.Text = "全て選択"
-        Me.btnSel00.UseVisualStyleBackColor = False
         '
         'btnDel00
         '
@@ -452,19 +455,16 @@ Partial Class F_An_PtIoLi00
         Me.btnDel00.Text = "取消"
         Me.btnDel00.UseVisualStyleBackColor = False
         '
-        'TextBox1
+        'btnSel00
         '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.TextBox1.Location = New System.Drawing.Point(131, 15)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(17, 27)
-        Me.TextBox1.TabIndex = 129
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.Text = "~"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.btnSel00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnSel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnSel00.Location = New System.Drawing.Point(4, 11)
+        Me.btnSel00.Name = "btnSel00"
+        Me.btnSel00.Size = New System.Drawing.Size(103, 37)
+        Me.btnSel00.TabIndex = 0
+        Me.btnSel00.Text = "全て選択"
+        Me.btnSel00.UseVisualStyleBackColor = False
         '
         'F_An_PtIoLi00
         '
