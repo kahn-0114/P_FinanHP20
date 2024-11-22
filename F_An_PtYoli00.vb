@@ -35,7 +35,7 @@
 
     End Sub
 
-    Private Sub GroupBox10_Enter(sender As Object, e As EventArgs) Handles GroupBox10.Enter
+    Private Sub GroupBox10_Enter(sender As Object, e As EventArgs) Handles GroupBox00.Enter
 
     End Sub
 

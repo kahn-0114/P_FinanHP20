@@ -35,22 +35,22 @@ Partial Class F_An_PtYoli00
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd01 = New System.Windows.Forms.Button()
         Me.La年度 = New System.Windows.Forms.Label()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.txt年度 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txt締No = New System.Windows.Forms.TextBox()
-        Me.txt締年月日 = New System.Windows.Forms.TextBox()
-        Me.txt処理開始日 = New System.Windows.Forms.TextBox()
-        Me.txt処理終了日 = New System.Windows.Forms.TextBox()
-        Me.txt決算期区分 = New System.Windows.Forms.TextBox()
-        Me.txt決算開始 = New System.Windows.Forms.TextBox()
+        Me.GroupBox00 = New System.Windows.Forms.GroupBox()
         Me.txt決算終了 = New System.Windows.Forms.TextBox()
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txt対象日 = New System.Windows.Forms.TextBox()
+        Me.txt決算開始 = New System.Windows.Forms.TextBox()
+        Me.txt決算期区分 = New System.Windows.Forms.TextBox()
+        Me.txt処理終了日 = New System.Windows.Forms.TextBox()
+        Me.txt処理開始日 = New System.Windows.Forms.TextBox()
+        Me.txt締年月日 = New System.Windows.Forms.TextBox()
+        Me.txt締No = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txt年度 = New System.Windows.Forms.TextBox()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
+        Me.txt対象日 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.GroupBox00.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
         Me.SuspendLayout()
         '
         'Cmd12
@@ -221,34 +221,100 @@ Partial Class F_An_PtYoli00
         Me.La年度.Text = "年度"
         Me.La年度.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'GroupBox10
+        'GroupBox00
         '
-        Me.GroupBox10.Controls.Add(Me.txt決算終了)
-        Me.GroupBox10.Controls.Add(Me.txt決算開始)
-        Me.GroupBox10.Controls.Add(Me.txt決算期区分)
-        Me.GroupBox10.Controls.Add(Me.txt処理終了日)
-        Me.GroupBox10.Controls.Add(Me.txt処理開始日)
-        Me.GroupBox10.Controls.Add(Me.txt締年月日)
-        Me.GroupBox10.Controls.Add(Me.txt締No)
-        Me.GroupBox10.Controls.Add(Me.Label2)
-        Me.GroupBox10.Controls.Add(Me.txt年度)
-        Me.GroupBox10.Controls.Add(Me.La年度)
-        Me.GroupBox10.Location = New System.Drawing.Point(12, 53)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1053, 49)
-        Me.GroupBox10.TabIndex = 79
-        Me.GroupBox10.TabStop = False
+        Me.GroupBox00.Controls.Add(Me.txt決算終了)
+        Me.GroupBox00.Controls.Add(Me.txt決算開始)
+        Me.GroupBox00.Controls.Add(Me.txt決算期区分)
+        Me.GroupBox00.Controls.Add(Me.txt処理終了日)
+        Me.GroupBox00.Controls.Add(Me.txt処理開始日)
+        Me.GroupBox00.Controls.Add(Me.txt締年月日)
+        Me.GroupBox00.Controls.Add(Me.txt締No)
+        Me.GroupBox00.Controls.Add(Me.Label2)
+        Me.GroupBox00.Controls.Add(Me.txt年度)
+        Me.GroupBox00.Controls.Add(Me.La年度)
+        Me.GroupBox00.Location = New System.Drawing.Point(12, 53)
+        Me.GroupBox00.Name = "GroupBox00"
+        Me.GroupBox00.Size = New System.Drawing.Size(1053, 49)
+        Me.GroupBox00.TabIndex = 79
+        Me.GroupBox00.TabStop = False
         '
-        'txt年度
+        'txt決算終了
         '
-        Me.txt年度.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt年度.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt年度.Location = New System.Drawing.Point(69, 12)
-        Me.txt年度.Name = "txt年度"
-        Me.txt年度.Size = New System.Drawing.Size(42, 27)
-        Me.txt年度.TabIndex = 0
-        Me.txt年度.Text = "9999"
-        Me.txt年度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt決算終了.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt決算終了.Location = New System.Drawing.Point(531, 12)
+        Me.txt決算終了.Name = "txt決算終了"
+        Me.txt決算終了.ReadOnly = True
+        Me.txt決算終了.Size = New System.Drawing.Size(19, 27)
+        Me.txt決算終了.TabIndex = 87
+        Me.txt決算終了.TabStop = False
+        Me.txt決算終了.Text = "決算終了"
+        '
+        'txt決算開始
+        '
+        Me.txt決算開始.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt決算開始.Location = New System.Drawing.Point(506, 12)
+        Me.txt決算開始.Name = "txt決算開始"
+        Me.txt決算開始.ReadOnly = True
+        Me.txt決算開始.Size = New System.Drawing.Size(19, 27)
+        Me.txt決算開始.TabIndex = 86
+        Me.txt決算開始.TabStop = False
+        Me.txt決算開始.Text = "決算開始"
+        '
+        'txt決算期区分
+        '
+        Me.txt決算期区分.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt決算期区分.Location = New System.Drawing.Point(479, 12)
+        Me.txt決算期区分.Name = "txt決算期区分"
+        Me.txt決算期区分.ReadOnly = True
+        Me.txt決算期区分.Size = New System.Drawing.Size(21, 27)
+        Me.txt決算期区分.TabIndex = 85
+        Me.txt決算期区分.TabStop = False
+        Me.txt決算期区分.Text = "決算期区分"
+        '
+        'txt処理終了日
+        '
+        Me.txt処理終了日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt処理終了日.Location = New System.Drawing.Point(394, 12)
+        Me.txt処理終了日.Name = "txt処理終了日"
+        Me.txt処理終了日.ReadOnly = True
+        Me.txt処理終了日.Size = New System.Drawing.Size(79, 27)
+        Me.txt処理終了日.TabIndex = 84
+        Me.txt処理終了日.TabStop = False
+        Me.txt処理終了日.Text = "処理終了日"
+        '
+        'txt処理開始日
+        '
+        Me.txt処理開始日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt処理開始日.Location = New System.Drawing.Point(311, 12)
+        Me.txt処理開始日.Name = "txt処理開始日"
+        Me.txt処理開始日.ReadOnly = True
+        Me.txt処理開始日.Size = New System.Drawing.Size(80, 27)
+        Me.txt処理開始日.TabIndex = 83
+        Me.txt処理開始日.TabStop = False
+        Me.txt処理開始日.Text = "処理開始日"
+        '
+        'txt締年月日
+        '
+        Me.txt締年月日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt締年月日.Location = New System.Drawing.Point(222, 12)
+        Me.txt締年月日.Name = "txt締年月日"
+        Me.txt締年月日.ReadOnly = True
+        Me.txt締年月日.Size = New System.Drawing.Size(86, 27)
+        Me.txt締年月日.TabIndex = 82
+        Me.txt締年月日.TabStop = False
+        Me.txt締年月日.Text = "9999年99月"
+        '
+        'txt締No
+        '
+        Me.txt締No.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt締No.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt締No.Location = New System.Drawing.Point(177, 12)
+        Me.txt締No.Name = "txt締No"
+        Me.txt締No.Size = New System.Drawing.Size(42, 27)
+        Me.txt締No.TabIndex = 1
+        Me.txt締No.Text = "999"
+        Me.txt締No.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
         '
@@ -262,116 +328,27 @@ Partial Class F_An_PtYoli00
         Me.Label2.Text = "締No"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txt締No
+        'txt年度
         '
-        Me.txt締No.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt締No.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt締No.Location = New System.Drawing.Point(177, 12)
-        Me.txt締No.Name = "txt締No"
-        Me.txt締No.Size = New System.Drawing.Size(42, 27)
-        Me.txt締No.TabIndex = 1
-        Me.txt締No.Text = "999"
-        Me.txt締No.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txt年度.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt年度.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt年度.Location = New System.Drawing.Point(69, 12)
+        Me.txt年度.Name = "txt年度"
+        Me.txt年度.Size = New System.Drawing.Size(42, 27)
+        Me.txt年度.TabIndex = 0
+        Me.txt年度.Text = "9999"
+        Me.txt年度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txt締年月日
+        'GroupBox10
         '
-        Me.txt締年月日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt締年月日.Location = New System.Drawing.Point(222, 12)
-        Me.txt締年月日.Name = "txt締年月日"
-        Me.txt締年月日.ReadOnly = True
-        Me.txt締年月日.Size = New System.Drawing.Size(86, 27)
-        Me.txt締年月日.TabIndex = 82
-        Me.txt締年月日.TabStop = False
-        Me.txt締年月日.Text = "9999年99月"
-        '
-        'txt処理開始日
-        '
-        Me.txt処理開始日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt処理開始日.Location = New System.Drawing.Point(311, 12)
-        Me.txt処理開始日.Name = "txt処理開始日"
-        Me.txt処理開始日.ReadOnly = True
-        Me.txt処理開始日.Size = New System.Drawing.Size(80, 27)
-        Me.txt処理開始日.TabIndex = 83
-        Me.txt処理開始日.TabStop = False
-        Me.txt処理開始日.Text = "処理開始日"
-        '
-        'txt処理終了日
-        '
-        Me.txt処理終了日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt処理終了日.Location = New System.Drawing.Point(394, 12)
-        Me.txt処理終了日.Name = "txt処理終了日"
-        Me.txt処理終了日.ReadOnly = True
-        Me.txt処理終了日.Size = New System.Drawing.Size(79, 27)
-        Me.txt処理終了日.TabIndex = 84
-        Me.txt処理終了日.TabStop = False
-        Me.txt処理終了日.Text = "処理終了日"
-        '
-        'txt決算期区分
-        '
-        Me.txt決算期区分.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt決算期区分.Location = New System.Drawing.Point(479, 12)
-        Me.txt決算期区分.Name = "txt決算期区分"
-        Me.txt決算期区分.ReadOnly = True
-        Me.txt決算期区分.Size = New System.Drawing.Size(21, 27)
-        Me.txt決算期区分.TabIndex = 85
-        Me.txt決算期区分.TabStop = False
-        Me.txt決算期区分.Text = "決算期区分"
-        '
-        'txt決算開始
-        '
-        Me.txt決算開始.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt決算開始.Location = New System.Drawing.Point(506, 12)
-        Me.txt決算開始.Name = "txt決算開始"
-        Me.txt決算開始.ReadOnly = True
-        Me.txt決算開始.Size = New System.Drawing.Size(19, 27)
-        Me.txt決算開始.TabIndex = 86
-        Me.txt決算開始.TabStop = False
-        Me.txt決算開始.Text = "決算開始"
-        '
-        'txt決算終了
-        '
-        Me.txt決算終了.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt決算終了.Location = New System.Drawing.Point(531, 12)
-        Me.txt決算終了.Name = "txt決算終了"
-        Me.txt決算終了.ReadOnly = True
-        Me.txt決算終了.Size = New System.Drawing.Size(19, 27)
-        Me.txt決算終了.TabIndex = 87
-        Me.txt決算終了.TabStop = False
-        Me.txt決算終了.Text = "決算終了"
-        '
-        'GroupBox20
-        '
-        Me.GroupBox20.Controls.Add(Me.txtMsg)
-        Me.GroupBox20.Controls.Add(Me.txt対象日)
-        Me.GroupBox20.Controls.Add(Me.Label3)
-        Me.GroupBox20.Location = New System.Drawing.Point(12, 101)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(1053, 330)
-        Me.GroupBox20.TabIndex = 80
-        Me.GroupBox20.TabStop = False
-        '
-        'Label3
-        '
-        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
-        Me.Label3.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(6, 15)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(97, 27)
-        Me.Label3.TabIndex = 79
-        Me.Label3.Text = "対象日"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'txt対象日
-        '
-        Me.txt対象日.Font = New System.Drawing.Font("メイリオ", 9.75!)
-        Me.txt対象日.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txt対象日.Location = New System.Drawing.Point(106, 15)
-        Me.txt対象日.Name = "txt対象日"
-        Me.txt対象日.Size = New System.Drawing.Size(42, 27)
-        Me.txt対象日.TabIndex = 0
-        Me.txt対象日.Text = "9999"
-        Me.txt対象日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.GroupBox10.Controls.Add(Me.txtMsg)
+        Me.GroupBox10.Controls.Add(Me.txt対象日)
+        Me.GroupBox10.Controls.Add(Me.Label3)
+        Me.GroupBox10.Location = New System.Drawing.Point(12, 101)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(1053, 330)
+        Me.GroupBox10.TabIndex = 80
+        Me.GroupBox10.TabStop = False
         '
         'txtMsg
         '
@@ -388,13 +365,36 @@ Partial Class F_An_PtYoli00
         Me.txtMsg.TabStop = False
         Me.txtMsg.Text = "エラーメッセージ"
         '
+        'txt対象日
+        '
+        Me.txt対象日.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.txt対象日.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txt対象日.Location = New System.Drawing.Point(106, 15)
+        Me.txt対象日.Name = "txt対象日"
+        Me.txt対象日.Size = New System.Drawing.Size(42, 27)
+        Me.txt対象日.TabIndex = 0
+        Me.txt対象日.Text = "9999"
+        Me.txt対象日.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(168, Byte), Integer))
+        Me.Label3.Font = New System.Drawing.Font("メイリオ", 9.75!)
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(6, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(97, 27)
+        Me.Label3.TabIndex = 79
+        Me.Label3.Text = "対象日"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'F_An_PtYoli00
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 437)
-        Me.Controls.Add(Me.GroupBox20)
         Me.Controls.Add(Me.GroupBox10)
+        Me.Controls.Add(Me.GroupBox00)
         Me.Controls.Add(Me.Cmd12)
         Me.Controls.Add(Me.Cmd11)
         Me.Controls.Add(Me.Cmd10)
@@ -409,10 +409,10 @@ Partial Class F_An_PtYoli00
         Me.Controls.Add(Me.Cmd01)
         Me.Name = "F_An_PtYoli00"
         Me.Text = "預金残高一覧業"
+        Me.GroupBox00.ResumeLayout(False)
+        Me.GroupBox00.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
-        Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox20.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -430,7 +430,7 @@ Partial Class F_An_PtYoli00
     Friend WithEvents Cmd02 As Button
     Friend WithEvents Cmd01 As Button
     Friend WithEvents La年度 As Label
-    Friend WithEvents GroupBox10 As GroupBox
+    Friend WithEvents GroupBox00 As GroupBox
     Friend WithEvents txt年度 As TextBox
     Friend WithEvents txt処理開始日 As TextBox
     Friend WithEvents txt締年月日 As TextBox
@@ -440,7 +440,7 @@ Partial Class F_An_PtYoli00
     Friend WithEvents txt決算開始 As TextBox
     Friend WithEvents txt決算期区分 As TextBox
     Friend WithEvents txt処理終了日 As TextBox
-    Friend WithEvents GroupBox20 As GroupBox
+    Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents txt対象日 As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtMsg As TextBox
