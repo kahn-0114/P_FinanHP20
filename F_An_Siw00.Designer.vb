@@ -34,7 +34,7 @@ Partial Class F_An_Siw00
         Me.Cmd03 = New System.Windows.Forms.Button()
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd01 = New System.Windows.Forms.Button()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox00 = New System.Windows.Forms.GroupBox()
         Me.txt最終受信No = New System.Windows.Forms.TextBox()
         Me.txt処理終了日 = New System.Windows.Forms.TextBox()
         Me.txt処理開始日 = New System.Windows.Forms.TextBox()
@@ -44,8 +44,8 @@ Partial Class F_An_Siw00
         Me.txt年度 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
-        Me.btn1 = New System.Windows.Forms.Button()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.btnOK00 = New System.Windows.Forms.Button()
         Me.txtエクスポートFile = New System.Windows.Forms.TextBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -56,8 +56,8 @@ Partial Class F_An_Siw00
         Me.txt対象日 = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupBox00.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
         Me.SuspendLayout()
         '
         'Cmd12
@@ -214,21 +214,21 @@ Partial Class F_An_Siw00
         Me.Cmd01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Cmd01.UseVisualStyleBackColor = False
         '
-        'GroupBox10
+        'GroupBox00
         '
-        Me.GroupBox10.Controls.Add(Me.txt最終受信No)
-        Me.GroupBox10.Controls.Add(Me.txt処理終了日)
-        Me.GroupBox10.Controls.Add(Me.txt処理開始日)
-        Me.GroupBox10.Controls.Add(Me.txt締年月日)
-        Me.GroupBox10.Controls.Add(Me.txt締No)
-        Me.GroupBox10.Controls.Add(Me.Label3)
-        Me.GroupBox10.Controls.Add(Me.txt年度)
-        Me.GroupBox10.Controls.Add(Me.Label1)
-        Me.GroupBox10.Location = New System.Drawing.Point(4, 63)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1063, 51)
-        Me.GroupBox10.TabIndex = 90
-        Me.GroupBox10.TabStop = False
+        Me.GroupBox00.Controls.Add(Me.txt最終受信No)
+        Me.GroupBox00.Controls.Add(Me.txt処理終了日)
+        Me.GroupBox00.Controls.Add(Me.txt処理開始日)
+        Me.GroupBox00.Controls.Add(Me.txt締年月日)
+        Me.GroupBox00.Controls.Add(Me.txt締No)
+        Me.GroupBox00.Controls.Add(Me.Label3)
+        Me.GroupBox00.Controls.Add(Me.txt年度)
+        Me.GroupBox00.Controls.Add(Me.Label1)
+        Me.GroupBox00.Location = New System.Drawing.Point(4, 63)
+        Me.GroupBox00.Name = "GroupBox00"
+        Me.GroupBox00.Size = New System.Drawing.Size(1063, 51)
+        Me.GroupBox00.TabIndex = 90
+        Me.GroupBox00.TabStop = False
         '
         'txt最終受信No
         '
@@ -329,33 +329,33 @@ Partial Class F_An_Siw00
         Me.ListView1.TabIndex = 91
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
-        'GroupBox20
+        'GroupBox10
         '
-        Me.GroupBox20.Controls.Add(Me.btn1)
-        Me.GroupBox20.Controls.Add(Me.txtエクスポートFile)
-        Me.GroupBox20.Controls.Add(Me.txtMsg)
-        Me.GroupBox20.Controls.Add(Me.Label6)
-        Me.GroupBox20.Controls.Add(Me.btnUP00)
-        Me.GroupBox20.Controls.Add(Me.txt処理件数)
-        Me.GroupBox20.Controls.Add(Me.txt受付No)
-        Me.GroupBox20.Controls.Add(Me.Label5)
-        Me.GroupBox20.Controls.Add(Me.txt対象日)
-        Me.GroupBox20.Controls.Add(Me.Label4)
-        Me.GroupBox20.Controls.Add(Me.Label2)
-        Me.GroupBox20.Location = New System.Drawing.Point(4, 268)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(1063, 324)
-        Me.GroupBox20.TabIndex = 92
-        Me.GroupBox20.TabStop = False
+        Me.GroupBox10.Controls.Add(Me.btnOK00)
+        Me.GroupBox10.Controls.Add(Me.txtエクスポートFile)
+        Me.GroupBox10.Controls.Add(Me.txtMsg)
+        Me.GroupBox10.Controls.Add(Me.Label6)
+        Me.GroupBox10.Controls.Add(Me.btnUP00)
+        Me.GroupBox10.Controls.Add(Me.txt処理件数)
+        Me.GroupBox10.Controls.Add(Me.txt受付No)
+        Me.GroupBox10.Controls.Add(Me.Label5)
+        Me.GroupBox10.Controls.Add(Me.txt対象日)
+        Me.GroupBox10.Controls.Add(Me.Label4)
+        Me.GroupBox10.Controls.Add(Me.Label2)
+        Me.GroupBox10.Location = New System.Drawing.Point(4, 268)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(1063, 324)
+        Me.GroupBox10.TabIndex = 92
+        Me.GroupBox10.TabStop = False
         '
-        'btn1
+        'btnOK00
         '
-        Me.btn1.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btn1.Location = New System.Drawing.Point(705, 236)
-        Me.btn1.Name = "btn1"
-        Me.btn1.Size = New System.Drawing.Size(45, 42)
-        Me.btn1.TabIndex = 5
-        Me.btn1.UseVisualStyleBackColor = False
+        Me.btnOK00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnOK00.Location = New System.Drawing.Point(705, 236)
+        Me.btnOK00.Name = "btnOK00"
+        Me.btnOK00.Size = New System.Drawing.Size(45, 42)
+        Me.btnOK00.TabIndex = 5
+        Me.btnOK00.UseVisualStyleBackColor = False
         '
         'txtエクスポートFile
         '
@@ -482,9 +482,9 @@ Partial Class F_An_Siw00
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 604)
-        Me.Controls.Add(Me.GroupBox20)
-        Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.GroupBox10)
+        Me.Controls.Add(Me.ListView1)
+        Me.Controls.Add(Me.GroupBox00)
         Me.Controls.Add(Me.Cmd12)
         Me.Controls.Add(Me.Cmd11)
         Me.Controls.Add(Me.Cmd10)
@@ -499,10 +499,10 @@ Partial Class F_An_Siw00
         Me.Controls.Add(Me.Cmd01)
         Me.Name = "F_An_Siw00"
         Me.Text = "アンサー仕訳作成処理"
+        Me.GroupBox00.ResumeLayout(False)
+        Me.GroupBox00.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
-        Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox20.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -519,10 +519,10 @@ Partial Class F_An_Siw00
     Friend WithEvents Cmd03 As Button
     Friend WithEvents Cmd02 As Button
     Friend WithEvents Cmd01 As Button
-    Friend WithEvents GroupBox10 As GroupBox
+    Friend WithEvents GroupBox00 As GroupBox
     Friend WithEvents Label1 As Label
     Friend WithEvents ListView1 As ListView
-    Friend WithEvents GroupBox20 As GroupBox
+    Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txt年度 As TextBox
     Friend WithEvents Label2 As Label
@@ -538,7 +538,7 @@ Partial Class F_An_Siw00
     Friend WithEvents txt処理件数 As TextBox
     Friend WithEvents btnUP00 As Button
     Friend WithEvents Label6 As Label
-    Friend WithEvents btn1 As Button
+    Friend WithEvents btnOK00 As Button
     Friend WithEvents txtエクスポートFile As TextBox
     Friend WithEvents txtMsg As TextBox
 End Class
