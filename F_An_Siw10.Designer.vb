@@ -34,15 +34,15 @@ Partial Class F_An_Siw10
         Me.Cmd03 = New System.Windows.Forms.Button()
         Me.Cmd02 = New System.Windows.Forms.Button()
         Me.Cmd01 = New System.Windows.Forms.Button()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.btnSel00 = New System.Windows.Forms.Button()
+        Me.GroupBox00 = New System.Windows.Forms.GroupBox()
         Me.btnDel01 = New System.Windows.Forms.Button()
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
-        Me.btnUP00 = New System.Windows.Forms.Button()
-        Me.btnDel00 = New System.Windows.Forms.Button()
+        Me.btnSel00 = New System.Windows.Forms.Button()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
+        Me.btnDel00 = New System.Windows.Forms.Button()
+        Me.btnUP00 = New System.Windows.Forms.Button()
+        Me.GroupBox00.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
         Me.SuspendLayout()
         '
         'Cmd12
@@ -197,26 +197,15 @@ Partial Class F_An_Siw10
         Me.Cmd01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Cmd01.UseVisualStyleBackColor = False
         '
-        'GroupBox10
+        'GroupBox00
         '
-        Me.GroupBox10.Controls.Add(Me.btnDel01)
-        Me.GroupBox10.Controls.Add(Me.btnSel00)
-        Me.GroupBox10.Location = New System.Drawing.Point(3, 63)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1063, 450)
-        Me.GroupBox10.TabIndex = 102
-        Me.GroupBox10.TabStop = False
-        '
-        'btnSel00
-        '
-        Me.btnSel00.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnSel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.btnSel00.Location = New System.Drawing.Point(6, 11)
-        Me.btnSel00.Name = "btnSel00"
-        Me.btnSel00.Size = New System.Drawing.Size(89, 36)
-        Me.btnSel00.TabIndex = 0
-        Me.btnSel00.Text = "全て選択"
-        Me.btnSel00.UseVisualStyleBackColor = False
+        Me.GroupBox00.Controls.Add(Me.btnDel01)
+        Me.GroupBox00.Controls.Add(Me.btnSel00)
+        Me.GroupBox00.Location = New System.Drawing.Point(3, 63)
+        Me.GroupBox00.Name = "GroupBox00"
+        Me.GroupBox00.Size = New System.Drawing.Size(1063, 450)
+        Me.GroupBox00.TabIndex = 102
+        Me.GroupBox00.TabStop = False
         '
         'btnDel01
         '
@@ -229,38 +218,27 @@ Partial Class F_An_Siw10
         Me.btnDel01.Text = "取消"
         Me.btnDel01.UseVisualStyleBackColor = False
         '
-        'GroupBox20
+        'btnSel00
         '
-        Me.GroupBox20.Controls.Add(Me.txtMsg)
-        Me.GroupBox20.Controls.Add(Me.btnDel00)
-        Me.GroupBox20.Controls.Add(Me.btnUP00)
-        Me.GroupBox20.Location = New System.Drawing.Point(3, 519)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(1063, 83)
-        Me.GroupBox20.TabIndex = 103
-        Me.GroupBox20.TabStop = False
+        Me.btnSel00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnSel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnSel00.Location = New System.Drawing.Point(6, 11)
+        Me.btnSel00.Name = "btnSel00"
+        Me.btnSel00.Size = New System.Drawing.Size(89, 36)
+        Me.btnSel00.TabIndex = 0
+        Me.btnSel00.Text = "全て選択"
+        Me.btnSel00.UseVisualStyleBackColor = False
         '
-        'btnUP00
+        'GroupBox10
         '
-        Me.btnUP00.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnUP00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.btnUP00.Location = New System.Drawing.Point(6, 10)
-        Me.btnUP00.Name = "btnUP00"
-        Me.btnUP00.Size = New System.Drawing.Size(120, 36)
-        Me.btnUP00.TabIndex = 0
-        Me.btnUP00.Text = "経理仕訳一覧表"
-        Me.btnUP00.UseVisualStyleBackColor = False
-        '
-        'btnDel00
-        '
-        Me.btnDel00.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnDel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.btnDel00.Location = New System.Drawing.Point(556, 10)
-        Me.btnDel00.Name = "btnDel00"
-        Me.btnDel00.Size = New System.Drawing.Size(110, 36)
-        Me.btnDel00.TabIndex = 1
-        Me.btnDel00.Text = "受信データ削除"
-        Me.btnDel00.UseVisualStyleBackColor = False
+        Me.GroupBox10.Controls.Add(Me.txtMsg)
+        Me.GroupBox10.Controls.Add(Me.btnDel00)
+        Me.GroupBox10.Controls.Add(Me.btnUP00)
+        Me.GroupBox10.Location = New System.Drawing.Point(3, 519)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(1063, 83)
+        Me.GroupBox10.TabIndex = 103
+        Me.GroupBox10.TabStop = False
         '
         'txtMsg
         '
@@ -277,13 +255,35 @@ Partial Class F_An_Siw10
         Me.txtMsg.TabStop = False
         Me.txtMsg.Text = "エラーメッセージ"
         '
+        'btnDel00
+        '
+        Me.btnDel00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnDel00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnDel00.Location = New System.Drawing.Point(556, 10)
+        Me.btnDel00.Name = "btnDel00"
+        Me.btnDel00.Size = New System.Drawing.Size(110, 36)
+        Me.btnDel00.TabIndex = 1
+        Me.btnDel00.Text = "受信データ削除"
+        Me.btnDel00.UseVisualStyleBackColor = False
+        '
+        'btnUP00
+        '
+        Me.btnUP00.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnUP00.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnUP00.Location = New System.Drawing.Point(6, 10)
+        Me.btnUP00.Name = "btnUP00"
+        Me.btnUP00.Size = New System.Drawing.Size(120, 36)
+        Me.btnUP00.TabIndex = 0
+        Me.btnUP00.Text = "経理仕訳一覧表"
+        Me.btnUP00.UseVisualStyleBackColor = False
+        '
         'F_An_Siw10
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 614)
-        Me.Controls.Add(Me.GroupBox20)
         Me.Controls.Add(Me.GroupBox10)
+        Me.Controls.Add(Me.GroupBox00)
         Me.Controls.Add(Me.Cmd12)
         Me.Controls.Add(Me.Cmd11)
         Me.Controls.Add(Me.Cmd10)
@@ -298,9 +298,9 @@ Partial Class F_An_Siw10
         Me.Controls.Add(Me.Cmd01)
         Me.Name = "F_An_Siw10"
         Me.Text = "口座番号別入出金一覧表"
+        Me.GroupBox00.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
-        Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox20.PerformLayout()
+        Me.GroupBox10.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -317,10 +317,10 @@ Partial Class F_An_Siw10
     Friend WithEvents Cmd03 As Button
     Friend WithEvents Cmd02 As Button
     Friend WithEvents Cmd01 As Button
-    Friend WithEvents GroupBox10 As GroupBox
+    Friend WithEvents GroupBox00 As GroupBox
     Friend WithEvents btnDel01 As Button
     Friend WithEvents btnSel00 As Button
-    Friend WithEvents GroupBox20 As GroupBox
+    Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents btnDel00 As Button
     Friend WithEvents btnUP00 As Button
     Friend WithEvents txtMsg As TextBox
